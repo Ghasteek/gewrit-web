@@ -70,7 +70,7 @@ class EditorController extends Controller {
                     $keys = array('name', 'image', 'year', 'genre', 'linkAp', 'description', 'onlyFor');
                     $anime = array_intersect_key($_POST, array_flip($keys));
                     //ulozeni anime do DB
-                    $contentHandler->saveContent($table, $_POST['_id'], $serial);
+                    $contentHandler->saveContent($table, $_POST['_id'], $anime);
                     $this->addMessage('Anime bylo úspěšně upraveno.', 'info');
                     $this->redirect('anime');
                 } else if (!empty($param[1])){
@@ -90,7 +90,7 @@ class EditorController extends Controller {
             $table = 'manga';
 
             // priprava praydneho serialu
-            $serial = array(
+            $manga = array(
                 'name' => '',
                 'image' => '',
                 'year' => '',
@@ -109,7 +109,7 @@ class EditorController extends Controller {
                     $keys = array('name', 'image', 'year', 'genre', 'linkAp', 'description', 'onlyFor');
                     $manga = array_intersect_key($_POST, array_flip($keys));
                     //ulozeni mangy do DB
-                    $contentHandler->saveContent($table, $_POST['_id'], $serial);
+                    $contentHandler->saveContent($table, $_POST['_id'], $manga);
                     $this->addMessage('Manga byla úspěšně upravena.', 'info');
                     $this->redirect('manga');
                 } else if (!empty($param[1])){
