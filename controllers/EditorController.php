@@ -36,15 +36,11 @@ class EditorController extends Controller {
                     $this->addMessage('Seriál byl úspěšně upraven.', 'info');
                     $this->redirect('serialy');
                 } else if (!empty($param[1])){
-                    $loadedSerial = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedSerial){
+                    $loadedContent = $contentHandler->getContent($table, $param[1]);
+                    if (!$loadedContent){
                         $this->addMessage('Seriál nenalezen.', 'error');
                     } 
                 }
-                $this->data['inListCount'] = MujSeznamHandler::inListCount($table, $param[1]);
-                $this->data['data'] = $loadedSerial[0];
-                $this->data['type'] = 'serial';
-                $this->view = 'editor';
             }
         } elseif ($param[0] === 'anime'){
             // hlavicka stranky
@@ -74,15 +70,11 @@ class EditorController extends Controller {
                     $this->addMessage('Anime bylo úspěšně upraveno.', 'info');
                     $this->redirect('anime');
                 } else if (!empty($param[1])){
-                    $loadedAnime = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedAnime){
+                    $loadedContent = $contentHandler->getContent($table, $param[1]);
+                    if (!$loadedContent){
                         $this->addMessage('Anime nenalezeno.', 'error');
                     } 
                 }
-                $this->data['inListCount'] = MujSeznamHandler::inListCount($table, $param[1]);
-                $this->data['data'] = $loadedAnime[0];
-                $this->data['type'] = 'anime';
-                $this->view = 'editor';
             }
         } elseif ($param[0] === 'manga'){
             // hlavicka stranky
@@ -113,17 +105,18 @@ class EditorController extends Controller {
                     $this->addMessage('Manga byla úspěšně upravena.', 'info');
                     $this->redirect('manga');
                 } else if (!empty($param[1])){
-                    $loadedManga = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedManga){
+                    $loadedContent = $contentHandler->getContent($table, $param[1]);
+                    if (!$loadedContent){
                         $this->addMessage('Manga nenalezena.', 'error');
                     } 
                 }
-                $this->data['inListCount'] = MujSeznamHandler::inListCount($table, $param[1]);
-                $this->data['data'] = $loadedManga[0];
-                $this->data['type'] = 'manga';
-                $this->view = 'editor';
             }
         }
+
+        $this->data['inListCount'] = MujSeznamHandler::inListCount($table, $param[1]);
+        $this->data['data'] = $loadedContent[0];
+        $this->data['type'] = $table;
+        $this->view = 'editor';
     }
 }
 ?>

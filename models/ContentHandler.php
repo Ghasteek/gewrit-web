@@ -92,6 +92,15 @@
             Db::getChanges($sql, array($id));
         }
 
+        // ziskej moje hodnoceni 
+        public function getMyRating($table, $userId, $itemId){
+            $table = $table . "_rating";
+            $sql = "SELECT `rating` from $table
+                WHERE userId = ? 
+                AND itemId = ?";
+            return Db::getAll($sql, array($userId, $itemId));
+        }
+
         /*
         *******************************************************************
         *** Po jistych problemech asi dropuju vyhledavani dle keywords  ***

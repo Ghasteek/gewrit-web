@@ -2,18 +2,18 @@
     // trida poskytuje metody pro spravu zaznamu
     class MujSeznamHandler{
 
-        // vrati vsechny zaznamy
+        /*// vrati vsechny zaznamy
         public function getAllMyRecords($owner){
             return Db::getAll('
                 SELECT * 
                 FROM `records`
                 WHERE `owner` = ?
             ', $id);
-        }
+        }*/
 
         //ulozi zaznam do db
         public function saveRecord($id, $record){
-            print_r($record);
+            //print_r($record);
             if (!$id){
                 try {
                     Db::insert('records', $record);
@@ -33,7 +33,7 @@
                 array($id));
         }
 
-        // vrati pozadovanou stranu zaznamu podle parametru
+        /*// vrati pozadovanou stranu zaznamu podle parametru
         public function getRecordsPaginate($offset, $itemsPerPage){
             $user = UserAdministration::getUser();
             $id = array($user['_id']);
@@ -44,7 +44,7 @@
                 ORDER BY timestamp DESC
                 LIMIT " . $itemsPerPage . " OFFSET " . $offset;
             return Db::getAll($sql, $id);
-        }
+        }*/
 
         // vrati pozadovanou stranu zaznamu podle parametru typu zadaneho v parametru
         public function getRecordsByTypePaginate($offset, $itemsPerPage, $type, $status = ""){
@@ -190,7 +190,6 @@
                 (`releaseDay` LIKE :releaseDay) AND
                 (`status` = 1)
                 ORDER BY timestamp DESC";
-
             return Db::getAll($sql, $parameters);
         }
 

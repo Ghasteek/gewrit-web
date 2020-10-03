@@ -22,7 +22,7 @@ foreach ($data as $line):
                     <?= $ribbonType ?>
                 </div>
             </div>
-            <img src="<?= $line['image'] ?>">
+            <img src="<?= $line['image'] ?>" title="hodnoceni - <?= $line['rating']?> | <?= $line['ratingSum']?>/<?= $line['ratingQuantity']?>">
         </div>
         <div class="unitBoxText">
             <strong> <?= $line['name'] ?> </strong> <i class="fa fa-info-circle" title="<?= $line['description'] ?>"></i><br>
