@@ -1,0 +1,15 @@
+<?php foreach ($latestData as $line):
+
+    if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];}?>
+
+<div class="indexItem itemDefault">
+    <span class="indexName" title='<?= $line['name'] ?>'><?= $name ?></span><br>
+    <div class="itemImage indexItemImage">
+        <img src="<?= $line['image'] ?>">
+    </div>
+    <?php if ($isLogged):?>
+    <a class="plusButton indexLeft" href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidat do seznamu"><span class="justPlus">+</span></a> <!-- + icon -->
+    <?php endif;?>
+</div>
+
+<?php endforeach;?>

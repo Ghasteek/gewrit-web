@@ -1,0 +1,28 @@
+<h1>Seznam položek k autorizaci</h1>
+<form method="post">
+<input type="submit" value="Hromadně povolit zaškrtnuté položky" />
+<input type="checkbox" onchange='handleChange(this);'> Vybrat vše
+
+<div class="serialsContainer">
+<?php 
+$cekarna = true;
+
+$data = $serials;
+$type = 'serial';
+include "views/items.phtml"; ?>
+</div>
+
+<div class="serialsContainer">
+<?php 
+$data = $animes;
+$type = 'anime';
+include "views/items.phtml"; ?>
+</div>
+
+<div class="serialsContainer">
+<?php 
+$data = $mangas;
+$type = 'manga';
+include "views/items.phtml"; ?>
+</div>
+</form>

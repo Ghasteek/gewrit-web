@@ -1,0 +1,50 @@
+<h1><?= $title?></h1>
+<?php if (!$type):?>
+<a href="/muj-seznam/sleduji">Sleduji</a>
+<a href="/muj-seznam/planovane">Chci si přečíst/shlédnout</a>
+<a href="/muj-seznam/pozastaveno">Pozastaveno</a>
+<a href="/muj-seznam/odlozeno">Odloženo</a>
+<a href="/muj-seznam/dokonceno">Dokončeno</a>
+<a href="/muj-seznam/nesledovat">Nesledovat</a> || 
+<a href="/muj-seznam/">Vše</a> <br><br>
+<?php endif; ?>
+
+    <?php if ($seznamType == 'all'){ ?>
+
+        <form method="GET" id="search" action="/<?php echo ($type == 'serial')? "serialy" : $type ?>">
+            <label for="search"><i class="fas fa-search"></i></label>
+            <input type="text" name="hledat" value="<?php echo $_GET['hledat']; ?>">
+            <div class="sendButton" onclick="document.forms['search'].submit();" title="Vyhledá v databázi vámi zvolená slova">Hledej</div>
+        </form><br>
+        <div class='seznamContainer'>
+
+        <?php include "views/items.phtml";
+    } elseif ($seznamType == 'my'){ ?>
+        <div class="kontaktContainer">
+        <form method="post">
+            <div style="display: flex;">
+                <input type="hidden" name="form" value="true">
+                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="anime" <?php if (strpos($checked, 'anime') !== false) { echo "checked"; }?>/> Anime | 
+                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="manga" <?php if (strpos($checked, 'manga') !== false) { echo "checked"; }?>/> Manga |
+                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="serial" <?php if (strpos($checked, 'serial') !== false) { echo "checked"; }?>/> Seriály ||
+                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="releaseDay" <?php if (strpos($checked, 'releaseDay') !== false) { echo "checked"; }?>/> Jen dnešní
+            </div>
+        </form><br />
+        
+        <?php include "views/my-items.phtml"; } ;?>
+</div>
+
+<div class="pages">
+<?php if ($pages > 1):
+    if (!$type) {
+        $type = $urlWithStatus;
+    }
+    for ($i=1; $i <= $pages; $i++):
+        if  (($i == $actualPage) || ($actualPage == 0) && ($i == 1)): ?>
+            <a class="activePage" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">< <?= $i?> ></a>
+        <?php else:?>
+            <a class="pagesList" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">[ <?= $i?> ]</a>
+        <?php endif;
+    endfor;
+endif;?>
+</div>

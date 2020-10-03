@@ -1,0 +1,47 @@
+<h1>Přidat</h1>
+<?php if ($data) :
+    if (strlen($data['genre']) > 25) { $genre = substr($data['genre'],0,20) . "...";} else { $genre = $data['genre']; }; ?>
+    <p>Chcete přidat tuto položku?</p>
+    <div class="unitBox">
+        <img src="<?= $data['image'] ?>">
+        <div class="unitBoxText">
+            <strong> <?= $data['name'] ?> </strong> <i class="fa fa-info-circle" title="<?= $data['description'] ?>"></i><br>
+            <div>
+                <?= $data['year'] ?><br>
+                <span title="<?= $data['genre'] ?>">Žánr: <?=  $genre ?></span>
+            </div> 
+            <?php if ($data['type'] == 'serial'): ?>
+                <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="csfd">CSFD</li> </a> 
+                <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="imdb">IMDB</li> </a>
+            <?php endif;
+            if (($data['type'] == 'anime') || ($data['type'] == 'manga')): ?>
+                <a href="<?= $data['linkAp'] ?>" title="odkaz na ANIME-PLANET" target="_blank"><li class="ap">Anime-planet</li> </a>
+                <?php endif; ?>
+        </div>
+    </div>
+    <form method="post">
+        <input type="hidden" name="name" value="<?= $data['name'] ?>"/>
+        <input type="hidden" name="image" value="<?= $data['image'] ?>"/>
+        <input type="hidden" name="year" value="<?= $data['year'] ?>"/>
+        <input type="hidden" name="genre" value="<?= $data['genre'] ?>"/>
+        <input type="hidden" name="linkCsfd" value="<?= $data['linkCsfd'] ?>"/>
+        <input type="hidden" name="linkImdb" value="<?= $data['linkImdb'] ?>"/>
+        <input type="hidden" name="linkAp" value="<?= $data['linkAp'] ?>"/>
+        <input type="hidden" name="description" value="<?= $data['description'] ?>"/>
+        <input type="hidden" name="onlyFor" value="<?= $user ?>"/>
+        <input type="hidden" name="type" value="<?= $data['type'] ?>"/>
+        <input type="submit" value="Ano" />
+    </form>
+<?php endif;
+    if (!$data) :?>
+    <div>
+    <p>Do pole níže zadejte celý odkaz (včetně https://) na požadovaný seriál / anime / mangu na serveru CSFD nebo Anime-planet.</p>
+    </div>
+    <form method="post" style="display: table; margin: auto;">
+    Odkaz<br />
+    <input type="text" name="url" /><br />
+    Zadejte aktuální rok (antispam)<br />
+    <input type="text" name="antispam" /><br />
+    <input type="submit" value="Přidat" />
+</form>
+<?php endif;?>

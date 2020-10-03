@@ -1,0 +1,52 @@
+<h1>Reporty</h1>
+
+<?php if ($rights > 0): ?>
+<form method="post">
+    <div style="display: flex;">
+        <input type="hidden" name="form" value="true">
+        <input type="checkbox" onChange="this.form.submit()" name="type[]" value="anime" <?php if ($anime) { echo "checked"; }?>/> Anime | 
+        <input type="checkbox" onChange="this.form.submit()" name="type[]" value="manga" <?php if ($manga) { echo "checked"; }?>/> Manga |
+        <input type="checkbox" onChange="this.form.submit()" name="type[]" value="serial" <?php if ($serial) { echo "checked"; }?>/> Seriály 
+        <?php if ($rights == 2):?>
+            |<input type="checkbox" onChange="this.form.submit()" name="type[]" value="uzivatel" <?php if ($uzivatel) { echo "checked"; }?>/> Uživatel 
+        <?php endif; ?>
+        |<input type="checkbox" onChange="this.form.submit()" name="open" value="open" <?php if ($open) { echo "checked"; }?>/> Jen otevřené
+</div>
+</form>
+<?php endif;?>
+
+<?php if ($data): ?>
+    <table class="borders">
+    <tr>
+        <th>Report na položku</th>
+        <th>Typ položky</th>
+        <?php if ($rights > 0):?>
+            <th>Autor reportu</th>
+        <?php endif; ?>
+        <th>Text</th>
+        <th>Status</th>
+        <th>Odpověd</th>
+        <?php if ($rights > 0):?>
+            <th>Akce</th>
+        <?php endif; ?>
+    </tr>
+        <?php foreach ($data as $line): ?>
+            <tr>
+                <td><?= $line['reportForId'] ?></td>
+                <td><?= $line['reportType'] ?></td>
+                <?php if ($rights > 0):?>
+                    <td><a href="/profil/<?= $line['author'] ?>"><?= $line['author'] ?></a></td>
+                <?php endif; ?>
+                <td><?= $line['text'] ?></td>
+                <td><?= $line['status'] ?></td>
+                <td><?= $line['answer'] ?></td>
+                <?php if ($rights > 0):?>
+                    <td>
+                        <a href="/reporty/<?= $line['_id'] ?>/odpovedet"><i class="fa fa-reply" title="Odpovědět na report"></i></a>
+                    </td>
+                <?php endif; ?>
+                
+            </tr>
+    <?php endforeach; ?>
+    </table>
+    <?php endif;?>

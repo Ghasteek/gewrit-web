@@ -1,0 +1,34 @@
+<h1>Seznam moderátorů</h1>
+
+<form method="post">
+    Přidat práva moderátora uživateli:<br />
+    <div style="display: flex;">
+        <input type="text" name="username" placeholder="Nick uživatele"/>
+        <input style="margin: 0px auto; float: right;" type="submit" value="Povýšit"/>
+    </div>
+</form>
+<p></p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Jméno<th>
+        <th>Email<th>
+        <th>Páva<th>
+        <th>Úprava<th>
+    </tr>
+
+    <?php foreach ($mods as $mod):
+        if ($mod['rights'] == 1) { $rights = 'Mod';} else { $rights = 'Admin';} ?>
+        <tr>
+            <td><?= $mod['_id'] ?></td>
+            <td><?= $mod['username'] ?><td>
+            <td><?= $mod['email'] ?><td>
+            <td><?= $rights ?><td>
+            <td>
+                <a href="mod/promote/<?= $mod['_id'] ?>"><i class="fa fa-plus-circle" title="Zvýšit práva"></i></a>
+                <a href="mod/degrade/<?= $mod['_id'] ?>"><i class="fa fa-minus-circle" title="Snížit práva"></i></a>
+            <td>
+        </tr>
+    <?php endforeach;?>
+</table>

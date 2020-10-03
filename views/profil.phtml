@@ -1,0 +1,8 @@
+<?php $rights = array('Silence', 'Uživatel', 'Moderátor', 'Admin'); $user['rights'] = $user['rights'] + 1; ?>
+<h1>Detail uživatele</h1>
+<ul>
+<li>ID - <?= $user['_id'] ?> </li>
+<li>Jméno - <strong><?= $user['username'] ?></strong></li>
+<li>Email - <?= $user['email'] ?> </li>
+<li>Práva - <?= $rights[$user['rights']] ?></li>
+</ul>

@@ -1,0 +1,48 @@
+<div class="kontaktContainer">
+<h1>Editor</h1>
+
+<form method="post">
+    ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
+    <input type="hidden" name="_id"  value="<?= $data['_id'] ?>"/>
+    Jméno<br />
+    <input type="text" name="name" value="<?= $data['name'] ?>" /><br />
+    URL obrázku<br />
+    <input type="text" name="image" value="<?= $data['image'] ?>" /><br />
+    <img src="<?= $data['image'] ?>"><br />
+    Rok<br />
+    <input type="text" name="year" value="<?= $data['year'] ?>" /><br />
+    Žánr<br />
+    <input type="text" name="genre" value="<?= $data['genre'] ?>" /><br />
+    <?php if ($type == 'serial') : ?>
+      URL CSFD<br />
+      <input type="text" name="linkCsfd" value="<?= $data['linkCsfd'] ?>" /><br />
+      URL IMDB<br />
+      <input type="text" name="linkImdb" value="<?= $data['linkImdb'] ?>" /><br />
+    <?php endif; ?>
+    <?php if ($type != 'serial') : ?>
+      URL Anime-planet<br />
+      <input type="text" name="linkAp" value="<?= $data['linkAp'] ?>" /><br />
+    <?php endif; ?>
+    Popis<br />
+    <textarea type="text" name="description" ><?= $data['description'] ?></textarea><br />
+    <input id="onlyFor" type="checkbox" name="onlyFor" value="0" <?php if ($data['onlyFor'] === 0){echo 'checked="TRUE"';} ?>>
+    <label for="onlyFor">Veřejný</label><br />
+    Na seznamu <?= $inListCount ?>x
+    <table><tr>
+    <td class="noBorders"><input type="submit" value="Uložit" /></td>
+    <td class="noBorders"><div onClick="document.getElementById('id01').style.display='block'" class="buttonRed">Smazat</div></td>
+</tr></table>
+</form>
+
+<div id="id01" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="container itemDefault modalColumn">
+        <strong>Opavdu chcete tuto položku smazat?</strong>
+        <table><tr>
+            <td class="noBorders"><a href="/editor/<?= $type ?>/<?= $data['_id'] ?>/smazat"><div class="buttonRed">ANO</div></a></td>
+            <td class="noBorders"><div onClick="document.getElementById('id01').style.display='none'" class="buttonBlue">NE</div></td>
+        </tr></table>
+      </div>
+    </div>
+  </div>
+</div>

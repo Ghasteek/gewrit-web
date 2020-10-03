@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+    <head>
+        <base href="/gewrit" />
+        <meta charset="UTF-8" />
+        <title><?= $title ?></title>
+        <meta name="description" content="<?= $description ?>" />
+        <meta name="keywords" content="<?= $keywords ?>" />
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/1648622916.js" crossorigin="anonymous"></script>
+    </head>
+    <style></style>
+    <div id="message" class='message'>
+    <?php
+        $no = 0; 
+        foreach ($messages as $message) : 
+        $no += 1; ?>
+        <p name="message" id="message<?= $no ?>" class="<?= $message[1] ?>" onClick="closeMessage('message<?= $no ?>')"> <?= $message[0] ?> <i class='fa fa-close'></i> </p>
+    <?php endforeach ?>
+    </div>
+    <body onLoad="getHeight(); removeFadeOut('message', 3000, 5000);">
+        <div class="mainContent">
+        <header>
+            <h1>GEWRIT</h1>
+        </header>
+
+        <nav class="menu">
+        <ol>
+            <li class="menu-item"><a href="uvod">Úvod</a></li>
+            <li class="menu-item"><a href="serialy">Seriály</a></li>
+            <li class="menu-item"><a href="anime">Anime</a></li>
+            <li class="menu-item"><a href="manga">Manga</a></li>
+            <li class="menu-item"><a href="kontakt">Kontakt</a></li>
+            <?php UserAdministration::showProfile(); ?>
+        </ol>
+        </nav>
+      
+        <br clear="both" />
+
+        <article>
+            <?php $this->controller->showView(); ?>
+        </article>
+
+        <footer>
+            <p>Patička</p>
+        </footer>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

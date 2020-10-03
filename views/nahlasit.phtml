@@ -1,0 +1,20 @@
+<h1>Nahlásit</h1>
+<?php 
+    if ($data){
+        if ($type == 'uzivatel'){
+            $user = $data;
+            include "views/profil.phtml";
+        } else {
+            include "views/items.phtml"; 
+        }
+    }; 
+    
+?>
+<form method="post">
+    <input type="hidden" name="reportForId" value="<?= $id ?>">
+    <input type="hidden" name="type" value="<?= $type ?>">
+    <textarea id="text" name="text" placeholder="Text hlášení, odůvodnění,..."></textarea><br>
+    <input type="hidden" name="author" value="<?= $author ?>">
+    <input style="margin: 0px auto; float: right;" type="submit" value="Poslat"/>
+
+</form>

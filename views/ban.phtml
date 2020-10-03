@@ -1,0 +1,34 @@
+<h1>Seznam zabanovaných</h1>
+
+<form method="post">
+    Přidat BAN uživateli:<br />
+    <div style="display: flex;">
+        <input type="text" name="username" placeholder="Nick uživatele"/>
+        <input style="margin: 0px auto; float: right;" type="submit" value="ZaBANovat"/>
+    </div>
+</form>
+<p></p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Jméno</th>
+        <th>Email</th>
+        <th>Páva</th>
+        <th>Úprava</th>
+    </tr>
+
+    <?php foreach ($bans as $ban):
+        if ($ban['rights'] == -1) { $rights = 'Silence';} else { $rights = 'BAN';} ?>
+        <tr>
+            <td><?= $ban['_id'] ?></td>
+            <td><?= $ban['username'] ?></td>
+            <td><?= $ban['email'] ?></td>
+            <td><?= $rights ?></td>
+            <td>
+                <a href="ban/less/<?= $ban['_id'] ?>"><i class="fa fa-plus-circle" title="Snížit intenzitu BANu"></i></a>
+                <a href="ban/more/<?= $ban['_id'] ?>"><i class="fa fa-minus-circle" title="Zvýšit intenzitu BANu"></i></a>
+            </td>
+        </tr>
+    <?php endforeach;?>
+</table>

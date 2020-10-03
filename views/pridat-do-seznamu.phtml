@@ -1,0 +1,35 @@
+<h1>Přidat do seznamu sledovaných</h1>
+<?php 
+    if ($data){
+        include "views/items.phtml"; 
+    }; 
+    
+?>
+<h4>Vaše aktuální pozice ve sledování/čtení:</h4>
+<form id="change<?= $line['_id']?>" method="post">
+    <label for="series">Série: </label>
+        <input type="number" id ="series" name="series" class="progressInput" value="<?= $records[$i]['series'] ?>" title="Série. Pokud nemá série, nechejte prázdné políčko, případně nulu.">
+    <label for="series"><?php if (($type == 'serial') || ($type == 'anime')) echo "Díl:"; else echo "Kapitola:" ?></label>
+        <input type="number" id ="episode" name="episode" class="progressInput" value="<?= $records[$i]['episode'] ?>"><br><br>
+    <label for="link">Odkaz na sledování/čtení: </label>
+        <input type="link" id ="link" name="link" class="linkInput" value="<?= $records[$i]['link'] ?>" title="Odkaz na sledování/čtení."><br><br>
+    <label for="releaseDay" title="V tento den vás upozorníme na hlavní stránce, že vychází nový díl.">Který den v týdnu pravidelně vychází: </label><br>
+        <input type="checkbox" name="releaseDay[]" value="1" <?php if (strpos($records[$i]['releaseDay'], '1') !== false) { echo "checked"; }?>/> Po | 
+        <input type="checkbox" name="releaseDay[]" value="2" <?php if (strpos($records[$i]['releaseDay'], '2') !== false) { echo "checked"; }?>/> Út | 
+        <input type="checkbox" name="releaseDay[]" value="3" <?php if (strpos($records[$i]['releaseDay'], '3') !== false) { echo "checked"; }?>/> Stř | 
+        <input type="checkbox" name="releaseDay[]" value="4" <?php if (strpos($records[$i]['releaseDay'], '4') !== false) { echo "checked"; }?>/> Čt | 
+        <input type="checkbox" name="releaseDay[]" value="5" <?php if (strpos($records[$i]['releaseDay'], '5') !== false) { echo "checked"; }?>/> Pá | 
+        <input type="checkbox" name="releaseDay[]" value="6" <?php if (strpos($records[$i]['releaseDay'], '6') !== false) { echo "checked"; }?>/> So | 
+        <input type="checkbox" name="releaseDay[]" value="7" <?php if (strpos($records[$i]['releaseDay'], '7') !== false) { echo "checked"; }?>/> Ne <br><br>
+    <label for="status">Na který seznam přidat?</label>
+        <select id="status" name="status">
+            <option value="1">Sleduji</option>
+            <option value="2">Pozastaveno</option>
+            <option value="3">Odloženo</option>
+            <option value="4">Dokončeno</option>
+            <option value="5">Vyhnout se tomu</option>
+            <option value="6">Chci shlédnout/přečíst</option>
+        </select><br><br>
+    <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id'] ?>">
+    <div class="sendButton" onclick="document.forms['change<?= $line['_id']?>'].submit();">Uložit</div>
+</form>

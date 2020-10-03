@@ -1,0 +1,21 @@
+<div class="kontaktContainer">
+<h1>Obnova hesla</h1>
+
+<?php if (!$tokenPassed):?>
+<form method="post">
+    Zadejte Váš registrační email:<br />
+    <div style="display: flex;">
+        <input type="email" name="email" placeholder="vas@email.cz"/><br />
+        <input style="margin: 0px auto; float: right;" type="submit" value="Obnovit heslo"/>
+    </div>
+</form>
+<?php else:; ?>
+<form method="post" style="min-width: 500px;">
+    Nové heslo<br />
+    <input type="password" maxlength="25" name="newPassword" id="pwd" onkeyup="validatePassword(this.value);"/> <span style="minHeight: 9em;" id="msg"></span><br />
+    Nové heslo znovu<br />
+    <input type="password" name="reNewPassword" id="rePwd" onkeyup="comparePassword(this.value);"/> <span id="msg2"></span><br /><br />
+    <input id="submit" type="submit" value="Obnovit heslo" disabled/>
+</form>
+<?php endif; ?>
+</div>

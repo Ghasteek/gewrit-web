@@ -1,0 +1,44 @@
+<h1>Report </h1>
+
+<table class="borders">
+<tr>
+    <td colspan="6">
+        <?php 
+        if ($data['reportType'] == 'uzivatel'){
+            $user = $target;
+            include "views/profil.phtml";
+        } else {
+            $temp = $data;
+            $data = $target;
+            include "views/items.phtml"; 
+            $data = $temp;
+        }
+        ?>
+    </td>
+</tr>
+<tr>
+        <th>Typ</th>
+        <th>Text</th>
+        <th>Autor reportu</th>
+        <th>Status</th>
+</tr>
+<tr>
+    <td><?= $data['reportType'] ?></td>
+    <td><?= $data['text'] ?></td>
+    <td><a href="/profil/<?= $data['author'] ?>"><?= $data['author'] ?></td>
+    <td><?= $data['status'] ?></td>
+
+</tr>
+<tr>
+    <td colspan="6">
+    <?php if ($data['answer'] != "") echo "Odpověď od moderátora s ID <a href='/profil/" . $data['authorOfAnswer'] ."'>" . $data['authorOfAnswer'] . "</a>" ; ?>
+        <form method="post">
+            <input type="hidden" name="authorOfAnswer" value="<?= $loggedId ?>">
+            <input type="hidden" name="_id" value="<?= $data['_id'] ?>">
+            <textarea id="text" name="answer" placeholder="Text odpovědi na hlášení"><?= $data['answer'] ?></textarea><br>
+            <input type="checkbox" name="status" value="closed" <?php if ($data['status'] == "closed") echo "checked"; ?>>Uzavřeno<br>
+            <input style="margin: 0px auto; float: right;" type="submit" value="Poslat"/>
+        </form>
+    </td>
+</tr>
+</table>

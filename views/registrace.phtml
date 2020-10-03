@@ -1,0 +1,17 @@
+<div class="kontaktContainer">
+<h1>Registrace</h1>
+
+<form method="post" style="min-width: 500px;">
+    Jméno<br />
+    <input type="text" name="username" /><br />
+    Email<br />
+    <input type="text" name="email" /><br />
+    Heslo<br />
+    <input type="password" name="password" id="pwd" onkeyup="validatePassword(this.value);"/> <span style="minHeight: 9em;" id="msg"></span><br />
+    Heslo znovu<br />
+    <input type="password" name="rePassword" id="rePwd" onkeyup="comparePassword(this.value);"/> <span id="msg2"></span><br /><br />
+    Zadejte aktuální rok (antispam)<br />
+    <input type="text" name="year" /><br />
+    <input id="submit" type="submit" value="Registrovat" disabled/>
+</form>
+</div>
