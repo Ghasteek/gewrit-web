@@ -85,6 +85,10 @@
             }
         }
 
+/*----------------------------------------------------------
+------------------- ZPRACOVANI HODNOCENI -------------------
+----------------------------------------------------------*/
+
         //smaze ze zadane TABULKY zadane ID
         public function deleteContent($table, $id){
             $sql = "DELETE FROM $table
@@ -101,25 +105,73 @@
             return Db::getAll($sql, array($userId, $itemId));
         }
 
-        /*
-        *******************************************************************
-        *** Po jistych problemech asi dropuju vyhledavani dle keywords  ***
-        ***  a pokracuji s vyhledavanim skrze LIKE, byt je pomalejsi... ***
-        *******************************************************************
-
-        // vrati pole keywords z predaneho nazvu, pokud posleme i pole s jiz drive nactenyma keywords, vrati vsechny keywords i s temi puvodnimi
-        public function getKeywords($name, $keywords = array()){
-            $name = str_replace("'", ' ', $name); // stredniky prevest na mezery
-            $name = preg_replace('/:|-/', '', $name); // dvojtecky a pomlcky odstranit
-            $name = mb_strtolower($name); // vse na male pismenka
-
-            $words = array_filter(explode(' ', $name), function($item){if(strlen($item) > 2) return $item;}); // rozdelit na pole podle mezery a odstranit slova kratsi nez 3
-
-            $keywords = array_unique( array_merge($keywords, $words)); // mergnu obe pole a ponecham jen unikatni slova
-
-            return $keywords; // vratim pole s keywords
+        //smaz radek mojeho hodnoceni ze zadane tabulky
+        public function deleteMyRating($table, $userId, $itemId){
+            // odstrani zaznam meho hodnoceni
+            $tableRating = $table . "_rating";
+            $sql = "DELETE FROM $tableRating
+                WHERE userId = ?
+                AND itemId = ?";
+            Db::getChanges($sql, array($userId, $itemId));
         }
-        */
 
+        // uloz moje hodnoceni
+        public function saveMyRating($table, $userId, $itemId, $rating){
+            // zjisti, jestli jsem uz tuto polozku hodnotil
+            $oldRating = self::getMyRating($table, $userId, $itemId);
+            $tableRating = $table . "_rating";
+
+            if (count($oldRating) == 0){
+                // pokud jsem ji jeste nehodnotil, pridej nove hodnoceni
+                Db::insert($tableRating, array('userId' => $userId, 'itemId' => $itemId, 'rating' => $rating));
+                // a upravim hodnoty hodnoceni u dane polozky
+                $newItemRating = self::getNewRating($table, $itemId, $rating, 'plus');
+            } else {
+                // pokud jsem jiz tuto polozku hodnotil
+                if ($rating != 0){ // a nehodnotim ji 0 - cili nemazu sve hodnoceni
+                    //upravim stavajici hodnoceni
+                    Db::change($tableRating, array('rating' => $rating), 'WHERE userId = ? AND itemId = ?', array($userId, $itemId));
+                    // a upravim hodnoty hodnoceni u dane polozky
+                    $newItemRating = self::getNewRating($table, $itemId, $rating, 'change', $oldRating[0]['rating']);
+                } else { // poslali jsme hodnoceni 0
+                    //smazu zaznam o hodnoceni
+                    self::deleteMyRating($table, $userId, $itemId);
+                    // a upravim hodnoty hodnoceni u dane polozky
+                    $newItemRating = self::getNewRating($table, $itemId, $rating, 'minus', $oldRating[0]['rating']);
+                }
+                
+            }
+
+            // zapisu zmenu do polozky
+            Db::change($table, $newItemRating, 'WHERE _id = ?', array($itemId));
+        }
+
+        // vypocita nove hodnoty hodnoceni pro polozku -- TENDENCY je pomocna promenna pro yjisteni, jestli chci pricitat hodnoceni nebo ubirat. Muze byt "plus", "minus" a "change"
+        public function getNewRating($table, $itemId, $rating, $tendency, $oldRating = 0){
+            //nactu stare hodnoty hodnoceni
+            $sql = "SELECT ratingSum, ratingQuantity, rating FROM $table
+                    WHERE _id = ?";
+            $oldItemRating = Db::getAll($sql, array($itemId));
+
+            $newRatingSum = $oldItemRating[0]['ratingSum'] + $rating;
+            if ($tendency == 'plus') { // pokud je tendency PLUS, prictu
+                $newRatingSum = $oldItemRating[0]['ratingSum'] + $rating;
+                $newRatingQuantity = $oldItemRating[0]['ratingQuantity'] + 1;
+            } elseif ($tendency == 'minus') { // pokud je tendency MINUS, odectu
+                $newRatingSum = $oldItemRating[0]['ratingSum'] - $oldRating;
+                $newRatingQuantity = $oldItemRating[0]['ratingQuantity'] - 1;
+            } else { // pokud je tendency CHANGE, necham quantity a zmenim jen sum
+                $newRatingQuantity = $oldItemRating[0]['ratingQuantity'];
+                $newRatingSum = ($oldItemRating[0]['ratingSum'] - $oldRating) + $rating;
+            }
+            
+            $newRating = round($newRatingSum / $newRatingQuantity, 1);
+            $newItemRating = array(
+                'ratingSum' => $newRatingSum,
+                'ratingQuantity' => $newRatingQuantity,
+                'rating' => $newRating);
+
+            return $newItemRating;
+        }
     }
 ?>

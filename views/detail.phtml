@@ -1,28 +1,41 @@
 <div class="kontaktContainer">
     <h1>Detail</h1>
-    <form method="post">
-    ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
-    <input type="hidden" name="_id"  value="<?= $data['_id'] ?>"/>
-    <?= $data['name'] ?><br />
-    <img src="<?= $data['image'] ?>"><br />
-    Rok<br />
-    <?= $data['year'] ?><br />
-    Žánr<br />
-    <?= $data['genre'] ?>"<br />
-    <?php if ($type == 'serial') : ?>
-        <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="csfd">CSFD</li> </a> 
-        <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="imdb">IMDB</li> </a><br>
-    <?php endif; ?>
-    <?php if ($type != 'serial') : ?>
-        <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="ap">Anime-planet</li> </a><br />
-    <?php endif; ?>
-    Popis<br />
-    <?= $data['description'] ?><br />
-    Na seznamu <?= $inListCount ?>x<br>
-    Hodnocení: <?= $data['rating'] ?> * (hodnoceno <?= $data['ratingQuantity'] ?>x)<br>
-    <?php if ($userRating):?>
-        Vaše hodnocení : <?= $userRating ?> *
-    <?php endif;?>
-</form>
-
+    
+        ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
+        <?= $data['name'] ?><br />
+        <img src="<?= $data['image'] ?>"><br />
+        Rok<br />
+        <?= $data['year'] ?><br />
+        Žánr<br />
+        <?= $data['genre'] ?>"<br />
+        <?php if ($type == 'serial') : ?>
+            <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="csfd">CSFD</li> </a> 
+            <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="imdb">IMDB</li> </a><br>
+        <?php endif; ?>
+        <?php if ($type != 'serial') : ?>
+            <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="ap">Anime-planet</li> </a><br />
+        <?php endif; ?>
+        Popis<br />
+        <?= $data['description'] ?><br />
+        Na seznamu <?= $inListCount ?>x<br>
+        Hodnocení: <?= $data['rating'] ?> * (hodnoceno <?= $data['ratingQuantity'] ?>x)<br>
+        <?php if (($user) && ($userRights >= 0)):?>
+            <form id="rate" method="post">
+                <label for="userRating">Vaše hodnocení: <?= $userRating ?></label><br><br>
+                <select name="userRating">
+                    <?php if (!$userRating) {echo "<option value='-' disabled selected>-</option>";} else {echo "<option value='0'  selected>odebrat hodnoceni</option>";} ?>
+                    <option value="1" <?php if ($userRating == '1') {echo "selected";} ?>>1</option>
+                    <option value="2" <?php if ($userRating == '2') {echo "selected";} ?>>2</option>
+                    <option value="3" <?php if ($userRating == '3') {echo "selected";} ?>>3</option>
+                    <option value="4" <?php if ($userRating == '4') {echo "selected";} ?>>4</option>
+                    <option value="5" <?php if ($userRating == '5') {echo "selected";} ?>>5</option>
+                    <option value="6" <?php if ($userRating == '6') {echo "selected";} ?>>6</option>
+                    <option value="7" <?php if ($userRating == '7') {echo "selected";} ?>>7</option>
+                    <option value="8" <?php if ($userRating == '8') {echo "selected";} ?>>8</option>
+                    <option value="9" <?php if ($userRating == '9') {echo "selected";} ?>>9</option>
+                    <option value="10" <?php if ($userRating == '10') {echo "selected";} ?>>10</option>
+                </select>
+                <div class="sendButton" onclick="document.forms['rate'].submit();" title="Uloží vaše hodnocení.">Hlasuj</div>
+            </form>
+        <?php endif;?>
 </div>
