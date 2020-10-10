@@ -39,6 +39,7 @@
             $this->data['latestManga'] = $latestManga;
             //----------------------------------------------------
 
+            $this->data['active'] = 'uvod';
             $this->head['title'] = 'Gewrit';
             $this->view = 'uvod';
         }

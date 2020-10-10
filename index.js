@@ -214,3 +214,14 @@ function getHeight() {
       // Insert our new styles before the first script tag
       ref.parentNode.insertBefore(style, ref);
   }
+
+function showMenu() {
+    var menu = document.getE /* TODO */
+}
+
+  $('.menu-toggle').click(function() {
+  
+    $('.site-nav').toggleClass('site-nav--open', 500);
+    $(this).toggleClass('open');
+    
+  })

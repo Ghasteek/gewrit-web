@@ -21,6 +21,7 @@
             $this->data['description'] = $this->controller->head['description'];
             $this->data['keywords'] = $this->controller->head['keywords'];
             $this->data['messages'] = $this->getMessages();
+            //$this->data['active'] = $active;
 
             $this->view = 'indexTemplate';
         }

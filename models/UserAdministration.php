@@ -137,8 +137,7 @@
             $userAdministration = new UserAdministration();
             $user = $userAdministration->getUser();
             if (count($user) == 0){
-                echo "<li class='menu-separator'>|</li>" . 
-                    "<li class='menu-item' title='Přejít na stránku přihlášení'><a href='prihlaseni'>Přihlásit se</a></li>" . 
+                echo "<li class='menu-item' title='Přejít na stránku přihlášení'><a href='prihlaseni'>Přihlásit se</a></li>|" . 
                     "<li class='menu-item' title='Registrujte se'><a href='registrace'>Registrovat se</a></li>";
             } else {
                 $rights = $user['rights'];
@@ -154,16 +153,22 @@
                     "<li class='menu-item' title='Správa zabanovaných uživatelů'><a href='ban'>Bany</a></li>";
                 }
 
-                echo "<li class='menu-item' title='Můj seznam sledovaných'><a href='muj-seznam'>Můj seznam</a></li>" . 
-                    "<li class='menu-separator'>|</li>" . 
-                    "<li class='menu-item' title='Nastavení účtu'>" . 
-                        "<a href='profil'>" . $user['username'] . "</a>" . 
-                            "<ol class='sub-menu user-menu'>" . 
-                                $items . 
-                                "<li class='menu-item' title='Odhlásit se z portálu'><a href='profil/odhlasit'>Odhlásit</a></li>" . 
-                            "</ol>" . 
-                    "</li>";                   
+                echo "<li class='user-menu'><a href='profil'>" . $user['username'] . "</a>" . 
+                    "<ul class='sub-menu'> " . $items . 
+                    "<li title='Odhlásit se z portálu'><a href='profil/odhlasit'>Odhlásit</a></li>" . 
+                    "</ul></li>";
+            }
+        }
 
+        // zobrazi odkaz na muj seznam, pokud jsem prihlasen
+        public function showMyList($title){
+            $userAdministration = new UserAdministration();
+            $user = $userAdministration->getUser();
+            if ($title == 'Gewrit - Můj seznam'){
+                $active = 'class="active"';
+            }
+            if (count($user) != 0){
+                echo "<li title='Můj seznam sledovaných'><a $active href='muj-seznam'>Můj seznam</a></li>";
             }
         }
     }
