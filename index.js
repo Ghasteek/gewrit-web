@@ -215,13 +215,14 @@ function getHeight() {
       ref.parentNode.insertBefore(style, ref);
   }
 
-function showMenu() {
-    var menu = document.getE /* TODO */
+function toogleMenu() {
+    var menu = document.getElementById('nav');
+    var ham = document.getElementById('menu-toggle');
+    if (menu.classList.contains('nav-open')){
+        menu.classList.remove('nav-open');
+        ham.classList.remove('open');
+    } else {
+        menu.classList.add('nav-open');
+        ham.classList.add('open');
+    }
 }
-
-  $('.menu-toggle').click(function() {
-  
-    $('.site-nav').toggleClass('site-nav--open', 500);
-    $(this).toggleClass('open');
-    
-  })

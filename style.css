@@ -7,6 +7,23 @@ body {
   background-color: #1A1A1A;
   color: #ffffff;
 }
+
+footer {
+  background: #333333;
+}
+
+p {
+  margin-top: 0;
+}
+
+article {
+  width: 80%;
+  background: #333333;
+  margin: auto;
+  padding: 10px 15px 0 15px;
+}
+
+
 /*--------------------
         MESSAGES
 --------------------*/
@@ -39,9 +56,9 @@ body {
   float: right;
 }
 
-/*--------------------
-        NAVIGACE WIDE
---------------------*/
+/*-------------------------------------
+            NAVIGACE
+---------------------------------------*/
 
 .menu-container {
   width: 95%;
@@ -142,24 +159,30 @@ nav a:hover::before {
   width: 100%;
 }
 
-.user-menu:hover > .sub-menu {
-  clip-path: circle(250% at top);
-}
-
 .sub-menu {
   display: grid;
   position: absolute;
   top: 44px;
   width: max-content;
   right: -25px;
+  background: #333333;
 
   clip-path: circle(0px at top);
   transition: clip-path ease-in-out 500ms;
 }
 
+.user-menu:hover > .sub-menu {
+  clip-path: circle(250% at top);
+}
+
 .sub-menu li {
-  margin: 0 25px 0 0;
+  margin: 0;
   padding: 15px 0;
+  border-top: #1A1A1A 2px solid;
+}
+
+.sub-menu li:last-child {
+  border-bottom: #1A1A1A 2px solid;
 }
 
 .sub-menu a {
@@ -168,20 +191,45 @@ nav a:hover::before {
 
 .sub-menu li:hover {
   padding: 15px 0;
-  background-color: #333333;
+  background-color: #1A1A1A;
 }
 
 .sub-menu a:hover {
   padding: 15px 25px;
-  background-color: #333333;
+  background-color: #1A1A1A;
 }
 
+
+/*-------------------------------------------------------------------------------------
+--------------------------------SMALL SCREEN-------------------------------------------
+---------------------------------------------------------------------------------------*/
 @media (max-width: 1200px){
+
+  article {
+    width: 100%;
+  }
+
+  /*-------------------------------------
+                Navigace
+  ---------------------------------------*/
   nav {
     display: block;
-    width: max-content;
+    width: 171px;
     position: absolute;
-    right: 0px;
+    right: 10px;
+    top: 69px;
+
+    clip-path: circle(0px at top);
+    transition: clip-path ease-in-out 500ms;
+  }
+
+  .menu-main, .menu-profile {
+    background: #1A1A1A;
+    border-bottom: 1px solid #333333;
+  }
+
+  .nav-open {
+    clip-path: circle(250% at top);
   }
 
   nav a {
@@ -195,17 +243,27 @@ nav a:hover::before {
   }
 
   nav li {
-    padding: 15px 10px;
+    padding: 15px 0;
     display: block;
+    margin: 0;
+    border-bottom: 1px solid #333333;
+  }
+
+  .sub-menu li {
+    border-bottom: #333333 2px solid;
   }
 
   nav li:hover {
-    padding: 15px 10px;
+    padding: 15px 0;
     background-color: #333333;
   }
 
   nav a:hover::before {
     width: 0%;
+  }
+
+  .active, .active li {
+    color: #C93737;
   }
 
   .active::before {
@@ -218,7 +276,59 @@ nav a:hover::before {
     bottom: -25px;
     width: 0%;
   }
+
+  .menu-toggle {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    width: 40px;
+    height: 25px;
+    padding: 20px 0 0 15px;
+  }
+
+  .sub-menu {
+    clip-path: circle(250% at top);
+    background: #1A1A1A;
+    top: 50px;
+  }
+
+  ul.sub-menu {
+    right: 0px;
+  }
+
+  .sub-menu li:hover, .sub-menu a:hover {
+    background: #333333;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    display: block;
+    background: #EBEBD3;
+    height: 3px;
+    width: 1.75em;
+    border-radius: 3px;
+    transition: all ease-in-out 500ms;
+  }
+
+  .hamburger::before {
+    transform: translateY(-6px);
+  }
+
+  .hamburger::after {
+    transform: translateY(3px);
+  }
+
+  .open .hamburger {
+    transform: rotate(45deg);
+  }
+
+  .open .hamburger::before {
+    opacity: 0;
+  }
+
+  .open .hamburger::after {
+    transform: translateY(-3px) rotate(-90deg);
+  }
 }
-
-
-
