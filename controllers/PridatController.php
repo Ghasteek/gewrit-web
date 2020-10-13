@@ -20,12 +20,21 @@
                         }
                         $content = array_intersect_key($_POST, array_flip($keys));
                         //ulozeni clanku do DB
-                        $contentHandler->saveContent($_POST['type'], '', $content);
-                        $this->addMessage('Úspěšně přidáno, čeká na schávlení.', 'info');
-                        $this->redirect($redirect);
+                        $id = $contentHandler->saveContent($_POST['type'], '', $content);
+
+                        // stahne obrazek
+                        $imageDestination = 'img/' . $_POST['type'] . '/' . $id . '.jpg';
+                        copy($content['image'], $imageDestination);
+
+                        // zmeni v db adresu obrazku
+                        $contentHandler->saveContent($_POST['type'], $id, array('image' => $imageDestination));
+
                     } catch (UserError $error) {
                         $this->addMessage($error->getMessage(), 'warning');
                     }
+
+                    $this->addMessage('Úspěšně přidáno, čeká na schávlení.', 'info');
+                        $this->redirect($redirect);
                     
                 } else {
                     try {

@@ -77,6 +77,7 @@
             if (!$id){
                 try {
                     Db::insert($table, $content);
+                    return Db::getLastId();
                 } catch (PDOException $error) {
                     throw new UserError('Již je v databázi.');
                 }
