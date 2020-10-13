@@ -102,7 +102,7 @@
             $nodes = $xpath->query("//h1[@itemprop='name']");
             $names_cs = $nodes->item(0)->nodeValue;
 
-            $nodes = $xpath->query("//li[@itemprop='genre']");
+            $nodes = $xpath->query("//div[@class='pure-1 md-3-5']//li");
             $genre = array();
             foreach ($nodes as $item) {
                 $string = trim($item->nodeValue);
@@ -110,9 +110,9 @@
             }
             $genre = implode(', ', $genre);
 
-            $nodes = $xpath->query("//div[@itemprop='description']");
-            $popis = str_replace(' <p> ', '', $nodes->item(0)->nodeValue);
-            $popis = str_replace(' </p> ', '', $popis);
+            $nodes = $xpath->query("//div[@class='pure-1 md-3-5']//p");
+            $popis = str_replace(' <p> ', '*', $nodes->item(0)->nodeValue);
+            $popis = str_replace(' </p> ', '*', $popis);
 
             $nodes = $xpath->query("//span[@class='iconYear']");
             $rok = $nodes->item(0)->nodeValue;
