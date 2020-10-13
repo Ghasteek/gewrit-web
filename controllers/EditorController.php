@@ -25,6 +25,8 @@ class EditorController extends Controller {
 
             if ($param[2] == 'smazat') {
                 $contentHandler->deleteContent($table, $param[1]);
+                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
+                unlink($imageDestination);
                 $this->addMessage('Seriál smazán.', 'info');
                 $this->redirect('serialy');
             } else {
@@ -59,6 +61,8 @@ class EditorController extends Controller {
 
             if ($param[2] == 'smazat') {
                 $contentHandler->deleteContent($table, $param[1]);
+                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
+                unlink($imageDestination);
                 $this->addMessage('Anime smazáno.', 'info');
                 $this->redirect('anime');
             } else {
@@ -94,6 +98,8 @@ class EditorController extends Controller {
 
             if ($param[2] == 'smazat') {
                 $contentHandler->deleteContent($table, $param[1]);
+                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
+                unlink($imageDestination);
                 $this->addMessage('Manga smazána.', 'info');
                 $this->redirect('manga');
             } else {
