@@ -22,8 +22,20 @@
                         //ulozeni clanku do DB
                         $id = $contentHandler->saveContent($_POST['type'], '', $content);
 
-                        // stahne obrazek
-                        $imageDestination = 'img/' . $_POST['type'] . '/' . $id . '.jpg';
+                        // jmeno obrazku
+                        $imageName = $id . '.jpg';
+
+                        // kam obrazek ulozit
+                        $directoryName = 'img/' . $_POST['type'];
+                        
+                        //pokud slozka neexistuje, vytvori ji
+                        if(!is_dir($directoryName)){
+                            //Directory does not exist, so lets create it.
+                            mkdir($directoryName, 0755, true);
+                        }
+
+                        //stahne obrazek
+                        $imageDestination = $directoryName . '/' . $imageName;
                         copy($content['image'], $imageDestination);
 
                         // zmeni v db adresu obrazku
