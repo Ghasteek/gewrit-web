@@ -110,7 +110,7 @@ function validatePassword(password) {
     document.getElementById("msg").style.color = color;
 }
 
-function toogleDetails(id) {
+/*unction toogleDetails(id) {
     var x = document.getElementById(id);
     var i = document.getElementById("i_"+id);
 
@@ -122,9 +122,12 @@ function toogleDetails(id) {
       i.className = i.className.replace("fa-angle-double-up", "fa-angle-double-down");
     }
 
-}
+}*/
 
-function cycleCarousel(smer) {
+/*-------------------------------------
+//--------------carousel---------------
+//-------------------------------------
+function cycleCarousel(smer) { 
     var divs = document.querySelectorAll('*[id^="container"');
     //console.log(divs);
     //console.log(smer);
@@ -197,9 +200,9 @@ function disableCycle() {
 
 function cycle(){
     setTimeout(function() {cycleCarousel('right'); cycle();}, 8000);
-}
+}*/
 
-function getHeight() {
+/*function getHeight() {
     var h = window.innerHeight;
       // Create our stylesheet
       var style = document.createElement('style');
@@ -213,7 +216,7 @@ function getHeight() {
   
       // Insert our new styles before the first script tag
       ref.parentNode.insertBefore(style, ref);
-  }
+  }*/
 
 function toogleMenu() {
     var menu = document.getElementById('nav');

@@ -23,7 +23,8 @@
                 //----------------------------------------------------
             }
 
-            $itemsPerRow = 5; // kolik nejnovejsich zobrazit
+            $itemsPerRow = 6; // kolik nejnovejsich zobrazit
+
             // nacteni nejnovejsich serialu ----------------------
             $latestSerials = $contentHandler->getNewestContent('serial', $itemsPerRow); // odkud a kolik
             $this->data['latestSerials'] = $latestSerials;

@@ -167,6 +167,8 @@ nav a:hover::before {
   right: -25px;
   background: #333333;
 
+  z-index: 20;
+
   clip-path: circle(0px at top);
   transition: clip-path ease-in-out 500ms;
 }
@@ -200,6 +202,86 @@ nav a:hover::before {
 }
 
 
+
+/*-------------------------------------
+--------------sekce uvod---------------
+---------------------------------------*/
+
+.index-section {
+  /*border-top: solid 2px #D0D0D0;*/
+  border: solid 1px #D0D0D0;
+  position: relative;
+  padding: 15px 10px 10px 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.index-section {
+  margin: 2em 0 0 ;
+}
+
+.index-section + .index-section {
+  margin: 3em 0 0 ;
+}
+
+.index-section-title {
+  position: absolute;
+  top: -20px;
+  left: 1rem;
+  padding: 0 10px;
+  background: #333333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.index-item {
+  height: 310px;
+  width: 160px;
+  margin: 15px 7px;
+  position: relative;
+}
+
+.index-item-image {
+  width: 160px;
+  height: 225px;
+  position: absolute;
+  transition: .2s;
+}
+
+.index-name {
+  width: 160px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0.6em;
+
+  position: absolute;
+  top: 235px;
+}
+
+.index-item-mask {
+  position: absolute;
+  width: 170px;
+  height: 200px;
+  top: -5px;
+  left: -5px;
+  background-color: #333333;
+  opacity: 0.8;
+  display: none;
+  border: solid 1px;
+}
+
+.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover {
+  display: block;
+}
+
+
+.index-item-mask:hover ~ .index-item-image {
+  transform: scale(1.1);
+}
+
+
 /*-------------------------------------------------------------------------------------
 --------------------------------SMALL SCREEN-------------------------------------------
 ---------------------------------------------------------------------------------------*/
@@ -210,7 +292,7 @@ nav a:hover::before {
   }
 
   /*-------------------------------------
-                Navigace
+  --------------Navigace-----------------
   ---------------------------------------*/
   nav {
     display: block;
@@ -218,6 +300,8 @@ nav a:hover::before {
     position: absolute;
     right: 10px;
     top: 69px;
+
+    z-index: 20;
 
     clip-path: circle(0px at top);
     transition: clip-path ease-in-out 500ms;

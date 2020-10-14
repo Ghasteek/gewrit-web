@@ -1,29 +1,28 @@
 <h1>Vítejte na GEWRITu</h1>
 
-<div class="seznamContainer indexSeznamContainer">
-
-    <?php if($today):?>
-    <div class="indexSection">
-        <h4>Z Vašeho seznamu dnes vychází:</h4><br>
+    <?php if(!$today): // vykricnik jen na vypnuti vypisu, ODSTRANIT?>
+    <div class="index-section">
+        <div class="index-section-title">Dnes vychází:</div>
         <?php $data = $today;
-        include "views/todayReleaseCarousel.phtml";
-        echo "</div>";
+        //include "views/todayReleaseCarousel.phtml";
+        //echo "</div>";
+        $type = 'serial'; $latestData = $data; include "views/latestItems.phtml";
         endif;
     ?>
+    </div>
 
-    <div class="indexSection">
-        <h4>Nejnovější seriály:</h4><br>
+    <div class="index-section">
+        <div class="index-section-title">Nejnovější seriály:</div>
         <?php $type = 'serial'; $latestData = $latestSerials; include "views/latestItems.phtml"; ?>
     </div>
 
-    <div class="indexSection">
-        <h4>Nejnovější anime:</h4><br>
+    <div class="index-section">
+        <div class="index-section-title">Nejnovější anime:</div>
         <?php $type = 'anime'; $latestData = $latestAnime; include "views/latestItems.phtml"; ?>
     </div>
 
-    <div class="indexSection">
-        <h4>Nejnovější manga:</h4><br>
+    <div class="index-section">
+        <div class="index-section-title">Nejnovější manga:</div>
         <?php $type = 'manga'; $latestData = $latestManga; include "views/latestItems.phtml"; ?>
     </div>
 
-</div>
