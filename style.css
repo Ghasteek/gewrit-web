@@ -208,18 +208,19 @@ nav a:hover::before {
 ---------------------------------------*/
 
 .index-section {
-  /*border-top: solid 2px #D0D0D0;*/
-  border: solid 1px #D0D0D0;
+  border-top: solid 2px #D0D0D0;
+  /*border: solid 1px #D0D0D0;*/
   position: relative;
-  padding: 15px 10px 10px 10px;
+  padding: 15px 10px 0 10px;
+  margin: 2em 0 0 ;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.index-section {
-  margin: 2em 0 0 ;
+.today {
+  justify-content: start;
 }
 
 .index-section + .index-section {
@@ -239,8 +240,19 @@ nav a:hover::before {
 .index-item {
   height: 310px;
   width: 160px;
-  margin: 15px 7px;
+  margin: 15px 7px 0 7px;
   position: relative;
+}
+
+.index-item a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.index-item a:hover, .index-item i{
+  color: #C93737;
 }
 
 .index-item-image {
@@ -248,6 +260,12 @@ nav a:hover::before {
   height: 225px;
   position: absolute;
   transition: .2s;
+  transition-delay: .03s;
+}
+
+.index-item-add{
+  line-height: 800%;
+  text-align: center;
 }
 
 .index-name {
@@ -255,29 +273,34 @@ nav a:hover::before {
   text-align: center;
   font-size: 20px;
   margin-top: 0.6em;
-
   position: absolute;
   top: 235px;
 }
 
 .index-item-mask {
   position: absolute;
-  width: 170px;
-  height: 200px;
-  top: -5px;
-  left: -5px;
-  background-color: #333333;
-  opacity: 0.8;
+  width: 160px;
+  height: 225px;
+  top: 0px;
+  left: 0px;
+  background-color: #333333e3;
   display: none;
-  border: solid 1px;
+  padding-top: 15px;
+  opacity: 0;
+  text-align: center;
+  transition: all .2s;
 }
 
 .index-item-image:hover ~ .index-item-mask, .index-item-mask:hover {
   display: block;
 }
 
+.index-item-mask:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
 
-.index-item-mask:hover ~ .index-item-image {
+.index-item-mask-container:hover .index-item-image {
   transform: scale(1.1);
 }
 

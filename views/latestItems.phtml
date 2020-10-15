@@ -3,16 +3,16 @@
     if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];}?>
 
 <div class="index-item">
-    <img class="index-item-image" src="<?= $line['image'] ?>">
-    <div class="index-name" title='<?= $line['name'] ?>'><?= $name ?></div>
 
-    <div class="index-item-mask">
-        <a href="/detail/<?= $type ?>/<?= $line['_id'] ?>" title="Detail">+ DETAIL</a>
+    <div class="index-item-mask-container">
+        <img class="index-item-image" src="<?= $line['image'] ?>">
+        <div class="index-item-mask">
+            <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Detail"><i class="fas fa-search"></i> DETAIL</a><br>
+            <?php if ($isLogged):?>
+                <a class="index-item-add" href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidá položku do vašeho seznamu"><i class="fas fa-plus"></i> PŘIDAT</a>
+            <?php endif;?>
+        </div>
     </div>
-
-    <?php if (!$isLogged):?>
-    <a class="plusButton indexLeft" href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidat do seznamu"><span class="justPlus">+</span></a> <!-- + icon -->
-    <?php endif;?>
+    <div class="index-name" title='<?= $line['name'] ?>'><?= $name ?></div>
 </div>
-
 <?php endforeach;?>
