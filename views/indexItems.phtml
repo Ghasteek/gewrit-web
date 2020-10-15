@@ -1,0 +1,56 @@
+<?php foreach ($latestData as $i=>$line):
+
+    switch ($line['type']){
+        case "anime":
+            $itemType = "Anime";
+            break;
+        case "manga":
+            $itemType = "Manga";
+            break;
+        case "serial":
+            $itemType = "Seriál";
+    }
+
+    $progress = "e" . $records[$i]['episode'];
+    if ($records[$i]['series'] != 0) { $progress = "s" . $records[$i]['series'] . $progress;}
+
+    if ($records[$i]['link'] == '') { $hidden = 'class="hidden"'; $reverse = " reverse"; } else { $hidden = ""; $reverse = ""; }
+
+    if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];}?>
+
+<div class="index-item">
+
+    <div class="index-item-mask-container">
+        <img class="index-item-image" src="<?= $line['image'] ?>">
+        <div class="index-item-mask">
+            <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Detail"><i class="fas fa-search"></i> DETAIL</a><br>
+            <?php if ($isLogged):
+                if ($type == 'today'):?>
+                    <span><?= $itemType?></br>
+                    <?= $progress?></span>
+                    <div class="item-tools-bar<?= $reverse?>">
+                         
+                         <!-- play icon -->
+                        <a <?= $hidden?> title="Přejít na sledování/čtení dalšího dílu/kapitoly." href="<?= $records[$i]['link']?>" target="_blank"><i class="fas fa-play"></i></a>
+
+                        <!-- hidden form for +1 funcionality -->
+                        <form style="display:none;" id="plusOne<?= $records[$i]['_id']?>" method="post" action="/muj-seznam">
+                            <input type="hidden" id="plusOne" name="plusOne" value="true">
+                            <input type="hidden" id="origin" name="origin" value="uvod">
+                            <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id']  ?>">
+                        </form>
+
+                        <!-- +1 icon -->
+                        <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden..."><span>+1</span></a> 
+                    </div>
+                <?php endif; 
+                if ($type != 'today'):?>
+                <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidá položku do vašeho seznamu"><i class="fas fa-plus"></i> PŘIDAT</a>
+                <?php endif;
+            endif;?>
+        </div>
+    </div>
+
+    <div class="index-name" title='<?= $line['name'] ?>'><?= $name ?></div>
+</div>
+<?php endforeach;?>

@@ -18,7 +18,7 @@ p {
 
 article {
   width: 80%;
-  background: #333333;
+  background: #292929;
   margin: auto;
   padding: 10px 15px 0 15px;
 }
@@ -209,7 +209,6 @@ nav a:hover::before {
 
 .index-section {
   border-top: solid 2px #D0D0D0;
-  /*border: solid 1px #D0D0D0;*/
   position: relative;
   padding: 15px 10px 0 10px;
   margin: 2em 0 0 ;
@@ -223,6 +222,10 @@ nav a:hover::before {
   justify-content: start;
 }
 
+.today .index-item {
+  margin: 15px 15px 0 15px;
+}
+
 .index-section + .index-section {
   margin: 3em 0 0 ;
 }
@@ -232,7 +235,7 @@ nav a:hover::before {
   top: -20px;
   left: 1rem;
   padding: 0 10px;
-  background: #333333;
+  background: #292929;
   font-size: 24px;
   font-weight: bold;
 }
@@ -249,6 +252,7 @@ nav a:hover::before {
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
+  margin: 15px 15px;
 }
 
 .index-item a:hover, .index-item i{
@@ -261,11 +265,6 @@ nav a:hover::before {
   position: absolute;
   transition: .2s;
   transition-delay: .03s;
-}
-
-.index-item-add{
-  line-height: 800%;
-  text-align: center;
 }
 
 .index-name {
@@ -283,16 +282,17 @@ nav a:hover::before {
   height: 225px;
   top: 0px;
   left: 0px;
-  background-color: #333333e3;
   display: none;
-  padding-top: 15px;
   opacity: 0;
   text-align: center;
   transition: all .2s;
+
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover {
-  display: block;
+.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover, .itemImageRibbon:hover ~ .index-item-mask {
+  display: flex;
 }
 
 .index-item-mask:hover {
@@ -301,7 +301,25 @@ nav a:hover::before {
 }
 
 .index-item-mask-container:hover .index-item-image {
+  filter: grayscale(80%);
+  opacity: 0.2;
   transform: scale(1.1);
+}
+
+.item-tools-bar {
+  display: flex;
+  justify-content: space-between;
+  color: #C93737;
+  font-size: 20px;
+  flex-direction: row;
+}
+
+.hidden {
+  display: none;
+}
+
+.reverse {
+  flex-direction: row-reverse
 }
 
 
