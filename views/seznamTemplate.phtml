@@ -1,4 +1,3 @@
-<h1><?= $title?></h1>
 <?php if (!$type):?>
 <a href="/muj-seznam/sleduji">Sleduji</a>
 <a href="/muj-seznam/planovane">Chci si přečíst/shlédnout</a>
@@ -9,19 +8,33 @@
 <a href="/muj-seznam/">Vše</a> <br><br>
 <?php endif; ?>
 
-    <?php if ($seznamType == 'all'){ ?>
+<div class="index-section">
 
-        <form method="GET" id="search" action="/<?php echo ($type == 'serial')? "serialy" : $type ?>">
-            <label for="search"><i class="fas fa-search"></i></label>
-            <input type="text" name="hledat" value="<?php echo $_GET['hledat']; ?>">
-            <div class="sendButton" onclick="document.forms['search'].submit();" title="Vyhledá v databázi vámi zvolená slova">Hledej</div>
-        </form><br>
-        <div class='seznamContainer'>
+    <?php if ($seznamType == 'all'){ 
+        switch ($type){
+            case 'serial':
+                $titleText = "Seznam seriálů";
+                break;
+            case 'anime':
+                $titleText = "Seznam anime";
+                break;
+            case 'manga':
+                $titleText = "Seznam mangy";
+                break;
+        }
+        ?>
+        <div class="index-section-title"><?= $titleText ?></div>
+
+            <form class="search-section" method="GET" id="search" action="/<?php echo ($type == 'serial')? "serialy" : $type ?>">
+                <label for="search"><i class="fas fa-search"></i></label>
+                <input title="Zadejte hledaný text. Vyhledává slova o minimální délce 3 písmena." id="search" type="text" name="hledat" value="<?php echo $_GET['hledat']; ?>">
+                <div class="button-green" onclick="document.forms['search'].submit();" title="Vyhledá v databázi vámi zvolená slova">Hledej</div>
+            </form>
 
         <?php include "views/items.phtml";
     } elseif ($seznamType == 'my'){ ?>
-        <div class="kontaktContainer">
-        <form method="post">
+        <div class="index-section-title">Můj seznam</div>
+        <form class="search-section" method="post">
             <div style="display: flex;">
                 <input type="hidden" name="form" value="true">
                 <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="anime" <?php if (strpos($checked, 'anime') !== false) { echo "checked"; }?>/> Anime | 
@@ -31,7 +44,8 @@
             </div>
         </form><br />
         
-        <?php include "views/my-items.phtml"; } ;?>
+        <?php include "views/my-items.phtml"; 
+    } ;?>
 </div>
 
 <div class="pages">

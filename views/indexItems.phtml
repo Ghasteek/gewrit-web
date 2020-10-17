@@ -21,10 +21,25 @@
 <div class="index-item">
 
     <div class="index-item-mask-container">
+
+        <?php if ($line['rating'] != 0):?>
+            <div class="index-item-star">
+                <i class="fas fa-star"></i>
+                <span class="index-item-rating"><?= $line['rating'] ?></span>
+            </div>
+        <?php endif; ?>
+
         <img class="index-item-image" src="<?= $line['image'] ?>">
+
         <div class="index-item-mask">
             <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Detail"><i class="fas fa-search"></i> DETAIL</a><br>
-            <?php if ($isLogged):
+            <?php if ($line['rating'] != 0):?>
+                <div title="Průměr <?= $line['rating'] ?> (z <?= $line['ratingQuantity'] ?> hlasů). Hlasovat můžete na detailu.">
+                    Hodnocení: <?= $line['rating'] ?> <i class="fas fa-star"></i>
+                </div>
+                
+            <?php endif;
+            if ($isLogged):
                 if ($type == 'today'):?>
                     <span><?= $itemType?></br>
                     <?= $progress?></span>
@@ -41,7 +56,7 @@
                         </form>
 
                         <!-- +1 icon -->
-                        <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden..."><span>+1</span></a> 
+                        <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden...">+1</a> 
                     </div>
                 <?php endif; 
                 if ($type != 'today'):?>
@@ -49,8 +64,10 @@
                 <?php endif;
             endif;?>
         </div>
+
     </div>
 
     <div class="index-name" title='<?= $line['name'] ?>'><?= $name ?></div>
+
 </div>
 <?php endforeach;?>

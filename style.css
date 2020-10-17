@@ -20,13 +20,31 @@ article {
   width: 80%;
   background: #292929;
   margin: auto;
-  padding: 10px 15px 0 15px;
+  padding: 10px 0 0 0;
+}
+
+/*-------------------------------------
+-----------OVLADACI PRVKY--------------
+-------------------------------------*/
+.button-green {
+  padding: 3px 10px;
+  font-weight: bold;
+  background: #1A1A1A;
+  border-radius: 5px;
+  border: solid 1px #C93737;
+}
+
+.button-green:hover {
+  cursor: pointer;
+  background: #37c937;
+  color: #1A1A1A;
+  border: solid 1px #37c937;
 }
 
 
-/*--------------------
-        MESSAGES
---------------------*/
+/*-------------------------------------
+--------------MESSAGES-----------------
+-------------------------------------*/
 .message {
   position: absolute;
   width: 50%;
@@ -57,8 +75,8 @@ article {
 }
 
 /*-------------------------------------
-            NAVIGACE
----------------------------------------*/
+--------------NAVIGACE-----------------
+-------------------------------------*/
 
 .menu-container {
   width: 95%;
@@ -204,8 +222,8 @@ nav a:hover::before {
 
 
 /*-------------------------------------
---------------sekce uvod---------------
----------------------------------------*/
+--------------SEKCE UVOD---------------
+-------------------------------------*/
 
 .index-section {
   border-top: solid 2px #D0D0D0;
@@ -253,10 +271,29 @@ nav a:hover::before {
   font-size: 20px;
   font-weight: bold;
   margin: 15px 15px;
+  cursor: pointer;
 }
 
 .index-item a:hover, .index-item i{
   color: #C93737;
+}
+
+.index-item-star {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  z-index: 1;
+  font-size: 32px;
+}
+
+.index-item-rating {
+  position: absolute;
+  width: 2em;
+  font-size: 14px;
+  top: 12px;
+  left: 4px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .index-item-image {
@@ -269,6 +306,10 @@ nav a:hover::before {
 
 .index-name {
   width: 160px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 20px;
   margin-top: 0.6em;
@@ -286,18 +327,23 @@ nav a:hover::before {
   opacity: 0;
   text-align: center;
   transition: all .2s;
+  line-height: 200%;
 
   flex-direction: column;
   justify-content: space-between;
 }
 
-.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover, .itemImageRibbon:hover ~ .index-item-mask {
+.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover {
   display: flex;
 }
 
 .index-item-mask:hover {
   transform: scale(1.1);
   opacity: 1;
+}
+
+.index-item-mask-container:hover > .index-item-star {
+  display: none;
 }
 
 .index-item-mask-container:hover .index-item-image {
@@ -322,10 +368,25 @@ nav a:hover::before {
   flex-direction: row-reverse
 }
 
+/*-------------------------------------
+---------------SEZNAM------------------
+-------------------------------------*/
+.search-section {
+  width:100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  margin-bottom: 20px;
+}
 
-/*-------------------------------------------------------------------------------------
---------------------------------SMALL SCREEN-------------------------------------------
----------------------------------------------------------------------------------------*/
+.search-section > * {
+  margin: 5px 10px;
+}
+
+
+/*------------------------------------------------------------------------------------------------
+-------------------------------------------SMALL SCREEN-------------------------------------------
+------------------------------------------------------------------------------------------------*/
 @media (max-width: 1200px){
 
   article {
@@ -334,7 +395,7 @@ nav a:hover::before {
 
   /*-------------------------------------
   --------------Navigace-----------------
-  ---------------------------------------*/
+  -------------------------------------*/
   nav {
     display: block;
     width: 171px;
@@ -375,6 +436,7 @@ nav a:hover::before {
   }
 
   .sub-menu li {
+    border: 0px;
     border-bottom: #333333 2px solid;
   }
 
@@ -456,4 +518,27 @@ nav a:hover::before {
   .open .hamburger::after {
     transform: translateY(-3px) rotate(-90deg);
   }
+
+  /*-------------------------------------
+  --------------SEKCE UVOD---------------
+  -------------------------------------*/
+
+  .index-section {
+    justify-content: space-evenly;
+  }
+}
+
+/*------------------------------------------------------------------------------------------------
+-------------------------------------EXTRA SMALL SCREEN-------------------------------------------
+------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 384px){
+  /*-------------------------------------
+  --------------SEKCE UVOD---------------
+  -------------------------------------*/
+
+  .index-item {
+    border-bottom: solid 1px;
+  }
+
 }
