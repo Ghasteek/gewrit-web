@@ -26,19 +26,49 @@ article {
 /*-------------------------------------
 -----------OVLADACI PRVKY--------------
 -------------------------------------*/
-.button-green {
+.button {
+  width: max-content;
   padding: 3px 10px;
   font-weight: bold;
-  background: #1A1A1A;
   border-radius: 5px;
-  border: solid 1px #C93737;
 }
 
-.button-green:hover {
+.button:hover {
   cursor: pointer;
+}
+
+.accept {
+  border: solid 1px #C93737;
+  background: #1A1A1A;
+}
+
+.accept:hover {
   background: #37c937;
   color: #1A1A1A;
   border: solid 1px #37c937;
+}
+
+.csfd {
+  background-color: red;
+  color: white;
+}
+
+.csfd:hover {
+box-shadow: 0px 0px 5px 5px red, 0px 0px 5px 5px red;
+}
+
+.imdb {
+  background-color: yellow;
+  color: black;
+}
+
+.imdb:hover {
+box-shadow: 0px 0px 5px 5px yellow, 0px 0px 5px 5px yellow;
+}
+
+.ap {
+  background-color: #fc5342;
+  color: white;
 }
 
 
@@ -100,7 +130,7 @@ header::after {
   font-family: 'Caesar Dressing', cursive;
   font-size: 35px;
   float: left;
-  padding: 10px 0 10px 20px;
+  margin: 30px 0 0 20px;
 }
 
 nav {
@@ -379,15 +409,54 @@ nav a:hover::before {
   margin-bottom: 20px;
 }
 
+.pages-section {
+  width:100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
 .search-section > * {
   margin: 5px 10px;
 }
 
+.list-section {
+  justify-content: space-around;
+}
+
+.list-item {
+  width: 32%;
+  min-width: 400px;
+  background: #333333;
+  margin: 0 7px 15px 0;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: start;  
+}
+
+.list-item strong {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.list-item img {
+  width: 160px;
+  height: 225px;
+}
+
+.list-item-info {
+  margin: 0 10px;
+  width: 50%;
+}
+
+.list-item-info div {
+  margin-top: 15px;
+}
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------
 ------------------------------------------------------------------------------------------------*/
-@media (max-width: 1200px){
+@media screen and (max-width: 1200px){
 
   article {
     width: 100%;
@@ -526,19 +595,40 @@ nav a:hover::before {
   .index-section {
     justify-content: space-evenly;
   }
+
+  /*-------------------------------------
+  -------------SEKCE SEZNAM--------------
+  -------------------------------------*/
+  .list-item {
+    min-width: 375px;
+  }
+
 }
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------EXTRA SMALL SCREEN-------------------------------------------
 ------------------------------------------------------------------------------------------------*/
 
-@media (max-width: 384px){
+@media screen and (max-width: 384px){
   /*-------------------------------------
   --------------SEKCE UVOD---------------
   -------------------------------------*/
 
   .index-item {
     border-bottom: solid 1px;
+  }
+
+
+  /*-------------------------------------
+  -------------SEKCE SEZNAM--------------
+  -------------------------------------*/
+  .search-section {
+    flex-flow: column;
+  }
+
+  .list-item {
+    min-width: 100%;
+    justify-content: center;
   }
 
 }

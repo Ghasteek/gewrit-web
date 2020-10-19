@@ -1,0 +1,19 @@
+<?php 
+/* 
+Vypise strankovani, pokud je pocet stran vetsi nez 1
+*/
+
+if ($pages > 1):?>
+    <div class="pages-section">
+        <?php if (!$type) {
+            $type = $urlWithStatus;
+        }
+        for ($i=1; $i <= $pages; $i++):
+            if  (($i == $actualPage) || ($actualPage == 0) && ($i == 1)): ?>
+                <a class="activePage" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">< <?= $i?> ></a>
+            <?php else:?>
+                <a class="pagesList" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">[ <?= $i?> ]</a>
+            <?php endif;
+        endfor;?>
+    </div>
+<?php endif;?>
