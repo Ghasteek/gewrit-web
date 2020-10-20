@@ -15,10 +15,10 @@ foreach ($data as $line):
 
         <div class="list-item-info">
 
-            <strong> <?= $line['name'] ?> </strong> <i class="fa fa-info-circle" title="<?= $line['description'] ?>"></i><br>
+            <strong> <?= $line['name'] ?> </strong><br>
 
             <div>
-                <?= $line['year'] ?>
+                <span class="">Rok: <?= $line['year'] ?>
             </div>
 
             <div title="<?= $line['genre'] ?>">
@@ -29,7 +29,7 @@ foreach ($data as $line):
                 Popis: <?=  $description ?>
             </div>
 
-            <div>
+            <div class="list-item-links">
                 <?php if ($type == 'serial'):?>
                     <a href="<?= $line['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="button csfd">CSFD</li> </a> 
                     <a href="<?= $line['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="button imdb">IMDB</li> </a>
@@ -40,17 +40,18 @@ foreach ($data as $line):
             </div>
 
             <?php if ($userRights >= -1): ?>
-                <br><br>
-                <a href="/nahlasit/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-wrench" title="Nezobrazuje se obrázek, název, nebo je cokoliv v nepořádku? Kliknutím na tuto ikonku nám to nahlásíte a my to vyřešíme :-) "> Nahlásit</i></a>
-                <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-plus-circle" title="Přidat do seznamu sledovaných."> Přidat</i></a>
-                <?php if ($userRights > 0): ?>
-                    <a href="/editor/<?= $type ?>/<?= $line['_id'] ?>"><i class="fa fa-edit" title="Upravit anime."></i>Upravit</a>
-                    <br>
-                    <?php if (($line['onlyFor'] != 0) && $cekarna): ?>
-                        ID autora: <?= $line['onlyFor']?> | <a href="/profil/<?= $line['onlyFor']?>">Profil</a> | <a href="/nahlasit/uzivatel/<?= $line['onlyFor']?>">Nahlásit</a><br>
-                        <input class="checkAll" type="checkbox" name="<?= $type ?>[]" value="<?= $line['_id'] ?>"/> Autorizovat
-                    <?php endif; ?>
-                <?php endif;
+                <div class="list-item-tools">
+                    <a href="/nahlasit/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-wrench" title="Nezobrazuje se obrázek, název, nebo je cokoliv v nepořádku? Kliknutím na tuto ikonku nám to nahlásíte a my to vyřešíme :-) "> Nahlásit</i></a>
+                    <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-plus-circle" title="Přidat do seznamu sledovaných."> Přidat</i></a>
+                    <?php if ($userRights > 0): ?>
+                        <a href="/editor/<?= $type ?>/<?= $line['_id'] ?>"><i class="fa fa-edit" title="Upravit anime."></i>Upravit</a>
+                        <br>
+                        <?php if (($line['onlyFor'] != 0) && $cekarna): ?>
+                            ID autora: <?= $line['onlyFor']?> | <a href="/profil/<?= $line['onlyFor']?>">Profil</a> | <a href="/nahlasit/uzivatel/<?= $line['onlyFor']?>">Nahlásit</a><br>
+                            <input class="checkAll" type="checkbox" name="<?= $type ?>[]" value="<?= $line['_id'] ?>"/> Autorizovat
+                        <?php endif; ?>
+                        </div>
+                    <?php endif;
             endif; ?>
         </div>
     </div>

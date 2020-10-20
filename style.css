@@ -67,8 +67,16 @@ box-shadow: 0px 0px 5px 5px yellow, 0px 0px 5px 5px yellow;
 }
 
 .ap {
-  background-color: #fc5342;
   color: white;
+  border: solid 1px #C93737;
+  background: #1A1A1A;
+}
+
+.ap:hover {
+  background-color: #FFFFFF;
+  border: solid 1px #fc5342;
+  color: #fc5342;
+  scale: 1.1;
 }
 
 
@@ -444,13 +452,34 @@ nav a:hover::before {
   height: 225px;
 }
 
+.list-item li {
+  list-style: none;
+}
+
+.list-item a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.list-item a:hover {
+  color: #C93737;
+}
+
+
 .list-item-info {
   margin: 0 10px;
-  width: 50%;
+  width: 55%;
 }
 
 .list-item-info div {
   margin-top: 15px;
+}
+
+.list-item-links {
+  margin: 15px 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
 }
 
 /*------------------------------------------------------------------------------------------------
@@ -601,6 +630,7 @@ nav a:hover::before {
   -------------------------------------*/
   .list-item {
     min-width: 375px;
+    justify-content: center;
   }
 
 }
