@@ -1,63 +1,93 @@
-<?php 
-if ($data):
-foreach ($data as $line): 
-    
-    if (strlen($line['genre']) > 17) { $genre = substr($line['genre'],0,17) . " ...";} else { $genre = $line['genre']; }; 
+<?php foreach ($data as $i=>$line):
 
-    $description = substr($line['description'],0,38) . " ...";
+    if ($seznamType == 'all'){
+        $seznamStyle = " list-item";
+    } else {
+        $seznamStyle = "";
+    }
 
-    $style = '';
-    if ($line['onlyFor'] != 0) { $style = $style . ' forApproval'; }; ?>
+    if ($line['onlyFor'] != 0){
+        $exclamationMark = " <i title='Není veřejné, čeká na schválení.' class='fas fa-exclamation-triangle'></i>";
+    } else {
+        $exclamationMark = "";
+    }
 
-    <div class="list-item<?= $style ?>">
+    switch ($line['type']){
+        case "anime":
+            $itemType = "Anime";
+            break;
+        case "manga":
+            $itemType = "Manga";
+            break;
+        case "serial":
+            $itemType = "Seriál";
+    }
 
-        <img src="<?= $line['image'] ?>">
+    $progress = "e" . $records[$i]['episode'];
+    if ($records[$i]['series'] != 0) { $progress = "s" . $records[$i]['series'] . $progress;}
 
-        <div class="list-item-info">
+    if ($records[$i]['link'] == '') { $hidden = 'class="hidden"'; $reverse = " reverse"; } else { $hidden = ""; $reverse = ""; }
 
-            <strong> <?= $line['name'] ?> </strong><br>
+    if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];}
+    if ($seznamType == 'all'){echo "<div class='list-item'>\n" ;}?>
 
-            <div>
-                <span class="">Rok: <?= $line['year'] ?>
+<div class="index-item">
+
+    <div class="index-item-mask-container">
+
+        <?php if ($line['rating'] != 0):?>
+            <div class="index-item-star">
+                <i class="fas fa-star"></i>
+                <span class="index-item-rating"><?= $line['rating'] ?></span>
+            </div>
+        <?php endif; ?>
+
+        <img class="index-item-image" src="<?= $line['image'] ?>">
+
+        <div class="index-item-mask">
+            <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Otevře detail položky."><i class="fas fa-search"></i> DETAIL</a><br>
+            <?php if ($line['rating'] != 0):?>
+                <div class="item-rating-tooltip" title="Průměr <?= $line['rating'] ?> (z <?= $line['ratingQuantity'] ?> hlasů). Hlasovat můžete na detailu.">
+                    Hodnocení: <?= $line['rating'] ?> <i class="fas fa-star"></i>
+                </div>
+                
+            <?php endif;?>
+
+            <div class="item-rating-tooltip" title="<?= $line['description'] ?>">
+                <i class="fas fa-info"></i> Popis
             </div>
 
-            <div title="<?= $line['genre'] ?>">
-                Žánr: <?=  $genre ?>
-            </div>
+            <?php if ($isLogged || $rights):
+                if ($type == 'today'):?>
+                    <span><?= $itemType?></br>
+                    <?= $progress?></span>
+                    <div class="item-tools-bar<?= $reverse?>">
+                         
+                         <!-- play icon -->
+                        <a <?= $hidden?> title="Přejít na sledování/čtení dalšího dílu/kapitoly." href="<?= $records[$i]['link']?>" target="_blank"><i class="fas fa-play"></i></a>
 
-            <div title="<?= $line['description'] ?>">
-                Popis: <?=  $description ?>
-            </div>
+                        <!-- hidden form for +1 funcionality -->
+                        <form style="display:none;" id="plusOne<?= $records[$i]['_id']?>" method="post" action="/muj-seznam">
+                            <input type="hidden" id="plusOne" name="plusOne" value="true">
+                            <input type="hidden" id="origin" name="origin" value="uvod">
+                            <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id']  ?>">
+                        </form>
 
-            <div class="list-item-links">
-                <?php if ($type == 'serial'):?>
-                    <a href="<?= $line['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="button csfd">CSFD</li> </a> 
-                    <a href="<?= $line['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="button imdb">IMDB</li> </a>
+                        <!-- +1 icon -->
+                        <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden...">+1</a> 
+                    </div>
+                <?php endif; 
+                if ($type != 'today'):?>
+                <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidá položku do vašeho seznamu"><i class="fas fa-plus"></i> PŘIDAT</a>
                 <?php endif;
-                    if (($type == 'anime') || ($type == 'manga')) :?>
-                        <a href="<?= $line['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="button ap">Anime-planet</li> </a>
-                    <?php endif; //echo $userRights;?>
-            </div>
-
-            <?php if ($userRights >= -1): ?>
-                <div class="list-item-tools">
-                    <a href="/nahlasit/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-wrench" title="Nezobrazuje se obrázek, název, nebo je cokoliv v nepořádku? Kliknutím na tuto ikonku nám to nahlásíte a my to vyřešíme :-) "> Nahlásit</i></a>
-                    <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-plus-circle" title="Přidat do seznamu sledovaných."> Přidat</i></a>
-                    <?php if ($userRights > 0): ?>
-                        <a href="/editor/<?= $type ?>/<?= $line['_id'] ?>"><i class="fa fa-edit" title="Upravit anime."></i>Upravit</a>
-                        <br>
-                        <?php if (($line['onlyFor'] != 0) && $cekarna): ?>
-                            ID autora: <?= $line['onlyFor']?> | <a href="/profil/<?= $line['onlyFor']?>">Profil</a> | <a href="/nahlasit/uzivatel/<?= $line['onlyFor']?>">Nahlásit</a><br>
-                            <input class="checkAll" type="checkbox" name="<?= $type ?>[]" value="<?= $line['_id'] ?>"/> Autorizovat
-                        <?php endif; ?>
-                        </div>
-                    <?php endif;
-            endif; ?>
+            endif;?>
         </div>
-    </div>
-<?php 
 
-endforeach;
-else: ?>
-<h3>Bohužel, v databázi jsme nenašli žádné záznamy</h3>
-<?php endif;?>
+    </div>
+
+    <div class="index-name" title='<?= $line['name'] ?>'><?= $name . $exclamationMark ?></div>
+
+</div>
+<?php 
+if ($seznamType == 'all'){echo "</div>\n";}
+endforeach;?>

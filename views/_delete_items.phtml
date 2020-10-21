@@ -1,0 +1,63 @@
+<?php 
+if ($data):
+foreach ($data as $line): 
+    
+    if (strlen($line['genre']) > 17) { $genre = substr($line['genre'],0,17) . " ...";} else { $genre = $line['genre']; }; 
+
+    $description = substr($line['description'],0,38) . " ...";
+
+    $style = '';
+    if ($line['onlyFor'] != 0) { $style = $style . ' forApproval'; }; ?>
+
+    <div class="list-item<?= $style ?>">
+
+        <img src="<?= $line['image'] ?>">
+
+        <div class="list-item-info">
+
+            <strong> <?= $line['name'] ?> </strong><br>
+
+            <div>
+                <span class="">Rok: <?= $line['year'] ?>
+            </div>
+
+            <div title="<?= $line['genre'] ?>">
+                Žánr: <?=  $genre ?>
+            </div>
+
+            <div title="<?= $line['description'] ?>">
+                Popis: <?=  $description ?>
+            </div>
+
+            <div class="list-item-links">
+                <?php if ($type == 'serial'):?>
+                    <a href="<?= $line['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="button csfd">CSFD</li> </a> 
+                    <a href="<?= $line['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="button imdb">IMDB</li> </a>
+                <?php endif;
+                    if (($type == 'anime') || ($type == 'manga')) :?>
+                        <a href="<?= $line['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="button ap">Anime-planet</li> </a>
+                    <?php endif; //echo $userRights;?>
+            </div>
+
+            <?php if ($userRights >= -1): ?>
+                <div class="list-item-tools">
+                    <a href="/nahlasit/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-wrench" title="Nezobrazuje se obrázek, název, nebo je cokoliv v nepořádku? Kliknutím na tuto ikonku nám to nahlásíte a my to vyřešíme :-) "> Nahlásit</i></a>
+                    <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id']?>"><i class="fa fa-plus-circle" title="Přidat do seznamu sledovaných."> Přidat</i></a>
+                    <?php if ($userRights > 0): ?>
+                        <a href="/editor/<?= $type ?>/<?= $line['_id'] ?>"><i class="fa fa-edit" title="Upravit anime."></i>Upravit</a>
+                        <br>
+                        <?php if (($line['onlyFor'] != 0) && $cekarna): ?>
+                            ID autora: <?= $line['onlyFor']?> | <a href="/profil/<?= $line['onlyFor']?>">Profil</a> | <a href="/nahlasit/uzivatel/<?= $line['onlyFor']?>">Nahlásit</a><br>
+                            <input class="checkAll" type="checkbox" name="<?= $type ?>[]" value="<?= $line['_id'] ?>"/> Autorizovat
+                        <?php endif; ?>
+                        </div>
+                    <?php endif;
+            endif; ?>
+        </div>
+    </div>
+<?php 
+
+endforeach;
+else: ?>
+<h3>Bohužel, v databázi jsme nenašli žádné záznamy</h3>
+<?php endif;?>
