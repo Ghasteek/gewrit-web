@@ -4,7 +4,6 @@
             $contentHandler = new ContentHandler();
             $userAdministration = new UserAdministration();
             $user = $userAdministration->getUser();
-            $this->data['rights'] = $user && $user['rights'];
             $this->data['userRights'] = $user['rights'];
             $this->data['seznamType'] = 'all';
 

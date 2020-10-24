@@ -11,13 +11,13 @@
         <script src="https://kit.fontawesome.com/1648622916.js" crossorigin="anonymous"></script>
     </head>
     <style></style>
-    <body onLoad="getHeight(); removeFadeOut('message', 3000, 5000);">
+    <body onLoad="removeFadeOut('message', 3000, 5000);">
         <div id="message" class='message'>
             <?php
                 $no = 0; 
                 foreach ($messages as $message) : 
                 $no += 1; ?>
-                <p name="message" id="message<?= $no ?>" class="<?= $message[1] ?>" onClick="closeMessage('message<?= $no ?>')"> <i class="fas fa-info-circle"></i> <?= $message[0] ?> <i class='fa fa-close'></i> </p>
+                <p name="message<?= $no ?>" id="message<?= $no ?>" class="<?= $message[1] ?>" onClick="closeMessage('message<?= $no ?>')"> <i class="fas fa-info-circle"></i> <?= $message[0] ?> <i class='fa fa-close'></i> </p>
             <?php endforeach ?>
         </div>
 
