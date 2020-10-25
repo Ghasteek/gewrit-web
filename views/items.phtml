@@ -57,8 +57,8 @@
                 <i class="fas fa-info"></i> Popis
             </div>
 
-            <?php if ($userRights):
-                if ($type == 'today'):?>
+            <?php if ($userRights >= -1){
+                if ($type == 'today'){ ?>
                     <span><?= $itemType?></br>
                     <?= $progress?></span>
                     <div class="item-tools-bar<?= $reverse?>">
@@ -76,11 +76,10 @@
                         <!-- +1 icon -->
                         <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden...">+1</a> 
                     </div>
-                <?php endif; 
-                if ($type != 'today'):?>
-                <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidá položku do vašeho seznamu"><i class="fas fa-plus"></i> PŘIDAT</a>
-                <?php endif;
-            endif;?>
+                <?php } else { ?>
+                    <a href="/pridat-do-seznamu/<?= $type ?>/<?= $line['_id'] ?>" title="Přidá položku do vašeho seznamu"><i class="fas fa-plus"></i> PŘIDAT</a>
+                <?php }
+            }?>
         </div>
 
     </div>

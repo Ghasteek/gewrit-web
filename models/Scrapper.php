@@ -64,6 +64,8 @@
 
             $nodes = $xpath->query("//img[@class='film-poster']");
             $poster_url = "http:".$nodes->item(0)->getAttribute('src');
+            $poster_url = substr($poster_url, 0, -3);
+            $poster_url = $poster_url . "480";
 
             $nodes = $xpath->query("//a[@title='profil na IMDb.com']");
             $imdb = $nodes->item(0)->getAttribute('href');

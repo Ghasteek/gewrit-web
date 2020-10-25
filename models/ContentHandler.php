@@ -166,7 +166,11 @@
                 $newRatingSum = ($oldItemRating[0]['ratingSum'] - $oldRating) + $rating;
             }
             
-            $newRating = round($newRatingSum / $newRatingQuantity, 1);
+            if ($newRatingQuantity == 0){
+                $newRating = 0;
+            } else {
+                $newRating = round($newRatingSum / $newRatingQuantity, 1);
+            }
             $newItemRating = array(
                 'ratingSum' => $newRatingSum,
                 'ratingQuantity' => $newRatingQuantity,

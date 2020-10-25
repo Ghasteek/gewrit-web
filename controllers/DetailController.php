@@ -15,7 +15,7 @@ class DetailController extends Controller
         if (($param[1] !== 0) && (strpos($allowedParameters, $param[0]) !== false)){ // kontrola validity parametru
 
             if ($_POST){ // zpracovani hodnoceni
-                if (($_POST['userRating'] >= 0) && ($_POST['userRating'] <= 10)){
+                if (($_POST['userRating'] >= 0) && ($_POST['userRating'] <= 5)){
                     $contentHandler->saveMyRating($param[0], $user['_id'], intval($param[1]), intval($_POST['userRating']));
                     if ($_POST['userRating'] == 0){
                         $this->addMessage('Hlasování smazáno' , 'info');
@@ -30,17 +30,17 @@ class DetailController extends Controller
 
             switch ($param[0]){ // podle parametru nactu obsah
                 case 'serial':
-                    $pageTitle = 'Detail seriálu';
+                    $pageTitle = 'Gewrit - Detail seriálu';
                     $table = 'serial';
                     $loadedContent = $contentHandler->getContent($table, $param[1]);
                 break;
                 case 'anime':
-                    $pageTitle = 'Detail anime';
+                    $pageTitle = 'Gewrit - Detail anime';
                     $table = 'anime';
                     $loadedContent = $contentHandler->getContent($table, $param[1]);
                 break;
                 case 'manga':
-                    $pageTitle = 'Detail mangy';
+                    $pageTitle = 'Gewrit - Detail mangy';
                     $table = 'manga';
                     $loadedContent = $contentHandler->getContent($table, $param[1]);
             }

@@ -5,7 +5,7 @@
 
             $user = UserAdministration::getUser();
             if ($user) { 
-                $this->data['isLogged'] = true; 
+                $this->data['userRights'] = $user['rights'];
             
                 // nacteni dnes vydanych polozek--------------------
                 $todayReleased = MujSeznamHandler::getTodayReleasedRecords();

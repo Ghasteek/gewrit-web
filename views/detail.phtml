@@ -1,41 +1,109 @@
-<div class="kontaktContainer">
-    <h1>Detail</h1>
+<div class="index-section detail-section">
+    <?php switch ($type){
+        case 'serial':
+            $titleText = "Detail seriálu";
+            $thisItem = "Tento seriál má na seznamu " .  $inListCount  . " uživatelů.";
+            break;
+        case 'anime':
+            $titleText = "Detail anime";
+            $thisItem = "Toto anime má na seznamu " .  $inListCount  . " uživatelů.";
+            break;
+        case 'manga':
+            $titleText = "Detail mangy";
+            $thisItem = "Tuto mangu má na seznamu " .  $inListCount  . " uživatelů.";
+            break;
+    }
+
+    if ($data['ratingQuantity'] == 0){
+        $rating = "N/A";
+        $ratingQuantity = "Zatím nehodnoceno.";
+    } else {
+        if ($data['ratingQuantity'] == 1) {
+            $ratingQuantity = "Hodnotil " . $data['ratingQuantity'] . " uživatel.";
+        } elseif (($data['ratingQuantity'] >= 2) && ($data['ratingQuantity'] < 5))  {
+            $ratingQuantity = "Hodnotili " . $data['ratingQuantity'] . " uživatelé.";
+        } elseif ($data['ratingQuantity'] >= 5) {
+            $ratingQuantity = "Hodnotilo " . $data['ratingQuantity'] . " uživatelů.";
+        }
+        $rating = $data['rating'] . " / 5";
+        
+    }
+
     
-        ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
-        <?= $data['name'] ?><br />
-        <img src="<?= $data['image'] ?>"><br />
-        Rok<br />
-        <?= $data['year'] ?><br />
-        Žánr<br />
-        <?= $data['genre'] ?>"<br />
-        <?php if ($type == 'serial') : ?>
-            <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="csfd">CSFD</li> </a> 
-            <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="imdb">IMDB</li> </a><br>
-        <?php endif; ?>
-        <?php if ($type != 'serial') : ?>
-            <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="ap">Anime-planet</li> </a><br />
-        <?php endif; ?>
-        Popis<br />
-        <?= $data['description'] ?><br />
-        Na seznamu <?= $inListCount ?>x<br>
-        Hodnocení: <?= $data['rating'] ?> * (hodnoceno <?= $data['ratingQuantity'] ?>x)<br>
-        <?php if (($user) && ($userRights >= 0)):?>
-            <form id="rate" method="post">
-                <label for="userRating">Vaše hodnocení: <?= $userRating ?></label><br><br>
-                <select name="userRating">
-                    <?php if (!$userRating) {echo "<option value='-' disabled selected>-</option>";} else {echo "<option value='0'  selected>odebrat hodnoceni</option>";} ?>
-                    <option value="1" <?php if ($userRating == '1') {echo "selected";} ?>>1</option>
-                    <option value="2" <?php if ($userRating == '2') {echo "selected";} ?>>2</option>
-                    <option value="3" <?php if ($userRating == '3') {echo "selected";} ?>>3</option>
-                    <option value="4" <?php if ($userRating == '4') {echo "selected";} ?>>4</option>
-                    <option value="5" <?php if ($userRating == '5') {echo "selected";} ?>>5</option>
-                    <option value="6" <?php if ($userRating == '6') {echo "selected";} ?>>6</option>
-                    <option value="7" <?php if ($userRating == '7') {echo "selected";} ?>>7</option>
-                    <option value="8" <?php if ($userRating == '8') {echo "selected";} ?>>8</option>
-                    <option value="9" <?php if ($userRating == '9') {echo "selected";} ?>>9</option>
-                    <option value="10" <?php if ($userRating == '10') {echo "selected";} ?>>10</option>
-                </select>
-                <div class="sendButton" onclick="document.forms['rate'].submit();" title="Uloží vaše hodnocení.">Hlasuj</div>
-            </form>
+    ?>
+    <div class="index-section-title">
+        <?= $titleText ?>
+    </div>
+
+
+    <img src="<?= $data['image'] ?>">
+
+    <div class="detail-text">
+        <div class="detail-name"> 
+            <?= $data['name'] ?> 
+        </div>
+
+        <div class="detail-row"> 
+            <div><?= $data['year'] ?></div>
+            <div class="show-rating">
+                <i class="fas fa-star active-star"></i> Hodnocení: <?= $rating ?>
+                <div class="detail-rating">
+                    <?= $ratingQuantity ?><br>
+                    <?php if ($userRights >= 0) {?>
+                        
+
+                        <form id="rate" method="post" onchange="document.forms['rate'].submit();">
+                            <?php if ($userRating) {?>
+                                Vaše hodnocení - <?= $userRating ?> <i class="fas fa-star"></i> <br>
+                                <input type="radio" id="0" name="userRating" value="0">
+                                <label for="0">Odebrat hodnocení</label><br>
+                            <?php } ?>
+                            <input type="radio" id="1" name="userRating" value="1">
+                            <label for="1"><i title="Hodnotit 1*" class="fas fa-star<?php if ($userRating >= 1){ echo ' active-star'; } ?> star-big"></i></label>
+                            <input type="radio" id="2" name="userRating" value="2">
+                            <label for="2"><i title="Hodnotit 2*" class="fas fa-star<?php if ($userRating >= 2){ echo ' active-star'; } ?> star-big"></i></label>
+                            <input type="radio" id="3" name="userRating" value="3">
+                            <label for="3"><i title="Hodnotit 3*" class="fas fa-star<?php if ($userRating >= 3){ echo ' active-star'; } ?> star-big"></i></label>
+                            <input type="radio" id="4" name="userRating" value="4">
+                            <label for="4"><i title="Hodnotit 4*" class="fas fa-star<?php if ($userRating >= 4){ echo ' active-star'; } ?> star-big"></i></label>
+                            <input type="radio" id="5" name="userRating" value="5">
+                            <label for="5"><i title="Hodnotit 5*" class="fas fa-star<?php if ($userRating == 5){ echo ' active-star'; } ?> star-big"></i></label>
+                        </form>
+
+                    <?php } else { echo "Nelze hlasovat."; } ?>
+
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <u>Žánr:</u> <?= $data['genre'] ?>
+        </div>
+
+        <div>
+            <u>Popis:</u> <?= $data['description'] ?>
+        </div>
+
+        <div class="detail-links">
+            <?php if ($type == 'serial') : ?>
+                <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><div class="button csfd">CSFD</div> </a> 
+                <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><div class="button imdb">IMDB</div> </a>
+            <?php endif; ?>
+            <?php if ($type != 'serial') : ?>
+                <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><div class="button ap">Anime-planet</div> </a>
+            <?php endif; ?>
+        </div>
+
+        <div>
+            <?= $thisItem ?>
+        </div>
+
+        <div>
+        <?php if ($userRights):?>
+            tools
         <?php endif;?>
+        </div>
+        
+    </div>
+
 </div>

@@ -16,6 +16,10 @@ p {
   margin-top: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 article {
   width: 80%;
   background: #292929;
@@ -27,56 +31,56 @@ article {
 -----------OVLADACI PRVKY--------------
 -------------------------------------*/
 .button {
+  color: #ffffff;
+  background: #1A1A1A;
   width: max-content;
   padding: 3px 10px;
   font-weight: bold;
   border-radius: 5px;
+  transition: all 0.1s;
 }
 
 .button:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 5px 5px, 0px 0px 5px 5px;
+  background-color: #333333;
+  transform: scale(1.1);
 }
 
 .accept {
-  border: solid 1px #C93737;
-  background: #1A1A1A;
-}
-
-.accept:hover {
-  background: #37c937;
-  color: #1A1A1A;
   border: solid 1px #37c937;
 }
 
+.accept:hover {
+  color: #37c937;
+  box-shadow: #37c937, #37c937;
+}
+
 .csfd {
-  background-color: red;
-  color: white;
+  border: solid 1px #C20E0F;
 }
 
 .csfd:hover {
-box-shadow: 0px 0px 5px 5px red, 0px 0px 5px 5px red;
+  color: #f30c0c;
+  box-shadow: #C20E0F, #C20E0F;
 }
 
 .imdb {
-  background-color: yellow;
-  color: black;
+  border: solid 1px #E2B616;
 }
 
 .imdb:hover {
-box-shadow: 0px 0px 5px 5px yellow, 0px 0px 5px 5px yellow;
+  color: #E2B616;
+  box-shadow: #E2B616, #E2B616;
 }
 
 .ap {
-  color: white;
   border: solid 1px #C93737;
-  background: #1A1A1A;
 }
 
 .ap:hover {
-  background-color: #FFFFFF;
-  border: solid 1px #fc5342;
   color: #fc5342;
-  scale: 1.1;
+  box-shadow: #fc5342, #fc5342;
 }
 
 
@@ -444,6 +448,100 @@ nav a:hover::before {
   }
 }
 
+/*-------------------------------------
+---------------DETAIL------------------
+-------------------------------------*/
+
+.detail-section {
+  justify-content: center;
+}
+
+.detail-text {
+  margin-left: 15px;
+  width: 500px;
+}
+
+.detail-text > div + div {
+  margin-top: 15px;
+}
+
+.detail-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.detail-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.detail-links {
+  display: flex;
+}
+
+.detail-links a + a {
+  margin-left: 20px;
+}
+
+.detail-rating-oneRow {
+  display: flex;
+  flex-flow: row;
+}
+
+.detail-rating-oneRow div {
+  margin-left: 20px;
+}
+
+.detail-rating {
+  background-color: #1A1A1A;
+  position: absolute;
+  display: block;
+  line-height: 200%;
+  padding: 10px;
+  transform: scale(0);
+  opacity: 0;
+  overflow: hidden;
+  transition: all .2s;
+  width: 210px;
+  text-align: center;
+}
+
+.star-big {
+  font-size: 30px;
+  transition: all .2s;
+}
+
+.star-big:hover {
+  font-size: 30px;
+  color: #C93737;
+  transform: scale(1.4);
+}
+
+.detail-rating input {
+  display: none;
+}
+
+.detail-rating label:hover {
+  cursor: pointer;
+  color: #C93737;
+}
+
+.detail-rating form {
+  line-height: 300%;
+}
+
+.active-star {
+  color: #C93737;
+}
+
+.show-rating:hover > .detail-rating {
+  display: block;
+  transform: scale(1);
+  opacity: 1;
+}
+
+
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------
 ------------------------------------------------------------------------------------------------*/
@@ -587,6 +685,14 @@ nav a:hover::before {
     justify-content: space-evenly;
   }
 
+  /*-------------------------------------
+  -------------SEKCE DETAIL--------------
+  -------------------------------------*/
+
+  .detail-section {
+    justify-content: center;
+  }
+
 }
 
 /*------------------------------------------------------------------------------------------------
@@ -609,5 +715,43 @@ nav a:hover::before {
   .search-section {
     flex-flow: column;
   }
+
+  /*-------------------------------------
+  -------------SEKCE SEZNAM--------------
+  -------------------------------------*/
+  .detail-section img {
+    width: 90%;
+    margin-top: 30px;
+  }
+
+  .detail-row {
+    flex-flow: column;
+  }
+
+
+
+  .detail-links {
+    flex-flow: column;
+  }
+  
+  .detail-links a + a {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  /*-------------------------------------
+  -------------SEKCE DETAIL--------------
+  -------------------------------------*/
+
+  .detail-rating-oneRow {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .detail-rating-oneRow div {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+
 
 }
