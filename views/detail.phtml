@@ -1,16 +1,24 @@
 <div class="index-section detail-section">
-    <?php switch ($type){
+    <?php 
+    if ($inListCount == 1){
+        $osloveni = " uživatel.";
+    } elseif ($inListCount >= 2) {
+        $osloveni = " uživatelé.";
+    } elseif (($inListCount >= 5) || ($inListCount == 0)) {
+        $osloveni = " uživatelů.";
+    }
+    switch ($type){
         case 'serial':
             $titleText = "Detail seriálu";
-            $thisItem = "Tento seriál má na seznamu " .  $inListCount  . " uživatelů.";
+            $thisItem = "Tento seriál má na seznamu " .  $inListCount  . $osloveni;
             break;
         case 'anime':
             $titleText = "Detail anime";
-            $thisItem = "Toto anime má na seznamu " .  $inListCount  . " uživatelů.";
+            $thisItem = "Toto anime má na seznamu " .  $inListCount  . $osloveni;
             break;
         case 'manga':
             $titleText = "Detail mangy";
-            $thisItem = "Tuto mangu má na seznamu " .  $inListCount  . " uživatelů.";
+            $thisItem = "Tuto mangu má na seznamu " .  $inListCount  . $osloveni;
             break;
     }
 
