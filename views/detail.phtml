@@ -43,8 +43,22 @@
         <?= $titleText ?>
     </div>
 
-
-    <img src="<?= $data['image'] ?>">
+    <div>
+        <img src="<?= $data['image'] ?>">
+        
+        <?php if (is_integer($userRights)):?>
+            <div class="detail-tools">
+                <?php if ($userRights >= 0):?>
+                    <a href="#"><i class="fas fa-plus"></i>Přidat</a>
+                    <a href="#"><i class="fas fa-bug"></i>Nahlásit</a>
+                <?php endif; 
+                if ($userRights >= 1):?>
+                    <a href="#"><i class="fas fa-edit"></i>Upravit</a>
+                <?php endif; ?>
+            </div>
+        <?php endif;?>
+        
+    </div>
 
     <div class="detail-text">
         <div class="detail-name"> 
@@ -106,11 +120,7 @@
             <?= $thisItem ?>
         </div>
 
-        <div>
-        <?php if ($userRights):?>
-            tools
-        <?php endif;?>
-        </div>
+        
         
     </div>
 

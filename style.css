@@ -541,6 +541,27 @@ nav a:hover::before {
   opacity: 1;
 }
 
+.detail-tools {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
+.detail-tools a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: all .2s;
+  font-size: 15px;
+}
+
+.detail-tools a:hover {
+  color: #C93737;
+  transform: scale(1.1);
+}
+.detail-tools i {
+  margin-right: 5px;
+}
+
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------
