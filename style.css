@@ -38,6 +38,11 @@ article {
   font-weight: bold;
   border-radius: 5px;
   transition: all 0.1s;
+  user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
 }
 
 .button:hover {
@@ -584,24 +589,146 @@ nav a:hover::before {
   align-items: center;
   border: solid 2px #292929;
   cursor: pointer;
+  transition: all .2s;
+  user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
 }
 
-.day-checkbox:checked ~ label .day-checkbox-label {
+.day-checkbox:checked ~ label .day-checkbox-label, .day-checkbox-label:hover {
   background-color: #C93737;
   font-weight: bold;
+  transform: scale(1.1);
 }
 
-.form-days-container {
+.form-container {
   display: flex;
   flex-flow: row;
   background-color: #1a1a1a;
   width: fit-content;
+  width: -moz-max-content;
   margin: 10px 0;
 }
 
 .progress-input {
   width: 4em;
-  text-align: end;
+  text-align: center;
+  margin: 0 2px;
+  background-color: #333333;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+
+.input-plus, .input-minus {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  font-weight: 900;
+  transition: all .2s;
+  user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.input-plus:hover, .input-minus:hover, .input-plus:focus, .input-minus:focus  {
+  cursor: pointer;
+  background-color: #C93737;
+
+}
+
+/* Chrome, Safari, Edge, Opera - schovani defaultnich + a - tlacitek u input number*/
+.form-container input::-webkit-outer-spin-button,
+.form-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.form-container input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*  animate input  */
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #FFFFFF;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #C93737, #C93737);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #C93737;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+.input-select {
+  padding: 3px 5px;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border: none;
+}
+
+.input-select option:active, .input-select option:hover {
+  background-color: #333333;
+  color: #C93737;
+  outline-color: red;
+
 }
 
 

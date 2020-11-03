@@ -164,7 +164,7 @@
         public function showMyList($title){
             $userAdministration = new UserAdministration();
             $user = $userAdministration->getUser();
-            if ($title == 'Gewrit - Můj seznam'){
+            if (($title == 'Gewrit - Můj seznam') || ($title == 'Gewrit - Přidat do seznamu')){
                 $active = 'class="active"';
             }
             if (count($user) != 0){

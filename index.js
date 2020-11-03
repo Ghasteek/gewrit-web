@@ -229,3 +229,19 @@ function toogleMenu() {
         ham.classList.add('open');
     }
 }
+
+function increase(id) {
+    var input = document.getElementById(id);
+    if (!input.value) {
+        input.value = 0;
+    }
+    input.value = parseInt(input.value) + 1;
+}
+
+function decrease(id) {
+    var input = document.getElementById(id);
+    if ((!input.value) || (input.value == 0) ) {
+        input.value = 1;
+    }
+    input.value = parseInt(input.value) - 1;
+}
