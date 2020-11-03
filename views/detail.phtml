@@ -1,24 +1,26 @@
 <div class="index-section detail-section">
     <?php 
-    if ($inListCount == 1){
-        $osloveni = " uživatel.";
+    if ($inListCount == 0){
+        $thisItemEnd = "ještě nemá nikdo na seznamu.";
+    } elseif ($inListCount == 1){
+        $thisItemEnd = "má na seznamu " .  $inListCount  . " uživatel.";
     } elseif ($inListCount >= 2) {
-        $osloveni = " uživatelé.";
+        $thisItemEnd = "mají na seznamu " .  $inListCount  . " uživatelé.";
     } elseif (($inListCount >= 5) || ($inListCount == 0)) {
-        $osloveni = " uživatelů.";
+        $thisItemEnd = "má na seznamu " .  $inListCount  . " uživatelů.";
     }
     switch ($type){
         case 'serial':
             $titleText = "Detail seriálu";
-            $thisItem = "Tento seriál má na seznamu " .  $inListCount  . $osloveni;
+            $thisItem = "Tento seriál " . $thisItemEnd;
             break;
         case 'anime':
             $titleText = "Detail anime";
-            $thisItem = "Toto anime má na seznamu " .  $inListCount  . $osloveni;
+            $thisItem = "Toto anime " . $thisItemEnd;
             break;
         case 'manga':
             $titleText = "Detail mangy";
-            $thisItem = "Tuto mangu má na seznamu " .  $inListCount  . $osloveni;
+            $thisItem = "Tuto mangu " . $thisItemEnd;
             break;
     }
 
@@ -37,7 +39,6 @@
         
     }
 
-    
     ?>
     <div class="index-section-title">
         <?= $titleText ?>
@@ -49,11 +50,11 @@
         <?php if (is_integer($userRights)):?>
             <div class="detail-tools">
                 <?php if ($userRights >= 0):?>
-                    <a href="#"><i class="fas fa-plus"></i>Přidat</a>
-                    <a href="#"><i class="fas fa-bug"></i>Nahlásit</a>
+                    <a href="pridat-do-seznamu/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-plus"></i>Přidat</a>
+                    <a href="nahlasit/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-bug"></i>Nahlásit</a>
                 <?php endif; 
                 if ($userRights >= 1):?>
-                    <a href="#"><i class="fas fa-edit"></i>Upravit</a>
+                    <a href="editor/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-edit"></i>Upravit</a>
                 <?php endif; ?>
             </div>
         <?php endif;?>

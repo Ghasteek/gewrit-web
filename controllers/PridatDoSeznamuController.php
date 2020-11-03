@@ -41,7 +41,7 @@
 
             }
 
-            $this->data['data'] = $answer;
+            $this->data['data'] = $answer[0];
             $this->data['type'] = $param[0];
             $this->data['id'] = $param[1];
             $this->data['author'] = $author['_id'];
