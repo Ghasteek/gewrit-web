@@ -769,6 +769,42 @@ nav a:hover::before {
   background-color: #292929;
 }
 
+.my-list-submenu form {
+  display: flex;
+  flex-flow: row;
+}
+
+.my-list-submenu > div:first-child{
+  margin: auto 3px;
+}
+
+.filter-checkbox {
+  display: none;
+} 
+
+.filter-checkbox-label {
+  padding: 15px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.filter-checkbox:checked ~ label .filter-checkbox-label, .filter-checkbox-label:hover {
+  background-color: #292929;
+  color: #C20E0F;
+}
+
+.filter-checkbox:checked::after {
+  content: 'A';
+}
+
 
 
 /*------------------------------------------------------------------------------------------------

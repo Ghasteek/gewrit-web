@@ -1,3 +1,48 @@
+<?php if (!$type):?>
+    <div class="my-list-submenu">
+        <ul>
+            Moje seznamy :
+            <a href="/muj-seznam/sleduji"><li <?php if ($active == 'sleduji') { echo "class='my-list-submenu-active' "; }?>>Sleduji</li></a>
+            <a href="/muj-seznam/planovane"><li <?php if ($active == 'planovane') { echo "class='my-list-submenu-active' "; }?>>Chci si přečíst/shlédnout</li></a>
+            <a href="/muj-seznam/pozastaveno"><li <?php if ($active == 'pozastaveno') { echo "class='my-list-submenu-active' "; }?>>Pozastaveno</li></a>
+            <a href="/muj-seznam/odlozeno"><li <?php if ($active == 'odlozeno') { echo "class='my-list-submenu-active' "; }?>>Odloženo</li></a>
+            <a href="/muj-seznam/dokonceno"><li <?php if ($active == 'dokonceno') { echo "class='my-list-submenu-active' "; }?>>Dokončeno</li></a>
+            <a href="/muj-seznam/nesledovat"><li <?php if ($active == 'nesledovat') { echo "class='my-list-submenu-active' "; }?>>Nesledovat</li></a>
+            <a href="/muj-seznam/"><li <?php if ($active == 'all') { echo "class='my-list-submenu-active' "; }?>>Vše</li></a>
+        </ul>
+    </div>
+
+    <div class="my-list-submenu">
+        <div>
+            Filtr:
+        </div>
+        
+        <form class="" method="post">
+            
+            <input type="hidden" name="form" value="true">
+            
+            <div>
+                <input type="checkbox" id="anime" onChange="this.form.submit()" name="checking[]" value="anime" <?php if (strpos($checked, 'anime') !== false) { echo "checked"; }?> class="filter-checkbox"/>
+                <label for="anime"><div  class="filter-checkbox-label">Anime</div></label>
+            </div>
+            <div>
+                <input type="checkbox" id="manga" onChange="this.form.submit()" name="checking[]" value="manga" <?php if (strpos($checked, 'manga') !== false) { echo "checked"; }?> class="filter-checkbox"/>
+                <label for="manga"><div  class="filter-checkbox-label"> Manga</div></label>
+            </div>
+            <div>
+                <input type="checkbox" id="serial" onChange="this.form.submit()" name="checking[]" value="serial" <?php if (strpos($checked, 'serial') !== false) { echo "checked"; }?> class="filter-checkbox"/>
+                <label for="serial"><div  class="filter-checkbox-label">Seriály</div></label>
+            </div>
+            <div>
+                <input type="checkbox" id="today" onChange="this.form.submit()" name="checking[]" value="releaseDay" <?php if (strpos($checked, 'releaseDay') !== false) { echo "checked"; }?> class="filter-checkbox"/>
+                <label for="today"><div  class="filter-checkbox-label"> Jen dnešní</div></label>
+            </div>
+        </form>
+    </div>
+
+<?php endif; ?>
+
+
 <div class="index-section">
 
     <?php if ($seznamType == 'all'){ 
@@ -26,31 +71,6 @@
 
     } elseif ($seznamType == 'my'){ ?>
         <div class="index-section-title">Můj seznam</div>
-
-        <?php if (!$type):?>
-            <div class="my-list-submenu">
-                <ul>
-                    Moje seznamy :
-                    <a href="/muj-seznam/sleduji"><li <?php if ($active == 'sleduji') { echo "class='my-list-submenu-active' "; }?>>Sleduji</li></a>
-                    <a href="/muj-seznam/planovane"><li <?php if ($active == 'planovane') { echo "class='my-list-submenu-active' "; }?>>Chci si přečíst/shlédnout</li></a>
-                    <a href="/muj-seznam/pozastaveno"><li <?php if ($active == 'pozastaveno') { echo "class='my-list-submenu-active' "; }?>>Pozastaveno</li></a>
-                    <a href="/muj-seznam/odlozeno"><li <?php if ($active == 'odlozeno') { echo "class='my-list-submenu-active' "; }?>>Odloženo</li></a>
-                    <a href="/muj-seznam/dokonceno"><li <?php if ($active == 'dokonceno') { echo "class='my-list-submenu-active' "; }?>>Dokončeno</li></a>
-                    <a href="/muj-seznam/nesledovat"><li <?php if ($active == 'nesledovat') { echo "class='my-list-submenu-active' "; }?>>Nesledovat</li></a>
-                    <a href="/muj-seznam/"><li <?php if ($active == 'all') { echo "class='my-list-submenu-active' "; }?>>Vše</li></a>
-                </ul>
-            </div>
-        <?php endif; ?>
-
-        <form class="search-section" method="post">
-            <div style="display: flex;">
-                <input type="hidden" name="form" value="true">
-                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="anime" <?php if (strpos($checked, 'anime') !== false) { echo "checked"; }?>/> Anime | 
-                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="manga" <?php if (strpos($checked, 'manga') !== false) { echo "checked"; }?>/> Manga |
-                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="serial" <?php if (strpos($checked, 'serial') !== false) { echo "checked"; }?>/> Seriály ||
-                <input type="checkbox" onChange="this.form.submit()" name="checking[]" value="releaseDay" <?php if (strpos($checked, 'releaseDay') !== false) { echo "checked"; }?>/> Jen dnešní
-            </div>
-        </form><br />
         
         <?php include "views/my-items.phtml"; 
         include_once "views/pages.phtml";
