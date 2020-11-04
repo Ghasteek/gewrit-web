@@ -1,13 +1,3 @@
-<?php if (!$type):?>
-<a href="/muj-seznam/sleduji">Sleduji</a>
-<a href="/muj-seznam/planovane">Chci si přečíst/shlédnout</a>
-<a href="/muj-seznam/pozastaveno">Pozastaveno</a>
-<a href="/muj-seznam/odlozeno">Odloženo</a>
-<a href="/muj-seznam/dokonceno">Dokončeno</a>
-<a href="/muj-seznam/nesledovat">Nesledovat</a> || 
-<a href="/muj-seznam/">Vše</a> <br><br>
-<?php endif; ?>
-
 <div class="index-section">
 
     <?php if ($seznamType == 'all'){ 
@@ -36,6 +26,22 @@
 
     } elseif ($seznamType == 'my'){ ?>
         <div class="index-section-title">Můj seznam</div>
+
+        <?php if (!$type):?>
+            <div class="my-list-submenu">
+                <ul>
+                    Moje seznamy :
+                    <a href="/muj-seznam/sleduji"><li <?php if ($active == 'sleduji') { echo "class='my-list-submenu-active' "; }?>>Sleduji</li></a>
+                    <a href="/muj-seznam/planovane"><li <?php if ($active == 'planovane') { echo "class='my-list-submenu-active' "; }?>>Chci si přečíst/shlédnout</li></a>
+                    <a href="/muj-seznam/pozastaveno"><li <?php if ($active == 'pozastaveno') { echo "class='my-list-submenu-active' "; }?>>Pozastaveno</li></a>
+                    <a href="/muj-seznam/odlozeno"><li <?php if ($active == 'odlozeno') { echo "class='my-list-submenu-active' "; }?>>Odloženo</li></a>
+                    <a href="/muj-seznam/dokonceno"><li <?php if ($active == 'dokonceno') { echo "class='my-list-submenu-active' "; }?>>Dokončeno</li></a>
+                    <a href="/muj-seznam/nesledovat"><li <?php if ($active == 'nesledovat') { echo "class='my-list-submenu-active' "; }?>>Nesledovat</li></a>
+                    <a href="/muj-seznam/"><li <?php if ($active == 'all') { echo "class='my-list-submenu-active' "; }?>>Vše</li></a>
+                </ul>
+            </div>
+        <?php endif; ?>
+
         <form class="search-section" method="post">
             <div style="display: flex;">
                 <input type="hidden" name="form" value="true">

@@ -162,7 +162,7 @@
                 $this->data['data'] = $data;
                 $this->data['records'] = $records;
             }
-
+            $this->data['active'] = $status;
             $this->data['title'] = 'Můj seznam';
             $this->head['title'] = 'Gewrit - Můj seznam';
             $this->view = 'seznamTemplate';

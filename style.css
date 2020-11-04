@@ -657,6 +657,18 @@ nav a:hover::before {
   -moz-appearance: textfield;
 }
 
+.row {
+  display: flex;
+}
+
+.row div + div {
+  margin-left: 15px;
+}
+
+.form-section {
+  margin: 25px 0 0 0 ;
+}
+
 /*  animate input  */
 .form__group {
   position: relative;
@@ -717,19 +729,46 @@ nav a:hover::before {
   box-shadow: none;
 }
 
-.input-select {
-  padding: 3px 5px;
+.input-select, .input-select option {
+  padding: 8px 10px;
   background-color: #1A1A1A;
   color: #FFFFFF;
   border: none;
+  font-weight: bold;
+  letter-spacing: .5px;
 }
 
-.input-select option:active, .input-select option:hover {
-  background-color: #333333;
+/*-------------------------------------
+-------------MUJ SEZNAM----------------
+-------------------------------------*/
+
+.my-list-submenu {
+  background-color: #333333 ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.my-list-submenu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.my-list-submenu a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.my-list-submenu li {
+  display: inline-block;
+  padding: 15px 25px;
+}
+
+.my-list-submenu li:hover, .my-list-submenu-active {
   color: #C93737;
-  outline-color: red;
-
+  background-color: #292929;
 }
+
 
 
 /*------------------------------------------------------------------------------------------------
@@ -943,5 +982,42 @@ nav a:hover::before {
     margin-top: 20px;
   }
 
+
+  /*-------------------------------------
+  ----------PRIDAT DO SEZNAMU------------
+  -------------------------------------*/
+  .form-container {
+    flex-flow: column;
+  }
+
+  .input-plus, .input-minus {
+    width: 60px;
+    margin-left: 1px;
+  }
+
+  .reverse {
+    flex-flow: column-reverse;
+  }
+
+  .form-days {
+    flex-flow: wrap;
+    background: none;
+  }
+
+  .day-checkbox-label {
+    background-color: #1A1A1A;
+  }
+
+  .form__field:placeholder-shown ~ .form__label {
+    top: -20px;
+  }
+
+  .form__group {
+    margin-top: 30px;
+  }
+
+  .input-select {
+    margin: 15px 0;
+  }
 
 }
