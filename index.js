@@ -230,6 +230,15 @@ function toogleMenu() {
     }
 }
 
+function toogleFilter(id) {
+    var menu = document.getElementById(id);
+    if (menu.classList.contains('filter-open')){
+        menu.classList.remove('filter-open');
+    } else {
+        menu.classList.add('filter-open');
+    }
+}
+
 function increase(id) {
     var input = document.getElementById(id);
     if (!input.value) {

@@ -24,7 +24,7 @@ article {
   width: 80%;
   background: #292929;
   margin: auto;
-  padding: 10px 0 0 0;
+  padding: 1px 0 0 0;
 }
 
 /*-------------------------------------
@@ -746,7 +746,9 @@ nav a:hover::before {
   background-color: #333333 ;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  border-bottom: solid 1px #292929;
+  -moz-border-bottom: solid 4px #292929;
 }
 
 .my-list-submenu ul {
@@ -764,18 +766,31 @@ nav a:hover::before {
   padding: 15px 25px;
 }
 
-.my-list-submenu li:hover, .my-list-submenu-active {
+.my-list-submenu-active {
   color: #C93737;
+}
+
+.my-list-submenu-active::after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  margin-left: 10px;
+}
+
+.my-list-submenu li:hover {
   background-color: #292929;
 }
 
 .my-list-submenu form {
   display: flex;
-  flex-flow: row;
+  flex-wrap: wrap;
 }
 
 .my-list-submenu > div:first-child{
   margin: auto 3px;
+  width: 130px;
+  flex-shrink: 0;
+  text-align: end;
+  position: relative;
 }
 
 .filter-checkbox {
@@ -796,13 +811,34 @@ nav a:hover::before {
         -o-user-select: none;
 }
 
-.filter-checkbox:checked ~ label .filter-checkbox-label, .filter-checkbox-label:hover {
+.filter-checkbox-label::after {
+  content: "\f0c8";
+  font-family: FontAwesome;
+  margin-left: 10px;
+}
+
+.filter-checkbox:checked ~ label .filter-checkbox-label {
+  color: #C93737;
+}
+
+.filter-checkbox:checked ~ label .filter-checkbox-label::after {
+  content: "\f14a";
+}
+
+.filter-checkbox-label:hover {
   background-color: #292929;
-  color: #C20E0F;
 }
 
 .filter-checkbox:checked::after {
   content: 'A';
+}
+
+.filter-click {
+  display: none;
+  position: absolute;
+  width: 160px;
+  height: 50px;
+  top: -0.1rem;
 }
 
 
@@ -957,6 +993,80 @@ nav a:hover::before {
   .detail-section {
     justify-content: center;
   }
+
+  /*-------------------------------------
+  -----------SEKCE MUJ SEZNAM------------
+  -------------------------------------*/
+
+  .my-list-submenu .filter-rollets {
+    display: block;
+    position: absolute;
+    width: 160px;
+    z-index: 2;
+    top: 50px;
+    left: 3px;
+    background-color: #1A1A1A;
+
+    transform: scale(0);
+    transition: all ease-in-out .05s;
+  }
+
+  .filter-open {
+    transform: scale(1)!important;
+  }
+
+  .my-list-submenu li {
+    width: 120px;
+  }
+
+  .my-list-submenu {
+    width: 160px;
+    flex-flow: column;
+    position: relative;
+  }
+
+  .my-list-submenu + .my-list-submenu {
+    margin-left: 15px;
+  }
+
+  .my-list-submenu::after {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 40%;
+    right: 10px;
+  }
+
+  .my-list-submenu > div:first-child {
+    width: 140px;
+    height: 50px;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .my-list-submenu > div:first-child:hover {
+    background-color: #1A1A1A;
+    color: #C93737;
+    cursor: pointer;
+  }
+
+  .my-list-submenu:hover::after {
+    color: #C93737;
+  }
+
+  .filter-click {
+    display: block;
+  }
+  
+  .my-list-submenu-container {
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #333333;
+  }
+
 
 }
 
