@@ -1,4 +1,4 @@
-window.isCycling = false;
+/*window.isCycling = false;*/
 
 function closeMessage(id){
     var element = document.getElementById(id);
@@ -230,12 +230,12 @@ function toogleMenu() {
     }
 }
 
-function toogleFilter(id) {
+function toogleFilter(id, what) {
     var menu = document.getElementById(id);
-    if (menu.classList.contains('filter-open')){
-        menu.classList.remove('filter-open');
+    if (menu.classList.contains(what)){
+        menu.classList.remove(what);
     } else {
-        menu.classList.add('filter-open');
+        menu.classList.add(what);
     }
 }
 
@@ -253,4 +253,9 @@ function decrease(id) {
         input.value = 1;
     }
     input.value = parseInt(input.value) - 1;
+}
+
+function showDeleteModal(id) {
+    toogleFilter('modal-delete', 'modal-show');
+    document.getElementById('delete_id').value = id;
 }

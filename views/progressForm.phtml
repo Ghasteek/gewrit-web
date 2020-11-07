@@ -1,0 +1,93 @@
+<?php
+if ($seznamType == "my"){
+    $formId = "change" . $records[$i]['_id'] ;
+} else {
+    $formId = "cahnge" . $data['_id'];
+}
+?>
+<form id="<?= $formId ?>" method="post">
+
+            <div class="row">
+                <div>
+                    <label for="series">Série: </label>
+                        <div class="form-container reverse">
+                            <div class="input-minus" onClick="decrease('series<?= $formId ?>');">-</div>
+                            <input type="number" id ="series<?= $formId ?>" name="series" class="progress-input" value="<?= $records[$i]['series'] ?>" title="Série. Pokud nemá série, nechejte prázdné políčko, případně nulu.">
+                            <div class="input-plus" onClick="increase('series<?= $formId ?>');">+</div>
+                        </div>
+                </div>
+
+                <div>
+                    <label for="series"><?php if (($type == 'serial') || ($type == 'anime')) echo "Díl:"; else echo "Kapitola:" ?></label>
+                        <div class="form-container reverse">
+                            <div class="input-minus" onClick="decrease('episode<?= $formId ?>');">-</div>
+                            <input type="number" id ="episode<?= $formId ?>" name="episode" class="progress-input" value="<?= $records[$i]['episode'] ?>">
+                            <div class="input-plus" onClick="increase('episode<?= $formId ?>');">+</div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="form__group field" title="Odkaz na sledování/čtení.">
+                <input type="link" class="form__field" placeholder="Odkaz na shlédnutí" name="link" id='link' value="<?= $records[$i]['link'] ?>"/>
+                <label for="name" class="form__label">Odkaz na shlédnutí:</label>
+            </div>
+
+            <div class="form-section">
+                <label for="releaseDay" title="V tento den vás upozorníme na hlavní stránce, že vychází nový díl.">Který den v týdnu pravidelně vychází: </label>
+                <div class="form-container form-days">
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="1" id="po<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '1') !== false) { echo "checked"; }?>/>
+                        <label for="po<?= $formId ?>"><div  class="day-checkbox-label">Po</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="2" id="ut<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '2') !== false) { echo "checked"; }?>/>
+                        <label for="ut<?= $formId ?>"><div  class="day-checkbox-label">Út</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="3" id="str<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '3') !== false) { echo "checked"; }?>/>
+                        <label for="str<?= $formId ?>"><div  class="day-checkbox-label">Stř</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="4" id="ct<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '4') !== false) { echo "checked"; }?>/>
+                        <label for="ct<?= $formId ?>"><div  class="day-checkbox-label">Čt</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="5" id="pa<?= $formId ?>" class="day-checkbox"<?php if (strpos($records[$i]['releaseDay'], '5') !== false) { echo "checked"; }?>/>
+                        <label for="pa<?= $formId ?>"><div  class="day-checkbox-label">Pá</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="6" id="so<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '6') !== false) { echo "checked"; }?>/>
+                        <label for="so<?= $formId ?>"><div  class="day-checkbox-label">So</div></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="releaseDay[]" value="7" id="ne<?= $formId ?>" class="day-checkbox" <?php if (strpos($records[$i]['releaseDay'], '7') !== false) { echo "checked"; }?>/>
+                        <label for="ne<?= $formId ?>"><div  class="day-checkbox-label">Ne</div></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label for="status">Na který seznam přidat?</label>
+                <select class="input-select" id="status" name="status">
+                    <option value="1" <?php if ($records[$i]['status'] === 1) echo "selected"; ?>>Sleduji</option>
+                    <option value="2" <?php if ($records[$i]['status'] === 2) echo "selected"; ?>>Pozastaveno</option>
+                    <option value="3" <?php if ($records[$i]['status'] === 3) echo "selected"; ?>>Odloženo</option>
+                    <option value="4" <?php if ($records[$i]['status'] === 4) echo "selected"; ?>>Dokončeno</option>
+                    <option value="5" <?php if ($records[$i]['status'] === 5) echo "selected"; ?>>Vyhnout se tomu</option>
+                    <option value="6" <?php if ($records[$i]['status'] === 6) echo "selected"; ?>>Chci shlédnout/přečíst</option>
+                </select>
+            </div>
+
+            <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id'] ?>">
+            <input type="hidden" id="checked" name="checked" value="<?= $checked ?>">
+
+            <div class="form-container">
+                <?php if ($seznamType == 'my') {?>
+                    <div class="button accept" onclick="document.forms['<?= $formId?>'].submit();">Uložit</div>
+                    <div class="button decline" onClick="showDeleteModal('<?= $records[$i]['_id'] ?>')" >Smazat</div>
+                <?php } else {?>
+                    <div class="button accept" onclick="document.forms['<?= $formId?>'].submit();">Přidat</div>
+                <?php }?>
+            </div>
+
+        </form>

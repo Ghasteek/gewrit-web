@@ -12,15 +12,20 @@
         $exclamationMark = "";
     }
 
+    
+
     switch ($line['type']){
         case "anime":
             $itemType = "Anime";
+            $type = "anime";
             break;
         case "manga":
             $itemType = "Manga";
+            $type = "manga";
             break;
         case "serial":
             $itemType = "Seriál";
+            $type = "serial";
     }
 
     $progress = "e" . $records[$i]['episode'];

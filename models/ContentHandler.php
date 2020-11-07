@@ -86,14 +86,23 @@
             }
         }
 
-/*----------------------------------------------------------
-------------------- ZPRACOVANI HODNOCENI -------------------
-----------------------------------------------------------*/
-
         //smaze ze zadane TABULKY zadane ID
         public function deleteContent($table, $id){
             $sql = "DELETE FROM $table
                 WHERE _id = ?";
+            Db::getChanges($sql, array($id));
+        }
+
+
+/*----------------------------------------------------------
+------------------- ZPRACOVANI HODNOCENI -------------------
+----------------------------------------------------------*/
+
+        // smaze vsechna hodnoceni zadane polozky
+        public function deleteRatingOfItem($table, $id){
+            $table = $table . "_rating";
+            $sql = "DELETE FROM $table
+                WHERE itemId = ?";
             Db::getChanges($sql, array($id));
         }
 

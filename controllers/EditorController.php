@@ -24,9 +24,14 @@ class EditorController extends Controller {
             );
 
             if ($param[2] == 'smazat') {
+                // smazu zaznam z db
                 $contentHandler->deleteContent($table, $param[1]);
+                // smazu obrazek ze serveru
                 $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
                 unlink($imageDestination);
+                // smazu hodnoceni polozky z db
+                $contentHandler->deleteRatingOfItem($table, $param[1]);
+                
                 $this->addMessage('Seriál smazán.', 'info');
                 $this->redirect('serialy');
             } else {

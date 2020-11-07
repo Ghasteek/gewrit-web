@@ -1,135 +1,77 @@
-<?php 
-if ($data):
-$position = 1;
-$style = '';
-$i = 0;
-foreach ($data as $line): 
-    $hidden = '';
-    if (!$records[$i]['link']) { $hidden = ' hidden';}
-    if ($line['name'] == '') {
-        $line['name'] = 'Chybí data'; 
-        $line['description'] = '<strong>Omlouváme se, ale seriál/anime/manga byl vymazán z databáze. Zkuste jej znovu najít a znovu si přidat postup ve sledování. Tento záznam můžete smazat.</strong>';
-    }
-    switch ($line['type']) {
-        case 'anime':
-            $prefix = '<span class="prefix" title="Anime">A - </span>';
-            $typeText = 'Anime';
-            break;
-        case 'manga':
-            $prefix = '<span class="prefix" title="Manga">M - </span>';
-            $typeText = 'Manga';
-            break;
-        case 'serial':
-            $prefix = '<span class="prefix" title="Seriál">S - </span>';
-            $typeText = 'Seriál';
-            break;
-    }
-    if ($position <= 1) { $position ++; $style = ' left'; } else { $position = 1; $style = ' right';  };
-    if ($line['onlyFor'] != 0) { $style = $style . ' forApproval'; }; 
-    if (strlen($line['name']) > 29) {$name = substr($line['name'], 0, 28) . "...";} else {$name = $line['name'];}?>
-
-    <div class="dropdown-click recordLine itemDefault itemDefaultHover">
-        <div onclick="toogleDetails('<?= $line['type'] . $line['_id'] ?>')" class="recordLineClicker" >
-            <?= $prefix ?>
-            <strong title="<?= $line['name'] ?>"> <?= $name ?> </strong> - (<?= $line['year'] ?>) <!-- name and year -->
-            <span class="recordLineProgress"><?php if ($records[$i]['series'] != 0){ echo "s " . $records[$i]['series'] . " |";} ?> <!-- series -->
-            <?php if (($line['type'] == 'serial') || ($line['type'] == 'anime')) echo "e "; else echo "ch " ?><?= $records[$i]['episode'] ?> <!-- episode / chapter -->
-            <i id="i_<?= $line['type'] . $line['_id'] ?>" class="fas fa-angle-double-down"></i></span><!-- expand icon -->
-        </div>
-        <form style="display:none;" id="plusOne<?= $records[$i]['_id']?>" method="post">
-            <input type="hidden" id="plusOne" name="plusOne" value="true">
-            <input type="hidden" id="checked" name="checked" value="<?= $checked ?>">
-            <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id']  ?>">
-        </form>
-        <a class="plusButton" onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden..."><span>+1</span></a> <!-- +1 icon -->
-        <span class="playButton <?= $hidden?>" title="Přejít na sledování/čtení dalšího dílu/kapitoly."><a href="<?= $records[$i]['link']?>" target="_blank"><i class="fas fa-play"></i></a></span>
-    </div>
+<?php
+if ($data): 
+    foreach($data as $i => $line):
     
+        switch ($line['type']) {
+            case 'anime':
+                $prefix = '<span class="prefix" title="Anime">A - </span>';
+                $typeText = 'Anime';
+                break;
+            case 'manga':
+                $prefix = '<span class="prefix" title="Manga">M - </span>';
+                $typeText = 'Manga';
+                break;
+            case 'serial':
+                $prefix = '<span class="prefix" title="Seriál">S - </span>';
+                $typeText = 'Seriál';
+                break;
+        }
+
+        if (!$records[$i]['link']) {
+            $hiddenPlay = " class='hidden' ";
+        } else {
+            $hiddenPlay = "";
+        }
+
+        $lastRead = strtotime($records[$i]['timestamp']);
+        $now = time();
+        $days = round(($now - $lastRead)  / (60 * 60 * 24)) ;
+
+        if (!$line["name"]) {
+            $name = "Je nám líto, ale původní položka byla smazána z databáze. Poznamenejte si postup a zkuste si ji přidat znovu.";
+        } else {
+            $name = $line["name"];
+        }
+
     
+    ?>
+    <div class="my-list-item">
+        <div id ="div<?= $records[$i]['_id'] ?>" class="my-list-item-default" onClick="toogleFilter('div<?= $records[$i]['_id']?>', 'my-list-item-default-active');toogleFilter('details<?= $records[$i]['_id']?>', 'my-list-item-details-show');">
+            <img src="<?= $line['image'] ?>" alt="404">
 
-    <div id="<?= $line['type'] . $line['_id'] ?>" class="dropdown-content">
-        <div class="detailsBox itemDefault">
-            <div class="itemImage">
-                <div class="itemImageRibbon">
-                    <div class="ribbonText">
-                        <?= $typeText ?>
-                    </div>
-                </div>
-                <img src="<?= $line['image'] ?>">
-            </div>
-            <div class="detailsBoxText">
-                <div>
-                    <p><strong><?=  $line['name'] ?></strong> (<?=  $line['year'] ?>)<br>
-                        <?=  $typeText ?>
-                    <p><strong>Popis:</strong> <?=  $line['description'] ?></p>
-                    <p><strong>Žánr:</strong> <?=  $line['genre'] ?> </p>
+            <div class="my-list-item-middle-container">
+                <div class="my-list-item-name"><?= $name?></div>
 
-                    <?php if ($line['type'] == 'serial'):?>
-                        <a href="<?= $line['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><li class="csfd">CSFD</li> </a> 
-                        <a href="<?= $line['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><li class="imdb">IMDB</li> </a>
-                    <?php endif;
-                        if (($line['type'] == 'anime') || ($line['type'] == 'manga')) :?>
-                            <a href="<?= $line['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><li class="ap">Anime-planet</li> </a>
-                    <?php endif;?>
-                    <a href="/nahlasit/<?= $line['type'] ?>/<?= $line['_id']?>"><i class="fa fa-wrench" title="Nezobrazuje se obrázek, název, nebo je cokoliv v nepořádku? Kliknutím na tuto ikonku nám to nahlásíte a my to vyřešíme :-) "> Nahlásit</i></a>
-                </div>
+                <?= $typeText ?> - 
+                    <?php if ($records[$i]['series'] != 0){ echo "s " . $records[$i]['series'] . " |";} ?>
+                    <?php if (($line['type'] == 'serial') || ($line['type'] == 'anime')) echo "e "; else echo "ch " ?><?= $records[$i]['episode'] ?> <br>
+
+                Poslední změna <?= date('j.m.Y', strtotime($records[$i]['timestamp']))?>  (<?= $days ?> dní)
             </div>
-            <div class="detailsBoxProgress">
-                <h4>Váš postup ve sledování:</h4>
-                <form id="change<?= $records[$i]['_id']?>" method="post">
-                    <label for="series">Série: </label>
-                        <input type="number" id ="series" name="series" class="progressInput" value="<?= $records[$i]['series'] ?>" title="Série ">
-                    <label for="series"><?php if (($line['type'] == 'serial') || ($line['type'] == 'anime')) echo "Díl:"; else echo "Kapitola:" ?></label>
-                        <input type="number" id ="episode" name="episode" class="progressInput" value="<?= $records[$i]['episode'] ?>"><br>
-                    <label for="link">Odkaz na sledování/čtení: </label>
-                        <input type="link" id ="link" name="link" class="linkInput" value="<?= $records[$i]['link'] ?>" title="Odkaz na sledování/čtení.">
-                        <a href="<?= $records[$i]['link'] ?>" target="_blank" title="Přejít na váš odkaz."><i class="fas fa-external-link-alt"></i></a><br>
-                    <label for="releaseDay" title="V tento den vás upozorníme na hlavní stránce, že vychází nový díl.">Který den v týdnu pravidelně vychází: </label><br>
-                        <input type="checkbox" name="releaseDay[]" value="1" <?php if (strpos($records[$i]['releaseDay'], '1') !== false) { echo "checked"; }?>/> Po | 
-                        <input type="checkbox" name="releaseDay[]" value="2" <?php if (strpos($records[$i]['releaseDay'], '2') !== false) { echo "checked"; }?>/> Út | 
-                        <input type="checkbox" name="releaseDay[]" value="3" <?php if (strpos($records[$i]['releaseDay'], '3') !== false) { echo "checked"; }?>/> Stř | 
-                        <input type="checkbox" name="releaseDay[]" value="4" <?php if (strpos($records[$i]['releaseDay'], '4') !== false) { echo "checked"; }?>/> Čt | 
-                        <input type="checkbox" name="releaseDay[]" value="5" <?php if (strpos($records[$i]['releaseDay'], '5') !== false) { echo "checked"; }?>/> Pá | 
-                        <input type="checkbox" name="releaseDay[]" value="6" <?php if (strpos($records[$i]['releaseDay'], '6') !== false) { echo "checked"; }?>/> So | 
-                        <input type="checkbox" name="releaseDay[]" value="7" <?php if (strpos($records[$i]['releaseDay'], '7') !== false) { echo "checked"; }?>/> Ne <br><br>
-                        <label for="status">Na který seznam přidat?</label>
-                            <select id="status" name="status">
-                                <option value="1" <?php if ($records[$i]['status'] === 1) echo "selected"; ?>>Sleduji</option>
-                                <option value="2" <?php if ($records[$i]['status'] === 2) echo "selected"; ?>>Pozastaveno</option>
-                                <option value="3" <?php if ($records[$i]['status'] === 3) echo "selected"; ?>>Odloženo</option>
-                                <option value="4" <?php if ($records[$i]['status'] === 4) echo "selected"; ?>>Dokončeno</option>
-                                <option value="5" <?php if ($records[$i]['status'] === 5) echo "selected"; ?>>Vyhnout se tomu</option>
-                                <option value="6" <?php if ($records[$i]['status'] === 6) echo "selected"; ?>>Chci shlédnout/přečíst</option>
-                            </select><br><br>
-                    <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id'] ?>">
-                    <input type="hidden" id="checked" name="checked" value="<?= $checked ?>">
-                    <div class="sendButton" onclick="document.forms['change<?= $records[$i]['_id']?>'].submit();" title="Uložit aktuální postup a odkaz.">Uložit</div>
-                    <a class="deleteButton" onClick="document.getElementById('<?= $records[$i]['_id']?>').style.display='block'" class="buttonRed" title="Smazat záznam.">Smazat</a>
+
+            <div class="my-list-item-tools-container">
+                <!-- play icon -->
+                <a <?= $hiddenPlay?> title="Přejít na sledování/čtení dalšího dílu/kapitoly." href="<?= $records[$i]['link']?>" target="_blank"><i class="fas fa-play"></i></a>
+
+                <!-- hidden form for +1 funcionality -->
+                <form style="display:none;" id="plusOne<?= $records[$i]['_id']?>" method="post" action="/muj-seznam">
+                    <input type="hidden" id="plusOne" name="plusOne" value="true">
+                    <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id']  ?>">
                 </form>
-            </div>
-            <div id="<?= $records[$i]['_id']?>" class="modal" style="display: none;">
-                <div class="modal-content">
-                    <div class="container">
-                        <form style="display:none;" id="delete<?= $records[$i]['_id']?>" method="post">
-                            <input type="hidden" id="delete" name="delete" value="true">
-                            <input type="hidden" id="checked" name="checked" value="<?= $checked ?>">
-                            <input type="hidden" id="_id" name="_id" value="<?= $records[$i]['_id']  ?>">
-                        </form>
-                        <strong>Opavdu chcete tuto položku smazat?</strong>
-                        <table><tr>
-                            <td class="noBorders"><a onclick="document.forms['delete<?= $records[$i]['_id']?>'].submit();"><div class="buttonRed" title="Nenávratně smazat.">ANO</div></a></td>
-                            <td class="noBorders"><div onClick="document.getElementById('<?= $records[$i]['_id']?>').style.display='none'" class="buttonBlue" title="Návrat zpět.">NE</div></td>
-                        </tr></table>
-                    </div>
-                </div>
+
+                <!-- +1 icon -->
+                <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden...">+1</a> 
             </div>
         </div>
+
+        <div id="details<?= $records[$i]['_id']?>" class="my-list-item-details">
+            <br>
+            <?php include "views/progressForm.phtml"?>
+        </div>
+
     </div>
     
-    <br>
-<?php 
-$i++;
-endforeach;
-else: ?>
-<h3>V tomto seznamu nejsou žádné záznamy.</h3>
-<?php endif;?>
+    <?php
+    endforeach;
+endif;
+?>

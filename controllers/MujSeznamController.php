@@ -165,7 +165,7 @@
             $this->data['active'] = $status;
             $this->data['title'] = 'Můj seznam';
             $this->head['title'] = 'Gewrit - Můj seznam';
-            $this->view = 'seznamTemplate';
+            $this->view = 'my-list';
         }
     }
 ?>
