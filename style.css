@@ -416,6 +416,7 @@ nav a:hover::before {
 
 .index-item-mask-container:hover ~ .index-name {
   color: #C93737;
+  text-shadow: 2px 2px 8px black;
 }
 
 .item-tools-bar {
@@ -792,10 +793,6 @@ nav a:hover::before {
   padding: 15px 25px;
 }
 
-.my-list-submenu-active {
-  color: #C93737;
-}
-
 .my-list-submenu-active::after {
   content: "\f00c";
   font-family: FontAwesome;
@@ -843,8 +840,9 @@ nav a:hover::before {
   margin-left: 10px;
 }
 
-.filter-checkbox:checked ~ label .filter-checkbox-label {
+.filter-checkbox:checked ~ label .filter-checkbox-label , .my-list-submenu-active{
   color: #C93737;
+  text-shadow: 2px 2px 8px black;
 }
 
 .filter-checkbox:checked ~ label .filter-checkbox-label::after {
@@ -921,6 +919,7 @@ nav a:hover::before {
 .my-list-item-name {
   color: #C93737;
   font-weight: bold;
+  text-shadow: 2px 2px 8px black;
 }
 
 .my-list-item-tools-container {
