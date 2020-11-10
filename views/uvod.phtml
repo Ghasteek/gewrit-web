@@ -4,23 +4,23 @@
     <div class="index-section today">
         <div class="index-section-title">Dnes vychází:</div>
         <?php $data = $today;
-        $type = 'today'; include "views/items.phtml";
+        $today = TRUE; include "views/items.phtml";
         endif;
     ?>
     </div>
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější seriály:</div>
-        <?php $type = 'serial'; $data = $latestSerials; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $data = $latestSerials; include "views/items.phtml"; ?>
     </div>
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější anime:</div>
-        <?php $type = 'anime'; $data = $latestAnime; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $data = $latestAnime; include "views/items.phtml"; ?>
     </div>
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější manga:</div>
-        <?php $type = 'manga'; $data = $latestManga; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $data = $latestManga; include "views/items.phtml"; ?>
     </div>
 

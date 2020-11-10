@@ -18,6 +18,8 @@ p {
 
 a {
   text-decoration: none;
+  color: #C93737;
+  text-shadow: 2px 2px 8px black;
 }
 
 article {
@@ -710,15 +712,17 @@ nav a:hover::before {
   border: 0;
   border-bottom: 2px solid #FFFFFF;
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #ffffff;
-  padding: 7px 0;
+  padding: 15px 0 5px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form__field::placeholder {
   color: transparent;
 }
+
 .form__field:placeholder-shown ~ .form__label {
   font-size: 1.3rem;
   cursor: text;
@@ -983,6 +987,25 @@ nav a:hover::before {
   margin-top: 30px;
   flex-flow: row;
   justify-content: space-between;
+}
+
+/*-------------------------------------
+------------PRIDAT DO DB---------------
+-------------------------------------*/
+
+.add-item form {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column;
+  width: 600px;
+}
+
+.add-item label {
+  margin-top: 10px;
+}
+
+.add-item .button {
+  margin: 10px 0;
 }
 
 

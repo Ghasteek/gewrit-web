@@ -29,7 +29,7 @@
     }
 
     $progress = "e" . $records[$i]['episode'];
-    if ($records[$i]['series'] != 0) { $progress = "s" . $records[$i]['series'] . $progress;}
+    if ($records[$i]['series'] != 0) { $progress = "s" . $records[$i]['series'] . " " . $progress;}
 
     if ($records[$i]['link'] == '') { $hidden = 'class="hidden"'; $reverse = " reverse"; } else { $hidden = ""; $reverse = ""; }
 
@@ -63,7 +63,7 @@
             </div>
 
             <?php if ($userRights >= -1){
-                if ($type == 'today'){ ?>
+                if ($today){ ?>
                     <span><?= $itemType?></br>
                     <?= $progress?></span>
                     <div class="item-tools-bar<?= $reverse?>">
