@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 body {
   font-family: verdana;
   font-size: 14px;
@@ -460,6 +465,43 @@ nav a:hover::before {
   display: flex;
   flex-flow: row;
   justify-content: center;
+  margin: 10px 0;
+}
+
+.pages-section a {
+  color: #FFFFFF;
+}
+
+.pages-section a:hover {
+  color: #C93737;
+  text-shadow: 2px 2px 8px black;
+}
+
+.pages {
+  padding: 10px;
+  background: #333333;
+  margin: 0 5px;
+}
+
+.pages:hover {
+  background: #1a1a1a;
+}
+
+.active-page {
+  background: #1A1A1A;
+  color: #C93737;
+}
+
+.unactive-page {
+  pointer-events: none;
+  color: #707070;
+}
+
+.max-page {
+  color: #707070;
+  padding: 10px;
+  background: #333333;
+  margin: 0 5px;
 }
 
 .search-section > * {
@@ -872,10 +914,7 @@ nav a:hover::before {
 
 .my-list-item {
   width: 60%;
-}
-
-.my-list-item + .my-list-item {
-  margin-top: 20px;
+  margin: 10px 0;
 }
 
 .my-list-item-default::after {

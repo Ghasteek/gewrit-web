@@ -2,18 +2,73 @@
 /* 
 Vypise strankovani, pokud je pocet stran vetsi nez 1
 */
-
-if ($pages > 1):?>
+if ($pages > 1){ ?>
     <div class="pages-section">
         <?php if (!$type) {
             $type = $urlWithStatus;
+        } 
+        $prevStyle = $nextStyle = "";
+
+        if ($actualPage == 1){
+            $prevStyle = " unactive-page";
+            $linkPrev = "#";
+        } else {
+            $prevPage = $actualPage - 1;
+            $linkPrev = "/" . $type . "/" . ($_GET['hledat'] ? $prevPage . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $prevPage);
+            $linkFirst = "/" . $type . "/" . ($_GET['hledat'] ? "1" . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : "1");
         }
-        for ($i=1; $i <= $pages; $i++):
-            if  (($i == $actualPage) || ($actualPage == 0) && ($i == 1)): ?>
-                <a class="activePage" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">< <?= $i?> ></a>
-            <?php else:?>
-                <a class="pagesList" href="/<?= $type ?>/<?php echo $_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i; ?>" title="Strana <?= $i?>">[ <?= $i?> ]</a>
-            <?php endif;
-        endfor;?>
+
+        if ($actualPage == $pages) {
+            $nextStyle = " unactive-page";
+            $linkNext = "#";
+        } else {
+            $nextPage = $actualPage + 1;
+            $linkNext = "/" . $type . "/" . ($_GET['hledat'] ? $nextPage . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $nextPage);
+            $linkLast = "/" . $type . "/" . ($_GET['hledat'] ? $pages . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $pages);
+        }
+
+        ?>
+
+        <a class="<?= $prevStyle ?>" href="<?= $linkFirst ?>" title="Předchozí strana"><div class="pages<?= $prevStyle ?>"><i class="fas fa-step-backward"></i></i> První strana</div></a>
+
+        <a class="<?= $prevStyle ?>" href="<?= $linkPrev ?>" title="Předchozí strana"><div class="pages<?= $prevStyle ?>"><i class="fas fa-chevron-left"></i> Předchozí</div></a>
+
+        <?php
+        $afterNext = $beforePrew = "";
+        if ($pages <= 5){
+            $minPage = 1;
+            $maxPage = $pages;
+        } else {
+            if ($actualPage <= 3){
+                $minPage = 1;
+                $maxPage = 5;
+                $afterNext = "<div title='počet stránek' class='max-page'>...(" . $pages . ")</div>";
+            } elseif ($actualPage >= ($pages - 2)) {
+                $minPage = $pages - 4;
+                $maxPage = $pages;
+            } else {
+                $minPage = $actualPage - 2;
+                $maxPage = $actualPage + 2;
+                $afterNext = "<div title='počet stránek' class='max-page'>...(" . $pages . ")</div>";
+            }
+        }
+
+        for ($i = $minPage ; $i <= $maxPage; $i++){
+
+            $link = "/" . $type . "/" . ($_GET['hledat'] ? $i . "?hledat=" . str_replace(" ", '+', $_GET['hledat']) : $i);
+
+            if  (($i == $actualPage) || ($actualPage == 0) && ($i == 1)){
+                $style = "pages active-page";
+            } else { 
+                $style = "pages";    
+            }?>
+            <a href="<?= $link ?>" title="Strana <?= $i?>"><div class="<?= $style ?>"><?= $i?></div></a>
+        <?php } 
+        echo $afterNext . "\n";
+        ?>
+
+        <a class="<?= $nextStyle ?>" href="<?= $linkNext ?>" title="Další strana"><div class="pages<?= $nextStyle ?>">Další <i class="fas fa-chevron-right"></i></div></a>
+
+        <a class="<?= $nextStyle ?>" href="<?= $linkLast ?>" title="Poslední strana"><div class="pages<?= $nextStyle ?>">Poslední strana <i class="fas fa-step-forward"></i></i></div></a>
     </div>
-<?php endif;?>
+<?php } ?>
