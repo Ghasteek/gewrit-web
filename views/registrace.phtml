@@ -1,17 +1,41 @@
-<div class="kontaktContainer">
-<h1>Registrace</h1>
+<div class="index-section">
+    <div class="index-section-title">Registrace</div>
 
-<form method="post" style="min-width: 500px;">
-    Jméno<br />
-    <input type="text" name="username" /><br />
-    Email<br />
-    <input type="text" name="email" /><br />
-    Heslo<br />
-    <input type="password" name="password" id="pwd" onkeyup="validatePassword(this.value);"/> <span style="minHeight: 9em;" id="msg"></span><br />
-    Heslo znovu<br />
-    <input type="password" name="rePassword" id="rePwd" onkeyup="comparePassword(this.value);"/> <span id="msg2"></span><br /><br />
-    Zadejte aktuální rok (antispam)<br />
-    <input type="text" name="year" /><br />
-    <input id="submit" type="submit" value="Registrovat" disabled/>
-</form>
+    <div class="report-container">
+
+        <form id="register" method="post" style="min-width: 500px;">
+
+            <div class="form__group field" title="Vaše uživatelské jméno pro přihlášení.">
+                <input type="text" class="form__field" placeholder="Uživatelské jméno" name="username" id='username'/>
+                <label for="username" class="form__label">Uživatelské jméno:</label>
+            </div>
+
+            <div class="form__group field" title="Vaše emailová adresa.">
+                <input type="text" class="form__field" placeholder="Email" name="email" id='email'/>
+                <label for="email" class="form__label">Email:</label>
+            </div>
+            
+            <div class="form__group field" title="Vaše heslo. Musí mít alespoň 5 znaků, z toho alespoň jedno velké písmeno a jedno číslo.">
+                <input type="password" class="form__field" placeholder="Heslo" name="password" id='pwd' onkeyup="validatePassword(this.value);"/>
+                <label for="password" class="form__label">Heslo:</label>
+                <span style="minHeight: 9em;" id="msg"></span>
+            </div>
+
+            <div class="form__group field" title="Prosím zopakujte Vaše heslo.">
+                <input type="password" class="form__field" placeholder="Heslo znovu" name="rePassword" id='rePwd' onkeyup="comparePassword(this.value);"/>
+                <label for="rePassword" class="form__label">Heslo znovu:</label>
+                <span style="minHeight: 9em;" id="msg2"></span>
+            </div>
+
+            <div class="form__group field" title="Zadejte, prosím, letošní rok jako opatření proti spamu.">
+                <input type="text" class="form__field" placeholder="Aktuální rok (antispam)" name="year" id='year'/>
+                <label for="year" class="form__label">Zadejte aktuální rok (antispam):</label>
+            </div>
+
+            <div id="submit" class="button accept unactive-page" onclick="document.forms['register'].submit();" >Registrovat se</div>
+        </form>
+
+    </div>
+
+    
 </div>

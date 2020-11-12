@@ -11,16 +11,16 @@
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější seriály:</div>
-        <?php $today = FALSE; $data = $latestSerials; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $type = "serial"; $data = $latestSerials; include "views/items.phtml"; ?>
     </div>
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější anime:</div>
-        <?php $today = FALSE; $data = $latestAnime; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $type = "anime"; $data = $latestAnime; include "views/items.phtml"; ?>
     </div>
 
     <div class="index-section">
         <div class="index-section-title">Nejnovější manga:</div>
-        <?php $today = FALSE; $data = $latestManga; include "views/items.phtml"; ?>
+        <?php $today = FALSE; $type = "manga"; $data = $latestManga; include "views/items.phtml"; ?>
     </div>
 

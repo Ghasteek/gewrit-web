@@ -1,20 +1,33 @@
-<h1>Nahlásit</h1>
-<?php 
-    if ($data){
-        if ($type == 'uzivatel'){
-            $user = $data;
-            include "views/profil.phtml";
-        } else {
-            include "views/items.phtml"; 
-        }
-    }; 
-    
-?>
-<form method="post">
-    <input type="hidden" name="reportForId" value="<?= $id ?>">
-    <input type="hidden" name="type" value="<?= $type ?>">
-    <textarea id="text" name="text" placeholder="Text hlášení, odůvodnění,..."></textarea><br>
-    <input type="hidden" name="author" value="<?= $author ?>">
-    <input style="margin: 0px auto; float: right;" type="submit" value="Poslat"/>
+<div class="index-section">
+    <div class="index-section-title">Hlášení chyby:</div>
 
-</form>
+    <div class="report-container">
+        <p>Chystáte se nahlásit problém s touto položkou. Prosím, uveďte podrobnosti Vašeho hlášení, aby náš tým moderátorů mohl lépe vyhodnotit Váš případ.
+            Vaše hlášení najdete ve svém profilu v seznamu <a href="/reporty/" title="Přejít na seznam Vašich reportů.">Vašich reportů</a>. Zde najdete i případné vyjádření moderátora.
+        </p>
+        <p>Děkujeme za pomoc s vylepšováním obsahu :-).</p>
+
+        <div class="detail-rating-oneRow">
+            <?php 
+            if ($data){
+                if ($type == 'uzivatel'){
+                    $user = $data;
+                    include "views/profil.phtml";
+                } else {
+                    include "views/items.phtml"; 
+                }
+            }; 
+            ?>
+            <form id="send-report" class="report-form" method="post">
+                <input type="hidden" name="reportForId" value="<?= $id ?>">
+                <input type="hidden" name="type" value="<?= $type ?>">
+                <textarea id="text" name="text" placeholder="Text hlášení, odůvodnění,..."></textarea><br>
+                <input type="hidden" name="author" value="<?= $author ?>">
+                <div class="button accept" onclick="document.forms['send-report'].submit();" >Nahlásit chybu</div>
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
+

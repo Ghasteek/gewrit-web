@@ -1,14 +1,25 @@
-<div class="kontaktContainer">
-<h1>Přihlášení</h1>
+<div class="index-section">
 
-<form method="post">
-    Jméno<br />
-    <input type="text" name="username" /><br />
-    Heslo<br />
-    <input type="password" name="password" /><br />
-    <input type="submit" value="Přihlásit" />
-</form>
+    <div class="index-section-title">Přihlášení:</div>
 
-<p>Pokud ještě nemáte účet, <a href="registrace">zaregistrujte se</a>.</p>
-<p>Pokud jste zapomněli heslo, <a href="obnovit">zde</a> si jej můžete obnovit.</p>
+    <div class="report-container">
+
+        <form id="login" method="post">
+
+            <div class="form__group field" title="Vaše uživatelské jméno.">
+                <input type="text" class="form__field" placeholder="Uživatelské jméno" name="username" id='username'/>
+                <label for="username" class="form__label">Uživatelské jméno:</label>
+            </div>
+
+            <div class="form__group field" title="Vaše heslo.">
+                <input type="password" class="form__field" placeholder="Heslo" name="password" id='password'/>
+                <label for="password" class="form__label">Heslo:</label>
+            </div>
+
+            <div class="button accept" onclick="document.forms['login'].submit();" >Přihlásit se</div>
+        </form>
+
+        <p>Pokud ještě nemáte účet, <a href="registrace">zaregistrujte se</a>.</p>
+        <p>Pokud jste zapomněli heslo, <a href="obnovit">zde</a> si jej můžete obnovit.</p>
+    </div>
 </div>

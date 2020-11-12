@@ -63,11 +63,11 @@ function comparePassword(password) {
 }
 
 function validatePassword(password) {
-                
     // Do not show anything when the length of password is zero.
     if (password.length === 0) {
         document.getElementById("msg").innerHTML = "";
-        document.getElementById("submit").disabled = true;
+        
+        //document.getElementById("submit").disabled = true;
         return;
     }
     // Create an array and push all possible values that you want in password
@@ -84,28 +84,36 @@ function validatePassword(password) {
             ctr++;
         }
     }
-    // Display it
-    var color = "";
-    var strength = "";
-    switch (ctr) {
-        case 0:
-        case 1:
-        case 2:
-            strength = "Velmi jednoduché";
-            document.getElementById("submit").disabled = true;
-            color = "red";
-            break;
-        case 3:
-            strength = "Středně silné";
-            color = "orange";
-            document.getElementById("submit").disabled = false;
-            break;
-        case 4:
-            strength = "Silné";
-            color = "green";
-            document.getElementById("submit").disabled = false;
-            break;
+
+    if (password.length > 5) {
+        // Display it
+        var color = "";
+        var strength = "";
+        switch (ctr) {
+            case 0:
+            case 1:
+            case 2:
+                strength = "Příliš jednoduché";
+                color = "red";
+                toogleButton('submit', 'unactive-page', 'disable');
+                break;
+            case 3:
+                strength = "Středně silné";
+                color = "orange";
+                toogleButton('submit', 'unactive-page', 'enable');
+                break;
+            case 4:
+                strength = "Silné";
+                color = "green";
+                toogleButton('submit', 'unactive-page', 'enable');
+                break;
+        }
+    } else {
+        toogleButton('submit', 'unactive-page', 'disable');
+        strength = "Příliš jednoduché";
+        color = "red";
     }
+    
     document.getElementById("msg").innerHTML = strength;
     document.getElementById("msg").style.color = color;
 }
@@ -236,6 +244,19 @@ function toogleFilter(id, what) {
         menu.classList.remove(what);
     } else {
         menu.classList.add(what);
+    }
+}
+
+function toogleButton(id, what, how) {
+    var menu = document.getElementById(id);
+    if (menu.classList.contains(what)) {
+        if (how === "enable"){
+            menu.classList.remove(what);
+        }
+    } else {
+        if (how === "disable"){
+            menu.classList.add(what);
+        }
     }
 }
 

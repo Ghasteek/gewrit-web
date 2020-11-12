@@ -758,7 +758,7 @@ nav a:hover::before {
   color: #ffffff;
   padding: 15px 0 5px 0;
   background: transparent;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .form__field::placeholder {
@@ -766,7 +766,7 @@ nav a:hover::before {
 }
 
 .form__field:placeholder-shown ~ .form__label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: text;
   top: 20px;
 }
@@ -783,7 +783,7 @@ nav a:hover::before {
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
-  border-width: 3px;
+  border-width: 1px;
   border-image: linear-gradient(to right, #C93737, #C93737);
   border-image-slice: 1;
 }
@@ -1044,6 +1044,43 @@ nav a:hover::before {
 }
 
 .add-item .button {
+  margin: 10px 0;
+}
+
+/*-------------------------------------
+---------------REPORTY-----------------
+-------------------------------------*/
+
+.reports, .reports tr, .reports th, .reports td {
+  border: solid 1px #666666;
+  padding: 5px;
+  margin: auto;
+}
+
+/*-------------------------------------
+---------------NAHLASIT----------------
+-------------------------------------*/
+
+.report-form {
+  margin: auto;
+  margin-left: 30px;
+}
+
+.report-form div {
+  margin-left: 0;
+}
+
+.report-form textarea {
+  width: 30rem;
+  height: 10rem;
+}
+
+.report-container {
+  display: flex;
+  flex-flow: column;
+}
+
+.report-container .button {
   margin: 10px 0;
 }
 
