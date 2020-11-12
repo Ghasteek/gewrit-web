@@ -10,7 +10,7 @@
                 try {
                     $userAdministration->login($_POST['username'], $_POST['password']);
                     $this->addMessage('Byl jste úspěšně přihlášen', 'info');
-                    $this->redirect('profil');
+                    $this->redirect('uvod');
                 } catch (UserError $error) {
                     $this->addMessage($error->getMessage(), 'warning');
                 }

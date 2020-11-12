@@ -5,7 +5,8 @@
         public function process($param){
             $parsedURL = $this->parseURL($param[0]);
 
-            if (empty($parsedURL[0])) $this->redirect('uvod');
+            //if (empty($parsedURL[0])) $this->redirect('uvod');
+            if (empty($parsedURL[0])) $parsedURL[0] = "index";
 
             $classOfController = $this->dashIntoCamelCase(array_shift($parsedURL)) . "Controller";
 

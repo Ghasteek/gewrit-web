@@ -164,6 +164,11 @@ header::after {
   font-size: 35px;
   float: left;
   margin: 30px 0 0 20px;
+  color: #FFFFFF;
+}
+
+.logo:hover {
+  color: #C93737;
 }
 
 nav {

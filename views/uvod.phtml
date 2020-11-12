@@ -1,26 +1,24 @@
-<h1>Vítejte na GEWRITu</h1>
+<?php if(count($today) != 0):?>
+<div class="index-section today">
+    <div class="index-section-title">Dnes vychází:</div>
+    <?php $data = $today;
+    $today = TRUE; include "views/items.phtml";
+    endif;
+?>
+</div>
 
-    <?php if(count($today) != 0):?>
-    <div class="index-section today">
-        <div class="index-section-title">Dnes vychází:</div>
-        <?php $data = $today;
-        $today = TRUE; include "views/items.phtml";
-        endif;
-    ?>
-    </div>
+<div class="index-section">
+    <div class="index-section-title">Nejnovější seriály:</div>
+    <?php $today = FALSE; $type = "serial"; $data = $latestSerials; include "views/items.phtml"; ?>
+</div>
 
-    <div class="index-section">
-        <div class="index-section-title">Nejnovější seriály:</div>
-        <?php $today = FALSE; $type = "serial"; $data = $latestSerials; include "views/items.phtml"; ?>
-    </div>
+<div class="index-section">
+    <div class="index-section-title">Nejnovější anime:</div>
+    <?php $today = FALSE; $type = "anime"; $data = $latestAnime; include "views/items.phtml"; ?>
+</div>
 
-    <div class="index-section">
-        <div class="index-section-title">Nejnovější anime:</div>
-        <?php $today = FALSE; $type = "anime"; $data = $latestAnime; include "views/items.phtml"; ?>
-    </div>
-
-    <div class="index-section">
-        <div class="index-section-title">Nejnovější manga:</div>
-        <?php $today = FALSE; $type = "manga"; $data = $latestManga; include "views/items.phtml"; ?>
-    </div>
+<div class="index-section">
+    <div class="index-section-title">Nejnovější manga:</div>
+    <?php $today = FALSE; $type = "manga"; $data = $latestManga; include "views/items.phtml"; ?>
+</div>
 
