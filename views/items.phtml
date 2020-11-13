@@ -49,7 +49,7 @@
         <img class="index-item-image" src="<?= $line['image'] ?>">
 
         <div class="index-item-mask">
-            <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Otevře detail položky."><i class="fas fa-search"></i> DETAIL</a><br>
+            <a class="index-item-detail" href="/detail/<?= $type ?>/<?= $line['_id'] ?> " title="Otevře detail položky."><i class="fas fa-search"></i> DETAIL</a>
             <?php if ($line['rating'] != 0):?>
                 <div class="item-rating-tooltip" title="Průměr <?= $line['rating'] ?> (z <?= $line['ratingQuantity'] ?> hlasů). Hlasovat můžete na detailu.">
                     Hodnocení: <?= $line['rating'] ?> <i class="fas fa-star"></i>
@@ -63,8 +63,8 @@
 
             <?php if ($userRights >= -1){
                 if ($today){ ?>
-                    <span><?= $itemType?></br>
-                    <?= $progress?></span>
+                    <div><?= $itemType?></div>
+                    <div><?= $progress?></div>
                     <div class="item-tools-bar<?= $reverse?>">
                          
                          <!-- play icon -->

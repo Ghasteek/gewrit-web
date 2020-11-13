@@ -17,6 +17,10 @@ footer {
   background: #333333;
 }
 
+footer p {
+  margin: 0;
+}
+
 p {
   margin-top: 0;
 }
@@ -32,6 +36,7 @@ article {
   background: #292929;
   margin: auto;
   padding: 1px 0 0 0;
+  min-height: calc(100vh - 90px); /* 90px is height of nav bar plus footer*/
 }
 
 /*-------------------------------------
@@ -1050,6 +1055,14 @@ nav a:hover::before {
 
 .add-item .button {
   margin: 10px 0;
+}
+
+.add-item-details {
+  flex-flow: column;
+}
+
+.add-item-details div:first-child {
+  display: flex;
 }
 
 /*-------------------------------------
