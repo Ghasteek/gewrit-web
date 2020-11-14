@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="cs-cz">
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0JQB4VV3ZK"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-0JQB4VV3ZK');
+        </script>
         <base href="/gewrit" />
         <meta charset="UTF-8" />
         <title><?= $title ?></title>
@@ -22,25 +31,7 @@
         </div>
 
         <header>
-            <div class="menu-container">
-                <a href="/"><h1 class="logo">GEWRIT</h1></a>
-
-                <nav class="site-nav" id="nav">
-                    <ul class="menu-main">
-                        <li><a <?php if ($title == 'Gewrit') { echo "class='active'"; }?> href="uvod"><i class="fas fa-home"></i></a></li>
-                        <li><a <?php if (($title == 'Gewrit - Seriály') || ($title == 'Gewrit - Detail seriálu')) { echo "class='active'"; }?> href="serialy">Seriály</a></li>
-                        <li><a <?php if (($title == 'Gewrit - Anime') || ($title == 'Gewrit - Detail anime')) { echo "class='active'"; }?> href="anime">Anime</a></li>
-                        <li><a <?php if (($title == 'Gewrit - Manga') || ($title == 'Gewrit - Detail mangy')) { echo "class='active'"; }?> href="manga">Manga</a></li>
-                        <?php UserAdministration::showMyList($title); ?>
-                    </ul>
-                    <ul class="menu-profile">
-                        <?php UserAdministration::showProfile(); ?>
-                    </ul>
-                </nav>
-                <div onClick="toogleMenu()" class="menu-toggle" id="menu-toggle">
-                    <div class="hamburger"></div>
-                </div>
-            </div>
+            <?php include_once('views/navigation.phtml')?>
         </header>
 
 
@@ -49,7 +40,7 @@
         </article>
 
         <footer>
-            <p>Patička</p>
+            <?php include_once('views/footer.phtml')?>
         </footer>
 
         <script src="index.js"></script>

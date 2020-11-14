@@ -15,6 +15,11 @@ body {
 
 footer {
   background: #333333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 footer p {
@@ -36,7 +41,7 @@ article {
   background: #292929;
   margin: auto;
   padding: 1px 0 0 0;
-  min-height: calc(100vh - 90px); /* 90px is height of nav bar plus footer*/
+  min-height: calc(100vh - 181px); /* 116px is height of nav bar plus footer*/
 }
 
 /*-------------------------------------
@@ -292,7 +297,76 @@ nav a:hover::before {
   background-color: #1A1A1A;
 }
 
+/*-------------------------------------
+--------------PATICKA------------------
+-------------------------------------*/
 
+footer div {
+  text-align: center;
+  line-height: 150%;
+}
+
+footer ul {
+  text-align: left;
+}
+
+.footer-facebook {
+  margin-top: 10px;
+  font-size: 35px;
+  color: #0063E1;
+  text-shadow: none;
+  transition: all .2s;
+}
+
+.footer-facebook:hover {
+  transform: scale(1.3);
+}
+
+/*-------------------------------------
+--------------SEKCE INDEX--------------
+-------------------------------------*/
+
+.index {
+  line-height: 250%;
+}
+
+.index p {
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.index-summary-container {
+  background: #333333;
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+}
+
+.index-summary-container span {
+  padding: 10px 0 0 30px;
+}
+
+.index-summary-column {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  padding: 10px 30px;
+}
+
+.index-summary-column i {
+  font-size: 5rem;
+  margin-bottom: 10px;
+}
+
+.index-summary-container-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.index .button {
+  margin: auto;
+  margin-bottom: 20px;
+}
 
 /*-------------------------------------
 --------------SEKCE UVOD---------------
@@ -329,6 +403,16 @@ nav a:hover::before {
   background: #292929;
   font-size: 24px;
   font-weight: bold;
+  color: #C93737;
+  text-shadow: 2px 2px 8px black;
+}
+
+.index-section-title h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #C93737;
+  text-shadow: 2px 2px 8px black;
 }
 
 .index-item {
@@ -1339,12 +1423,24 @@ nav a:hover::before {
 ------------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 384px){
+
+  /*-------------------------------------
+  --------------SEKCE INDEX--------------
+  -------------------------------------*/
+
+  .index-summary-container-row {
+    flex-flow: column;
+}
   /*-------------------------------------
   --------------SEKCE UVOD---------------
   -------------------------------------*/
 
   .index-item {
     border-bottom: solid 1px;
+  }
+
+  .index-item:nth-child(2) {
+    margin-top: 35px;
   }
 
 

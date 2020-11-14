@@ -171,5 +171,11 @@
                 echo "<li title='Můj seznam sledovaných'><a $active href='muj-seznam'>Můj seznam</a></li>";
             }
         }
+
+        // vrati pocet uzivatelu
+        public function getUserCount(){
+            $sql = "SELECT COUNT(_id) from `users`";
+            return Db::getAll($sql);
+        }
     }
 ?>

@@ -187,5 +187,24 @@
 
             return $newItemRating;
         }
+
+
+/*----------------------------------------------------------
+------------------------ STATISTIKY ------------------------
+----------------------------------------------------------*/
+
+
+        // celkovy pocet polozek v DB
+        public function getAllItemsCount() {
+            $sql = "SELECT 
+                sum(a.count)
+                from
+                    (select count(*) as count from `anime`
+                    union all
+                    select count(*) as count from `manga`
+                    union all
+                    select count(*) as count from `serial`) a";
+            return Db::getAll($sql);
+        }
     }
 ?>
