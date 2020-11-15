@@ -1,21 +1,36 @@
-<div class="kontaktContainer">
-<h1>Obnova hesla</h1>
+<div class="index-section">
+    <div class="index-section-title">Obnova hesla</div>
 
-<?php if (!$tokenPassed):?>
-<form method="post">
-    Zadejte Váš registrační email:<br />
-    <div style="display: flex;">
-        <input type="email" name="email" placeholder="vas@email.cz"/><br />
-        <input style="margin: 0px auto; float: right;" type="submit" value="Obnovit heslo"/>
-    </div>
-</form>
-<?php else:; ?>
-<form method="post" style="min-width: 500px;">
-    Nové heslo<br />
-    <input type="password" maxlength="25" name="newPassword" id="pwd" onkeyup="validatePassword(this.value);"/> <span style="minHeight: 9em;" id="msg"></span><br />
-    Nové heslo znovu<br />
-    <input type="password" name="reNewPassword" id="rePwd" onkeyup="comparePassword(this.value);"/> <span id="msg2"></span><br /><br />
-    <input id="submit" type="submit" value="Obnovit heslo" disabled/>
-</form>
-<?php endif; ?>
+    <?php if (!$tokenPassed):?>
+    <form method="post" id="restore" class="restore-form"> 
+
+        <div class="form__group field" title="Váš registrační email:">
+            <input type="text" class="form__field" placeholder="Váš registrační email:" name="email" id='email'/>
+            <label for="email" class="form__label">Váš registrační email:</label>
+        </div>
+
+        <div id="submit" class="button accept" onclick="document.forms['restore'].submit();" >Obnovit heslo</div>
+
+    </form>
+    <?php else:; ?>
+
+    <form method="post" id="restore" class="restore-form"> 
+
+        <div class="form__group field" title="Vaše heslo. Musí mít alespoň 5 znaků, z toho alespoň jedno velké písmeno a jedno číslo.">
+            <input type="password" class="form__field" placeholder="Nové heslo:" name="newPassword" id='pwd' onkeyup="validatePassword(this.value);"/>
+            <label for="newPassword" class="form__label">Nové heslo:</label>
+            <span style="minHeight: 9em;" id="msg"></span>
+        </div>
+
+        <div class="form__group field" title="Prosím zopakujte Vaše heslo.">
+            <input type="password" class="form__field" placeholder="Nové heslo znovu:" name="reNewPassword" id='rePwd' onkeyup="comparePassword(this.value);"/>
+            <label for="reNewPassword" class="form__label">Nové heslo znovu:</label>
+            <span style="minHeight: 9em;" id="msg2"></span>
+        </div>
+
+        <div id="submit" class="button accept" onclick="document.forms['restore'].submit();" >Uložit nové heslo</div>
+
+    </form>
+
+    <?php endif; ?>
 </div>
