@@ -44,6 +44,30 @@ article {
   min-height: calc(100vh - 200px); /* 116px is height of nav bar plus footer*/
 }
 
+.cookie-info {
+  font-size: 12px;
+  padding: 15px;
+  text-align: center;
+  position: fixed;
+  top: 95.3vh;
+  z-index: 99999;
+  width: 100%;
+  background: #1a1a1a;
+  border-top: solid 1px #C93737;
+}
+
+.cookie-info a {
+  color: #C93737;
+  text-shadow: none;
+  font-weight: bolder;
+}
+
+.cookie-info-close {
+  float: right;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
 /*-------------------------------------
 -----------OVLADACI PRVKY--------------
 -------------------------------------*/
@@ -1008,6 +1032,7 @@ footer ul {
 .my-list-item {
   width: 60%;
   margin: 10px 0;
+  position: relative;
 }
 
 .my-list-item-default::after {
@@ -1031,6 +1056,12 @@ footer ul {
   cursor: pointer;
 
   transition: all .1s;
+}
+
+.my-list-item-default-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 
 .my-list-item-default-active::after {
@@ -1064,7 +1095,6 @@ footer ul {
   padding: 15px;
   cursor: initial;
   font-size: 18px;
-
 }
 
 .my-list-item-tools-container a {
@@ -1084,7 +1114,7 @@ footer ul {
   max-height: 0;
   overflow: hidden;
 
-  transition: max-height ease-in-out .5s;
+  transition: max-height ease-in-out .25s;
 }
 
 .my-list-item-details-show {
@@ -1198,6 +1228,17 @@ footer ul {
   margin-top: 30px;
 }
 
+/*-------------------------------------
+------------------FAQ------------------
+-------------------------------------*/
+
+.faq-item {
+  padding: 10px 35px 10px 15px;
+}
+
+.faq-item p {
+  margin: 15px 0;
+}
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------

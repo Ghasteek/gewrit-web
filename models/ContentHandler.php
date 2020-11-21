@@ -2,6 +2,14 @@
     // trida poskytuje metody pro spravu polozek v db
     class ContentHandler{
 
+        // vrati vsechny polozky ze zadane tabulky
+        public function getAllContent($table, $order){
+            $sql = "SELECT * 
+                FROM $table
+                ORDER BY $order ASC";
+            return Db::getAll($sql);
+        }
+
         // vrati polozku ze zadane tabulky s danym ID
         public function getContent($table, $id){
             $sql = "SELECT * 

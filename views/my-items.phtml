@@ -36,17 +36,22 @@ if ($data):
     
     ?>
     <div class="my-list-item">
-        <div id ="div<?= $records[$i]['_id'] ?>" class="my-list-item-default" onClick="toogleFilter('div<?= $records[$i]['_id']?>', 'my-list-item-default-active');toogleFilter('details<?= $records[$i]['_id']?>', 'my-list-item-details-show');">
-            <img src="<?= $line['image'] ?>" alt="404">
 
-            <div class="my-list-item-middle-container">
-                <div class="my-list-item-name"><?= $name?></div>
+        <div class="my-list-item-default-container">
+            <div id ="div<?= $records[$i]['_id'] ?>" class="my-list-item-default" onClick="toogleFilter('div<?= $records[$i]['_id']?>', 'my-list-item-default-active');toogleFilter('details<?= $records[$i]['_id']?>', 'my-list-item-details-show');">
+                <img src="<?= $line['image'] ?>" alt="404">
 
-                <?= $typeText ?> - 
-                    <?php if ($records[$i]['series'] != 0){ echo "s " . $records[$i]['series'] . " |";} ?>
-                    <?php if (($line['type'] == 'serial') || ($line['type'] == 'anime')) echo "e "; else echo "ch " ?><?= $records[$i]['episode'] ?> <br>
+                <div class="my-list-item-middle-container">
+                    <div class="my-list-item-name"><?= $name?></div>
 
-                Poslední změna <?= date('j.m.Y', strtotime($records[$i]['timestamp']))?>  (<?= $days ?> dní)
+                    <?= $typeText ?> - 
+                        <?php if ($records[$i]['series'] != 0){ echo "s " . $records[$i]['series'] . " |";} ?>
+                        <?php if (($line['type'] == 'serial') || ($line['type'] == 'anime')) echo "e "; else echo "ch " ?><?= $records[$i]['episode'] ?> <br>
+
+                    Poslední změna <?= date('j.m.Y', strtotime($records[$i]['timestamp']))?>  (<?= $days ?> dní)
+                </div>
+
+                
             </div>
 
             <div class="my-list-item-tools-container">
@@ -62,6 +67,7 @@ if ($data):
                 <!-- +1 icon -->
                 <a onclick="document.forms['plusOne<?= $records[$i]['_id']?>'].submit();" title="Navýšit poslední díl/kapitolu o jeden...">+1</a> 
             </div>
+
         </div>
 
         <div id="details<?= $records[$i]['_id']?>" class="my-list-item-details">

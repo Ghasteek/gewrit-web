@@ -1,0 +1,67 @@
+<div class="index-section today my-list-section">
+    <div class="index-section-title">Otázky & odpovědi:</div>
+
+    <?php 
+    if ($show == "faq"){
+        if ($userRights == 2) :?>
+            <a href="/faq/add/">Přidat nový</a>
+        <?php endif;
+
+        foreach($data as $line): ?>
+
+            <div class="my-list-item faq-details">
+                <div id ="div<?= $line['_id'] ?>" class="my-list-item-default faq-item" onClick="toogleFilter('div<?= $line['_id'] ?>', 'my-list-item-default-active');toogleFilter('details<?= $line['_id'] ?>', 'my-list-item-details-show');">
+                    <div class="my-list-item-name">
+                        <?= $line['question'] ?>
+                    </div>
+                </div>
+                <div id="details<?= $line['_id'] ?>" class="my-list-item-details">
+                    <br>
+                    <p><?= $line['answer'] ?></p>
+                    <?php if ($userRights == 2) :?>
+                        Pořadí: <?= $line['orderNumber']?> <br>
+                        <a href="/faq/edit/<?= $line['_id'] ?>">Upravit</a><br>
+                        <a href="/faq/delete/<?= $line['_id'] ?>">Odstranit</a>
+                    <?php endif;?>
+                </div>
+            </div>
+
+        <?php endforeach; 
+    } elseif ($show == "edit") {?>
+        UPRAVIT<br>
+    
+        <form id="edit" method="post">
+            <input type="hidden" id="_id" name="_id" value="<?= $data['_id'] ?>">
+
+            <label for="orderNumber">Pořadí:</label><br>
+            <input type="text" id="orderNumber" name="orderNumber" value="<?= $data['orderNumber']?>"><br><br>
+
+            <label for="question">Otázka:</label><br>
+            <textarea name="question" id="question" cols="90" rows="5"><?= $data["question"]?></textarea><br><br>
+
+            <label for="answer">Odpověď:</label><br>
+            <textarea name="answer" id="answer" cols="90" rows="10"><?= $data["answer"]?></textarea><br><br>
+
+            <div class="button accept" onclick="document.forms['edit'].submit();">Uložit</div>
+        </form>
+
+    <?php } elseif ($show == "add") {?>
+        PŘIDAT<br>
+    
+        <form id="add" method="post">
+
+            <label for="orderNumber">Pořadí:</label><br>
+            <input type="text" id="orderNumber" name="orderNumber"><br><br>
+
+            <label for="question">Otázka:</label><br>
+            <textarea name="question" id="question" cols="90" rows="5"></textarea><br><br>
+
+            <label for="answer">Odpověď:</label><br>
+            <textarea name="answer" id="answer" cols="90" rows="10"></textarea><br><br>
+
+            <div class="button accept" onclick="document.forms['add'].submit();">Přidat</div>
+        </form>
+
+    <?php }?>
+    
+</div>

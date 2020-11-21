@@ -280,3 +280,12 @@ function showDeleteModal(id) {
     toogleFilter('modal-delete', 'modal-show');
     document.getElementById('delete_id').value = id;
 }
+
+function cookiesAccept() {
+    toogleFilter('cookie-info', 'hidden');
+
+    var expire = new Date();
+    expire.setTime(expire.getTime() + (5*24*60*60*1000)); // expires in 5 days
+    var expires = "expires="+ expire.toUTCString();
+    document.cookie = 'cookiesAccept' + "=" + 'true' + ";" + expires + ";path=/; SameSite=Lax";
+}
