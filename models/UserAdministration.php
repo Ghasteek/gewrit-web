@@ -6,11 +6,15 @@
         }
 
         // registruj noveho uzivatele 
-        public function register($username, $password, $rePassword, $email, $antispam){
+        public function register($username, $password, $rePassword, $email, $antispam, $podminky, $gdpr){
             if ($antispam != date('Y'))
                 throw new UserError('Chybně vyplněný AntiSPAM.');
             if ($password != $rePassword) 
                 throw new UserError('Hesla nesouhlasí.');
+            if ($podminky != 'checked') 
+                throw new UserError('Musíte souhlasit s podmínkamu užití.');
+            if ($gdpr != 'checked') 
+                throw new UserError('Musíte souhlasit se zpracováním osobních údajů.');
             $user = array(
                 'username' => $username,
                 'email' => $email,

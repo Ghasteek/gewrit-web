@@ -10,7 +10,7 @@
                 <label for="username" class="form__label">Uživatelské jméno:</label>
             </div>
 
-            <div class="form__group field" title="Vaše emailová adresa.">
+            <div class="form__group field" title="Vaše emailová adresa. Ta bude použita jen v případě obnovení zapomenutého hesla.">
                 <input type="text" class="form__field" placeholder="Email" name="email" id='email'/>
                 <label for="email" class="form__label">Email:</label>
             </div>
@@ -31,6 +31,17 @@
                 <input type="text" class="form__field" placeholder="Aktuální rok (antispam)" name="year" id='year'/>
                 <label for="year" class="form__label">Zadejte aktuální rok (antispam):</label>
             </div>
+
+            <br />
+            <p>
+                <input type="checkbox" name="podminky" id='podminky' value="checked"/>
+                <label for="podminky">Souhlasím s podmínkami použití <a href="/podminky-uziti" target="_blank">(přečíst)</a></label>
+            </p>
+
+            <p>
+                <input type="checkbox" name="gdpr" id='gdpr' value="checked"/>
+                <label for="gdpr">Souhlasím se zpracováním osob. údajů <a href="/gdpr" target="_blank">(přečíst)</a></label>
+            </p>
 
             <div id="submit" class="button accept unactive-page" onclick="document.forms['register'].submit();" >Registrovat se</div>
         </form>
