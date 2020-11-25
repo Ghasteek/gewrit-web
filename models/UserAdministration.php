@@ -172,7 +172,7 @@
                 $active = 'class="active"';
             }
             if (count($user) != 0){
-                echo "<li title='Můj seznam sledovaných'><a $active href='muj-seznam'>Můj seznam</a></li>";
+                echo "<li title='Můj seznam sledovaných'><a $active href='muj-seznam/sleduji'>Můj seznam</a></li>";
             }
         }
 

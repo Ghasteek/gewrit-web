@@ -1193,8 +1193,7 @@ footer ul {
 -------------------------------------*/
 
 .report-form {
-  margin: auto;
-  margin-left: 30px;
+  margin: 80px 0 0 30px;
 }
 
 .report-form div {
@@ -1204,6 +1203,10 @@ footer ul {
 .report-form textarea {
   width: 30rem;
   height: 10rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: none;
+  resize: none;
 }
 
 .report-container {
@@ -1248,6 +1251,39 @@ footer ul {
   display: flex;
   flex-flow: column;
 }
+
+/*-------------------------------------
+------------------GDPR-----------------
+-------------------------------------*/
+.kontakt-section {
+  flex-flow: column;
+}
+
+.kontakt-section textarea {
+  width: 80%;
+  height: 15rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: none;
+  resize: none;
+  margin-top: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.kontakt-textarea {
+  margin-top: 35px;
+}
+
+.kontakt-textarea label {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.kontakt-section .button{
+  margin-top: 15px;
+}
+
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------
