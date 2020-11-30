@@ -140,7 +140,7 @@
         public function showProfile(){
             $userAdministration = new UserAdministration();
             $user = $userAdministration->getUser();
-            if (count($user) == 0){
+            if (!$user){
                 echo "<li class='menu-item' title='Přejít na stránku přihlášení'><a href='prihlaseni'>Přihlásit se</a></li>|" . 
                     "<li class='menu-item' title='Registrujte se'><a href='registrace'>Registrovat se</a></li>";
             } else {
@@ -168,10 +168,11 @@
         public function showMyList($title){
             $userAdministration = new UserAdministration();
             $user = $userAdministration->getUser();
+            $active = '';
             if (($title == 'Gewrit - Můj seznam') || ($title == 'Gewrit - Přidat do seznamu')){
                 $active = 'class="active"';
             }
-            if (count($user) != 0){
+            if ($user){
                 echo "<li title='Můj seznam sledovaných'><a $active href='muj-seznam/sleduji'>Můj seznam</a></li>";
             }
         }

@@ -1,4 +1,7 @@
-<?php foreach ($data as $i=>$line):
+<?php if ($data){
+foreach ($data as $i=>$line):
+
+    if (!$seznamType){$seznamType = "";}
 
     if ($seznamType == 'all'){
         $seznamStyle = " list-item";
@@ -12,7 +15,7 @@
         $exclamationMark = "";
     }
 
-    
+    if (!$line['type']){$line['type'] = "";}
     switch ($line['type']){
         case "anime":
             $itemType = "Anime";
@@ -89,4 +92,5 @@
 </div>
 <?php 
 if ($seznamType == 'all'){echo "</div>\n";}
-endforeach;?>
+endforeach;
+}?>

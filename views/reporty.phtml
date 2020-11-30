@@ -1,4 +1,4 @@
-<div class="index-section">
+<div class="index-section repot-section">
     <div class="index-section-title">Reporty: </div>
 
     <?php if ($rights > 0): // filter for mods/admins?>
@@ -13,7 +13,7 @@
                 <?php endif; ?>
                 |<input type="checkbox" onChange="this.form.submit()" name="open" value="open" <?php if ($open) { echo "checked"; }?>/> Jen otevřené
             </div>
-        </form>
+        </form><br />
     <?php endif;?>
 
     <?php if ($data): ?>

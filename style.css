@@ -1188,6 +1188,14 @@ footer ul {
   margin: auto;
 }
 
+.repot-section {
+  flex-flow: column;
+}
+
+.repot-section form {
+  margin: auto;
+}
+
 /*-------------------------------------
 ---------------NAHLASIT----------------
 -------------------------------------*/
