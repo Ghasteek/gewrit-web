@@ -23,6 +23,8 @@
 
             if ($_POST) {
                 $_POST['releaseDay'] ? $releaseDay = implode(",", $_POST['releaseDay']) : $releaseDay = '';
+                $_POST['series'] ? $_POST['series'] = $_POST['series'] : $_POST['series'] = '0';
+                $_POST['episode'] ? $_POST['episode'] = $_POST['episode'] : $_POST['episode'] = '0';
                 $record = array(
                     'owner' => $author['_id'],
                     'type' => $param[0],
