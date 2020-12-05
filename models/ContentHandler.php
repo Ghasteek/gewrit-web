@@ -203,16 +203,20 @@
 
 
         // celkovy pocet polozek v DB
-        public function getAllItemsCount() {
-            $sql = "SELECT 
-                sum(a.count)
-                from
-                    (select count(*) as count from `anime`
-                    union all
-                    select count(*) as count from `manga`
-                    union all
-                    select count(*) as count from `serial`) a";
-            return Db::getAll($sql);
+        public function getAllItemsCount($table = "all") {
+            if ($table === "all"){
+                $sql = "SELECT 
+                    sum(a.count)
+                    from
+                        (select count(*) as count from `anime`
+                        union all
+                        select count(*) as count from `manga`
+                        union all
+                        select count(*) as count from `serial`) a";
+            } else {
+                $sql = "SELECT COUNT(_id) from $table WHERE onlyFor = 0";
+            }
+            return (Db::getAll($sql))[0][0];
         }
     }
 ?>

@@ -178,9 +178,14 @@
         }
 
         // vrati pocet uzivatelu
-        public function getUserCount(){
+        public function getUserCount($rights = array()){
             $sql = "SELECT COUNT(_id) from `users`";
-            return Db::getAll($sql);
+            if (count($rights) >= 1){
+                $condition = " WHERE rights IN (" . implode(", ", $rights) . ")";
+            } else {
+                $condition = "";
+            }
+            return( Db::getAll($sql . $condition))[0][0];
         }
     }
 ?>

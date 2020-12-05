@@ -204,5 +204,13 @@
             return $count[0][0];
         }
 
+        // vrati celkovy pocet zaznamu v tabulce zaznamu
+        public function getAllRecordsCount(){
+            $sql = "SELECT COUNT(*)
+                FROM `records`";
+            $count = Db::getAll($sql);
+            return $count[0][0];
+        }
+
     }
 ?>
