@@ -17,6 +17,8 @@
             if (!$id){
                 try {
                     Db::insert('records', $record);
+                    $targetId = Db::getLastId();
+                    LogHandler::logThis('Added list item into `records` table', $targetId);
                 } catch (PDOException $error) {
                     throw new UserError('Tohle již sledujete.');
                 }
@@ -31,6 +33,7 @@
                 DELETE FROM `records`
                 WHERE _id = ?', 
                 array($id));
+            LogHandler::logThis('Delete list item from `records` table', $id);
         }
 
         /*// vrati pozadovanou stranu zaznamu podle parametru

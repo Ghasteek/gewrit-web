@@ -51,8 +51,17 @@
                 } else {
                     try {
                         $scrapper = new Scrapper();
-                        $answer = $scrapper->scrapUrl($_POST['url'], $_POST['antispam']);
-                        $this->data['data'] = $answer;
+                        $data = $scrapper->scrapUrl($_POST['url'], $_POST['antispam']);
+                        $errorInScrap = FALSE;
+                        foreach ($data as $item){
+                            if ($item == ''){
+                                $errorInScrap = TRUE;
+                            }
+                        }
+                        if ($errorInScrap){
+                            LogHandler::logThis('Scrapper returned blank info. URL={ ' . $_POST['url'] . '}.');
+                        }
+                        $this->data['data'] = $data;
                     } catch (UserError $error) {
                         $this->addMessage($error->getMessage(), 'warning');
                     }
