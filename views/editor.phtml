@@ -1,48 +1,89 @@
-<div class="kontaktContainer">
-<h1>Editor</h1>
+<div class="index-section kontakt-section">
+    <div class="index-section-title">Editor</div>
 
-<form method="post">
-    ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
-    <input type="hidden" name="_id"  value="<?= $data['_id'] ?>"/>
-    Jméno<br />
-    <input type="text" name="name" value="<?= $data['name'] ?>" /><br />
-    URL obrázku<br />
-    <input type="text" name="image" value="<?= $data['image'] ?>" /><br />
-    <img src="<?= $data['image'] ?>"><br />
-    Rok<br />
-    <input type="text" name="year" value="<?= $data['year'] ?>" /><br />
-    Žánr<br />
-    <input type="text" name="genre" value="<?= $data['genre'] ?>" /><br />
-    <?php if ($type == 'serial') : ?>
-      URL CSFD<br />
-      <input type="text" name="linkCsfd" value="<?= $data['linkCsfd'] ?>" /><br />
-      URL IMDB<br />
-      <input type="text" name="linkImdb" value="<?= $data['linkImdb'] ?>" /><br />
-    <?php endif; ?>
-    <?php if ($type != 'serial') : ?>
-      URL Anime-planet<br />
-      <input type="text" name="linkAp" value="<?= $data['linkAp'] ?>" /><br />
-    <?php endif; ?>
-    Popis<br />
-    <textarea type="text" name="description" ><?= $data['description'] ?></textarea><br />
-    <input id="onlyFor" type="checkbox" name="onlyFor" value="0" <?php if ($data['onlyFor'] === 0){echo 'checked="TRUE"';} ?>>
-    <label for="onlyFor">Veřejný</label><br />
-    Na seznamu <?= $inListCount ?>x
-    <table><tr>
-    <td class="noBorders"><input type="submit" value="Uložit" /></td>
-    <td class="noBorders"><div onClick="document.getElementById('id01').style.display='block'" class="buttonRed">Smazat</div></td>
-</tr></table>
-</form>
+    <form name="save" id="save" method="post">
+        <input type="hidden" id="save" name="save" value="true">
+        ID: <?= $data['_id'] ?>, Typ: <?= $type ?><br /><br />
+        <input type="hidden" name="_id"  value="<?= $data['_id'] ?>"/>
 
-  <div id="id01" class="modal" style="display: none;">
+        <div class="form__group field" title="Jméno položky.">
+            <input type="text" required="required" class="form__field" placeholder="Jméno:" name="name" id='name' value="<?= $data['name'] ?>"/>
+            <label for="name" class="form__label">Jméno:</label>
+        </div>
+
+        <div class="form__group field" title="URL odkaz na obrázek položky.">
+            <input type="text" required="required" class="form__field" placeholder="URL obrázku:" name="image" id='image' value="<?= $data['image'] ?>"/>
+            <label for="image" class="form__label">URL obrázku:</label>
+        </div>
+
+        <p><br /><img src="<?= $data['image'] ?>"></p>
+
+        <div class="form__group field" title="Rok vydání.">
+            <input type="text" required="required" class="form__field" placeholder="Rok:" name="year" id='year' value="<?= $data['year'] ?>"/>
+            <label for="year" class="form__label">Rok vydání:</label>
+        </div>
+
+        <div class="form__group field" title="Žánr.">
+            <input type="text" required="required" class="form__field" placeholder="Žánr:" name="genre" id='genre' value="<?= $data['genre'] ?>"/>
+            <label for="genre" class="form__label">Žánr:</label>
+        </div>
+
+        <?php if ($type === 'serial'){ ?>
+
+          <div class="form__group field" title="Link na CSF.">
+              <input type="text" required="required" class="form__field" placeholder="Link na CSFD:" name="linkCsfd" id='linkCsfd' value="<?= $data['linkCsfd'] ?>"/>
+              <label for="linkCsfd" class="form__label">Link na CSFD:</label>
+          </div>
+
+          <div class="form__group field" title="Link na IMDB.">
+              <input type="text" required="required" class="form__field" placeholder="Link na IMDB:" name="linkImdb" id='linkImdb' value="<?= $data['linkImdb'] ?>"/>
+              <label for="linkImdb" class="form__label">Link na IMDB:</label>
+          </div>
+
+        <?php } else { ?>
+
+          <div class="form__group field" title="Link na Anime-Planet.">
+              <input type="text" required="required" class="form__field" placeholder="Link na Anime-Planet:" name="linkAp" id='linkAp' value="<?= $data['linkAp'] ?>"/>
+              <label for="linkAp" class="form__label">Link na Anime-Planet:</label>
+          </div>
+
+        <?php } ?>
+
+        <div class="kontakt-textarea">
+            <label for="text">Popis:</label><br />
+            <textarea name="description" placeholder="Popis položky..."><?= $data['description'] ?></textarea>
+        </div>
+
+        <br />
+        <div class="form__group field">
+            <label for="onlyFor">Veřejný</label><br />
+            <input id="onlyFor" type="checkbox" name="onlyFor" value="0" <?php if ($data['onlyFor'] === 0){echo 'checked="TRUE"';} ?>>
+        </div>
+        
+        <br />
+        <div title="Počet lidí, kteří mají tuto položku na svém seznamu.">
+            Na seznamu <?= $inListCount ?>x
+        </div>
+        
+        <div class="button accept" onclick="document.forms['save'].submit();">Uložit</div>
+        <div class="button decline" onClick="showDeleteModal('<?= $data['_id'] ?>')" >Smazat</div>
+    </form>
+
+
+
+</div>
+
+
+<div id="modal-delete" class="modal-delete">
     <div class="modal-content">
-      <div class="container itemDefault modalColumn">
-        <strong>Opavdu chcete tuto položku smazat?</strong>
-        <table><tr>
-            <td class="noBorders"><a href="/editor/<?= $type ?>/<?= $data['_id'] ?>/smazat"><div class="buttonRed">ANO</div></a></td>
-            <td class="noBorders"><div onClick="document.getElementById('id01').style.display='none'" class="buttonBlue">NE</div></td>
-        </tr></table>
-      </div>
+        Přejete si skutečně tento záznam smazat?
+        <div class="modal-buttons">
+            <div class="button decline" onClick="toogleFilter('modal-delete', 'modal-show');">Zrušit</div>
+            <div class="button accept" onclick="document.forms['delete'].submit();">Smazat</div>
+        </div>
+        <form style="display:none;" name="delete" method="post">
+            <input type="hidden" id="delete" name="delete" value="true">
+            <input type="hidden" id="delete_id" name="_id" value="">
+        </form>
     </div>
-  </div>
 </div>

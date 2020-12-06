@@ -3,130 +3,84 @@ class EditorController extends Controller {
     public function process($param){
         // pouze pro prava mod a vice
         $this->authenticateUser(1);
-        //vytvoreni instance modelu
+        // vytvoreni instance modelu
         $contentHandler = new ContentHandler();
 
-        if ($param[0] === 'serial'){
-            // hlavicka stranky
-            $this->head['title'] = "Editor seriálů";
-            $table = 'serial';
-            
-            // priprava praydneho serialu
-            $serial = array(
-                'name' => '',
-                'image' => '',
-                'year' => '',
-                'genre' => '',
-                'linkCsfd' => '',
-                'linkImdb' => '',
-                'description' => '',
-                'onlyFor' => ''
-            );
-
-            if ($param[2] == 'smazat') {
-                // smazu zaznam z db
-                $contentHandler->deleteContent($table, $param[1]);
-                // smazu obrazek ze serveru
-                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
-                unlink($imageDestination);
-                // smazu hodnoceni polozky z db
-                $contentHandler->deleteRatingOfItem($table, $param[1]);
-                
-                $this->addMessage('Seriál smazán.', 'info');
-                $this->redirect('serialy');
-            } else {
-                if ($_POST){
-                    $keys = array('name', 'image', 'year', 'genre', 'linkCsfd', 'linkImdb', 'description', 'onlyFor');
-                    $serial = array_intersect_key($_POST, array_flip($keys));
-                    //ulozeni serialu do DB
-                    $contentHandler->saveContent($table, $_POST['_id'], $serial);
-                    $this->addMessage('Seriál byl úspěšně upraven.', 'info');
-                    $this->redirect('serialy');
-                } else if (!empty($param[1])){
-                    $loadedContent = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedContent){
-                        $this->addMessage('Seriál nenalezen.', 'error');
-                    } 
-                }
-            }
-        } elseif ($param[0] === 'anime'){
-            // hlavicka stranky
-            $this->head['title'] = "Editor anime";
-            $table = 'anime';
-            // priprava praydneho serialu
-            $anime = array(
-                'name' => '',
-                'image' => '',
-                'year' => '',
-                'genre' => '',
-                'linkAp' => '',
-                'description' => '',
-                'onlyFor' => ''
-            );
-
-            if ($param[2] == 'smazat') {
-                $contentHandler->deleteContent($table, $param[1]);
-                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
-                unlink($imageDestination);
-                $this->addMessage('Anime smazáno.', 'info');
-                $this->redirect('anime');
-            } else {
-                if ($_POST){
-                    $keys = array('name', 'image', 'year', 'genre', 'linkAp', 'description', 'onlyFor');
-                    $anime = array_intersect_key($_POST, array_flip($keys));
-                    //ulozeni anime do DB
-                    $contentHandler->saveContent($table, $_POST['_id'], $anime);
-                    $this->addMessage('Anime bylo úspěšně upraveno.', 'info');
-                    $this->redirect('anime');
-                } else if (!empty($param[1])){
-                    $loadedContent = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedContent){
-                        $this->addMessage('Anime nenalezeno.', 'error');
-                    } 
-                }
-            }
-        } elseif ($param[0] === 'manga'){
-            // hlavicka stranky
-            $this->head['title'] = "Editor mangy";
-            $table = 'manga';
-
-            // priprava praydneho serialu
-            $manga = array(
-                'name' => '',
-                'image' => '',
-                'year' => '',
-                'genre' => '',
-                'linkAp' => '',
-                'description' => '',
-                'onlyFor' => ''
-            );
-
-            if ($param[2] == 'smazat') {
-                $contentHandler->deleteContent($table, $param[1]);
-                $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
-                unlink($imageDestination);
-                $this->addMessage('Manga smazána.', 'info');
-                $this->redirect('manga');
-            } else {
-                if ($_POST){
-                    $keys = array('name', 'image', 'year', 'genre', 'linkAp', 'description', 'onlyFor');
-                    $manga = array_intersect_key($_POST, array_flip($keys));
-                    //ulozeni mangy do DB
-                    $contentHandler->saveContent($table, $_POST['_id'], $manga);
-                    $this->addMessage('Manga byla úspěšně upravena.', 'info');
-                    $this->redirect('manga');
-                } else if (!empty($param[1])){
-                    $loadedContent = $contentHandler->getContent($table, $param[1]);
-                    if (!$loadedContent){
-                        $this->addMessage('Manga nenalezena.', 'error');
-                    } 
-                }
-            }
+        // je poslany parametr validni
+        if (!$this->isParamValid($param[0])) {
+            $this->addMessage('Něco se pokazilo, zkuste to znovu prosím.', 'error');
+            $this->redirect('uvod');
         }
 
-        $this->data['inListCount'] = MujSeznamHandler::inListCount($table, $param[1]);
-        $this->data['data'] = $loadedContent[0];
-        $this->data['type'] = $table;
+        // nacti data k editaci
+        $dataOutput = $contentHandler->getContent($param[0], $param[1]);
+        // pokud polozka neni v db, ukaz error message
+        if (!$dataOutput){
+            $this->addMessage('Položka nenalezena.', 'error');
+        }
+
+        // zpracuj POST
+        if ($_POST['save']){ // pokud posilam data na ulozeni
+            if ($param[0] === "serial"){
+                // priprava prazsneho pole pro data
+                $dataInput = array(
+                    'name' => '',
+                    'image' => '',
+                    'year' => '',
+                    'genre' => '',
+                    'linkCsfd' => '',
+                    'linkImdb' => '',
+                    'description' => '',
+                    'onlyFor' => ''
+                );
+                // keys pro osekani POSTu
+                $keys = array('name', 'image', 'year', 'genre', 'linkCsfd', 'linkImdb', 'description', 'onlyFor');
+            } else {
+                // priprava prazsneho pole pro data
+                $dataInput = array(
+                    'name' => '',
+                    'image' => '',
+                    'year' => '',
+                    'genre' => '',
+                    'linkAp' => '',
+                    'description' => '',
+                    'onlyFor' => ''
+                );
+                // keys pro osekani POSTu
+                $keys = array('name', 'image', 'year', 'genre', 'linkAp', 'description', 'onlyFor');
+            }
+            // osekam POST data
+            $dataInput = array_intersect_key($_POST, array_flip($keys));
+
+            //ulozeni anime do DB
+            $contentHandler->saveContent($param[0], $_POST['_id'], $dataInput);
+
+            $this->addMessage('Položka úspěšně upravena.', 'info');
+
+            if ($param[0] === 'serial'){ $param[0] = 'serialy'; }
+            $this->redirect($param[0]);
+
+        } elseif ($_POST['delete']){ // pokud posilam mazani
+            // smazu polozku z db
+            $contentHandler->deleteContent($param[0], $param[1]);
+
+            // odstranim obrazek
+            $imageDestination = "img/" . $param[0] . "/" . $param[1] . ".jpg";
+            unlink($imageDestination);
+
+            // smazu hodnoceni polozky z db
+            $contentHandler->deleteRatingOfItem($param[0] , $param[1]);
+            
+            // informuji o smazani a redirectnu na kategorii
+            $this->addMessage('Položka smazána.', 'info');
+            $this->redirect($param[0]);
+        }
+
+        
+        $this->head['title'] = "Editor";
+        $this->data['inListCount'] = MujSeznamHandler::inListCount($param[0], $param[1]);
+        $this->data['data'] = $dataOutput[0];
+        $this->data['type'] = $param[0];
         $this->view = 'editor';
     }
 }

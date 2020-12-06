@@ -22,6 +22,14 @@ footer {
   flex-wrap: wrap;
 }
 
+::-moz-selection { 
+  background: #C93737; 
+
+}
+::selection { 
+  background:  #C93737; 
+}
+
 footer p {
   margin: 0;
 }
@@ -403,7 +411,7 @@ footer ul {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .today {
@@ -1277,6 +1285,9 @@ footer ul {
   margin-top: 10px;
   font-size: 1rem;
   outline: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 160%;
+  padding: 10px;
 }
 
 .kontakt-textarea {

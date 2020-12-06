@@ -82,5 +82,15 @@
                 $this->redirect('prihlaseni');
             }
         }
+
+        // je parametr validni
+        public function isParamValid($param){
+            $validParameters = " anime, serial, manga";
+            if (strpos($validParameters, $param)){
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
     }
 ?>
