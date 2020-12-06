@@ -9,6 +9,7 @@
                 $mujSeznamHandler->exist($param[0], $param[1] ); 
             } catch (UserError $error) {
                 $this->addMessage($error->getMessage(), 'warning');
+                if ($param[0] === "serial") {$param[0] = "serialy";}
                 $this->redirect($param[0]);
             }
 
