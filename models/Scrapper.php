@@ -7,6 +7,10 @@
 
             $url = filter_var($url, FILTER_SANITIZE_URL);
 
+            if (strpos($url, 'https://') == false) {
+                $url = 'https://' . $url;
+            }
+
             if (strpos($url, 'www.csfd.cz') !== false) {
                 $serial = $this->scrapCsfd($url);
                 return $serial;
@@ -92,7 +96,7 @@
             } else {
                 $type = 'anime';
             }
-                    
+            echo $url;
             // scrap Anime Planet
             $dom = new domDocument;
             $ap = file_get_contents($url);

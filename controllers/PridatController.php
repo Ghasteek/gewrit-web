@@ -41,13 +41,12 @@
                         // zmeni v db adresu obrazku
                         $contentHandler->saveContent($_POST['type'], $id, array('image' => $imageDestination));
 
+                        $this->addMessage('Úspěšně přidáno, čeká na schávlení.', 'info');
+                        $this->redirect($redirect);
+
                     } catch (UserError $error) {
                         $this->addMessage($error->getMessage(), 'warning');
                     }
-
-                    $this->addMessage('Úspěšně přidáno, čeká na schávlení.', 'info');
-                        $this->redirect($redirect);
-                    
                 } else {
                     try {
                         $scrapper = new Scrapper();
