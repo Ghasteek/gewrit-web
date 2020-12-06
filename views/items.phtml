@@ -1,14 +1,5 @@
 <?php if ($data){
 foreach ($data as $i=>$line):
-
-    if (!$seznamType){$seznamType = "";}
-
-    if ($seznamType == 'all'){
-        $seznamStyle = " list-item";
-    } else {
-        $seznamStyle = "";
-    }
-
     if ($line['onlyFor'] != 0){
         $exclamationMark = " <i title='Není veřejné, čeká na schválení.' class='fas fa-exclamation-triangle'></i>";
     } else {
@@ -35,8 +26,7 @@ foreach ($data as $i=>$line):
 
     if ($records[$i]['link'] == '') { $hidden = 'class="hidden"'; $reverse = " reverse"; } else { $hidden = ""; $reverse = ""; }
 
-    if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];}
-    if ($seznamType == 'all'){echo "<div class='list-item'>\n" ;}?>
+    if (strlen($line['name']) > 22) { $name = substr($line['name'], 0, 22) . "...";} else {$name = $line['name'];} ?>
 
 <div class="index-item">
 
@@ -60,7 +50,11 @@ foreach ($data as $i=>$line):
                 
             <?php endif;?>
 
-            <?php if ($userRights >= -1){
+            <?php if ($cekarna){ ?>
+                <div><?= $type?></div>
+            <?php }
+            
+            if ($userRights >= -1){
                 if ($today){ ?>
                     <div><?= $itemType?></div>
                     <div><?= $progress?></div>
@@ -87,10 +81,17 @@ foreach ($data as $i=>$line):
 
     </div>
 
-    <div class="index-name" title='<?= $line['name'] ?>'><?= $name . $exclamationMark ?></div>
+    <div class="index-name" title='<?= $line['name'] ?>'>
+        <?= $name . $exclamationMark ?>
+            
+        <?php if ($cekarna){ ?>
+                <input id="<?= $type ?>[]" name="<?= $type ?>[]" type="checkbox" class="checkAll" value="<?= $line['_id'] ?>">
+        <?php } ?>
+    
+    </div>
+
 
 </div>
 <?php 
-if ($seznamType == 'all'){echo "</div>\n";}
 endforeach;
 }?>

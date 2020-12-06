@@ -22,7 +22,7 @@
                 }
                 if ($_POST['manga'] != 0) {
                     $answer = Db::authorizeIds('manga', $_POST['manga'] );
-                    $message = "Autorizováno " . $answer . " položek manga.";
+                    $message = "Autorizováno " . $answer . "  mangy.";
                     $this->addMessage($message, 'info');
                 }
             }

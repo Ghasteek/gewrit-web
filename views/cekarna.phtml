@@ -1,28 +1,29 @@
-<h1>Seznam položek k autorizaci</h1>
-<form method="post">
-<input type="submit" value="Hromadně povolit zaškrtnuté položky" />
-<input type="checkbox" onchange='handleChange(this);'> Vybrat vše
+<div class="index-section cekarna">
+    <div class="index-section-title">Seznam položek k autorizaci</div>
 
-<div class="serialsContainer">
-<?php 
-$cekarna = true;
+    <form id="authorize" method="post">
+        <div class="button accept" onclick="document.forms['authorize'].submit();">Zveřejnit vybrané</div><br />
+        
+        <input id="getAll" type="checkbox" onchange='handleChange(this);'>
+        <label for="getAll">Vybrat vše</label>
 
-$data = $serials;
-$type = 'serial';
-include "views/items.phtml"; ?>
+        <div class="cekarna-container">
+            <?php 
+            $cekarna = true;
+
+            $data = $serials;
+            $type = 'serial';
+            include "views/items.phtml"; 
+
+            $data = $animes;
+            $type = 'anime';
+            include "views/items.phtml"; 
+
+            $data = $mangas;
+            $type = 'manga';
+            include "views/items.phtml"; ?>
+        </div>
+        
+    </form>
+
 </div>
-
-<div class="serialsContainer">
-<?php 
-$data = $animes;
-$type = 'anime';
-include "views/items.phtml"; ?>
-</div>
-
-<div class="serialsContainer">
-<?php 
-$data = $mangas;
-$type = 'manga';
-include "views/items.phtml"; ?>
-</div>
-</form>
