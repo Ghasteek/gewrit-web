@@ -66,9 +66,11 @@
 
         // autorizuje zaznamy ze zadane tabulka a zadanych ID
         public static function authorizeIds($table, $ids = array()){
-            return self::getChanges("UPDATE `$table` SET `onlyFor` = 0 
+            $return = self::getChanges("UPDATE `$table` SET `onlyFor` = 0 
                 WHERE `_id` IN (".str_repeat('?,', sizeOf($ids)-1)."?)",
                 $ids);
+            LogHandler::logThis('Authorized items "' . $ids . '" in table "' . $table . '".');
+            return $return;
         }
 
         // vrati ID posledniho vlozeneho zaznamu
