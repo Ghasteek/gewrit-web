@@ -154,7 +154,8 @@
                 } 
                 if ($rights >= 2) {
                     $items = $items . "<li class='menu-item' title='Správa moderátorů obsahu'><a href='mod'>Moderátoři</a></li>" . 
-                    "<li class='menu-item' title='Správa zabanovaných uživatelů'><a href='ban'>Bany</a></li>";
+                    "<li class='menu-item' title='Správa zabanovaných uživatelů'><a href='ban'>Bany</a></li>" . 
+                    "<li class='menu-item' title='Prohlížení logů.'><a href='logs'>LOGy</a></li>";
                 }
 
                 echo "<li class='user-menu'><a href='profil'>" . $user['username'] . "</a>" . 

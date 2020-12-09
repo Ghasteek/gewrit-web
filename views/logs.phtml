@@ -1,0 +1,28 @@
+<div class="index-section kontakt-section">
+    <div class="index-section-title">Prohlížeč LOGů</div>
+
+    <form action="post" id="logs">
+
+        <select name="file" id="file">
+
+            <option value="" disabled selected>Vyberte LOG soubor</option>
+
+            <?php foreach ($logFiles as $file): ?>
+                <option value="<?= $file ?>"><?= $file ?></option>
+            <?php endforeach; ?>
+
+        </select>
+
+        <div class="button accept" onclick="document.forms['logs'].submit();">Našíst LOG</div>
+    </form>
+    
+
+</div>
+
+
+
+
+
+
+
+
