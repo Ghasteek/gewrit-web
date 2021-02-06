@@ -86,14 +86,14 @@
                 try {
                     Db::insert($table, $content);
                     $targetId = Db::getLastId();
-                    LogHandler::logThis('Added new content into "' . $table . '" table.', $targetId);
+                    LogHandler::logThis('Added new content into *' . $table . '* table.', $targetId);
                     return $targetId;
                 } catch (PDOException $error) {
                     throw new UserError('Již je v databázi.');
                 }
             } else {
                 Db::change($table, $content, 'WHERE _id = ?', array($id));
-                LogHandler::logThis('Edited item in "' . $table . '" table.', $id);
+                LogHandler::logThis('Edited item in *' . $table . '* table.', $id);
             }
         }
 

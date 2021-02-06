@@ -319,7 +319,6 @@ nav a:hover::before {
 }
 
 .sub-menu li:hover {
-  padding: 15px 0;
   background-color: #1A1A1A;
 }
 
@@ -428,7 +427,7 @@ footer ul {
 
 .index-section-title {
   position: absolute;
-  top: -20px;
+  top: -14px;
   left: 1rem;
   padding: 0 10px;
   background: #292929;
@@ -1374,7 +1373,6 @@ footer ul {
   }
 
   nav li:hover {
-    padding: 15px 0;
     background-color: #333333;
   }
 

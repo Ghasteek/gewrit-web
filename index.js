@@ -118,114 +118,6 @@ function validatePassword(password) {
     document.getElementById("msg").style.color = color;
 }
 
-/*unction toogleDetails(id) {
-    var x = document.getElementById(id);
-    var i = document.getElementById("i_"+id);
-
-    if (x.className.indexOf("show") == -1) {
-      x.className += " show";
-      i.className = i.className.replace("fa-angle-double-down", "fa-angle-double-up");
-    } else { 
-      x.className = x.className.replace(" show", "");
-      i.className = i.className.replace("fa-angle-double-up", "fa-angle-double-down");
-    }
-
-}*/
-
-/*-------------------------------------
-//--------------carousel---------------
-//-------------------------------------
-function cycleCarousel(smer) { 
-    var divs = document.querySelectorAll('*[id^="container"');
-    //console.log(divs);
-    //console.log(smer);
-    //console.log(isCycling);
-    var length = divs.length;
-    var x;
-    if (!isCycling){
-        disableCycle();
-        if (smer == 'right') {
-            for (i = 0; i < length; i++) {
-                var name = divs[i].getAttribute('name');
-                if (name == "show") {
-                    if (i < (length - 1)) {
-                        x = i+1;
-                    } else {
-                        x = 0;
-                    }
-                    //console.log("active was " + i);
-                    divs[i].className += " slide-toRight";
-                    hide(divs[i], 'right');
-                    divs[i].setAttribute("name","hide");
-        
-                    divs[x].className = divs[x].className.replace(" hidden", " slide-fromLeft");
-                    setTimeout(function() { divs[x].className = divs[x].className.replace( " slide-fromLeft", "");}, 1000);
-                    divs[x].setAttribute("name","show");
-                    //console.log("active is now " + x);
-                    i++;
-                }
-            }
-        } else if (smer == 'left') {
-            for (i = (length - 1); i >= 0; i--) {
-                var name = divs[i].getAttribute('name');
-                if (name == "show") {
-                    if (i > 0) {
-                        x = i-1;
-                    } else {
-                        x = (length - 1);
-                    }
-                    //console.log("active was " + i);
-                    //divs[i].className += " hidden";
-                    divs[i].className += " slide-toLeft";
-                    hide(divs[i], 'left');
-                    divs[i].setAttribute("name","hide");
-        
-                    divs[x].className = divs[x].className.replace(" hidden", " slide-fromRight");
-                    setTimeout(function() { divs[x].className = divs[x].className.replace( " slide-fromRight", "");}, 1000);
-                    divs[x].setAttribute("name","show");
-                    //console.log("active is now " + x);
-                    i--;
-                }
-            }
-        }
-    }
-}
-
-function hide(element, where) {
-    if (where = 'left'){
-        setTimeout(function() { element.className = element.className.replace( " slide-toLeft", " hidden");}, 1000);
-    } 
-    if (where = 'right') {
-        setTimeout(function() { element.className = element.className.replace( " slide-toRight", " hidden");}, 1000);
-    }
-    
-}
-
-function disableCycle() {
-    isCycling = true;
-    setTimeout(function() {isCycling = false;}, 1500);
-}
-
-function cycle(){
-    setTimeout(function() {cycleCarousel('right'); cycle();}, 8000);
-}*/
-
-/*function getHeight() {
-    var h = window.innerHeight;
-      // Create our stylesheet
-      var style = document.createElement('style');
-      style.innerHTML =
-          'article {' +
-              'min-height: ' + (h - 230) + 'px;'
-          '}';
-  
-      // Get the first script tag
-      var ref = document.querySelector('script');
-  
-      // Insert our new styles before the first script tag
-      ref.parentNode.insertBefore(style, ref);
-  }*/
-
 function toogleMenu() {
     var menu = document.getElementById('nav');
     var ham = document.getElementById('menu-toggle');
@@ -282,10 +174,12 @@ function showDeleteModal(id) {
 }
 
 function cookiesAccept() {
+    // hide cookie info DIV
     toogleFilter('cookie-info', 'hidden');
 
+    // set cookie with expire date 60 days from now
     var expire = new Date();
-    expire.setTime(expire.getTime() + (5*24*60*60*1000)); // expires in 5 days
+    expire.setTime(expire.getTime() + (60*24*60*60*1000)); // expires in 60 days
     var expires = "expires="+ expire.toUTCString();
     document.cookie = 'cookiesAccept' + "=" + 'true' + ";" + expires + ";path=/; SameSite=Lax";
 }

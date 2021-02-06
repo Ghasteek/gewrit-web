@@ -16,5 +16,19 @@
 
             file_put_contents('log/log_'.date("W.Y").'.log', $log, FILE_APPEND);
         }
+
+        // get list of logs in log folder
+        public function getLogs(){
+            $logFiles = scandir("log/", 1);
+
+            if (($logFiles) && (count($logFiles) >=2)){
+                $logFiles = array_splice($logFiles, 0, count($logFiles) -2);
+                foreach ($logFiles as $i=>$file) {
+                    $logFiles[$i] = substr($file, 0, -4);
+                }
+            }
+
+            return $logFiles;
+        }
     }
 ?>

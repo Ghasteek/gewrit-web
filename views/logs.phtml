@@ -1,7 +1,7 @@
 <div class="index-section kontakt-section">
     <div class="index-section-title">Prohlížeč LOGů</div>
 
-    <form action="post" id="logs">
+    <form method="post" id="logs">
 
         <select name="file" id="file">
 
@@ -15,6 +15,46 @@
 
         <div class="button accept" onclick="document.forms['logs'].submit();">Našíst LOG</div>
     </form>
+
+    <?php if ($data){ ?>
+        <table class="reports">
+            <tr>
+                <th>Time</th>
+                <th>User id</th>
+                <th>Action</th>
+                <th>Action on item id</th>
+            </tr>
+            <?php foreach ($data as $i=>$line):
+                $link = NULL;
+                if ((strpos($line[2], 'Edited') !== false) || (strpos($line[2], 'Added new') !== false)){
+                    $table = explode( "*", $line[2]);
+                    $link = "detail/" . $table[1] . "/" . $line[3];
+                }
+                
+                if  ((strpos($line[2], 'Changed user') !== false) || (strpos($line[2], 'Banned user') !== false)){
+                    $table = explode( "*", $line[2]);
+                    $link = "profil/" . $table[1] ;
+                    $line[3] = $table[1];
+                }
+
+                ?>
+                <tr>
+                    <td><?= $line[0] ?></td>
+                    <td> <a target="_blank" href="/profil/<?= $line[1] ?>"><?= $line[1] ?></a></td>
+                    <td><?= $line[2] ?></td>
+                    <td><?php
+                        if ($link !== NULL){?>
+                            <a target="_blank" href="<?= $link?>"><?= $line[3] ?></a>
+                        <?php } else {
+                            echo $line[3];
+                        }
+                    ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+        </table>
+
+    <?php }?>
     
 
 </div>

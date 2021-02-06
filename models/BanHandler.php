@@ -7,7 +7,7 @@
             } else {
                 $newRights = $currentRights + 1;
                 Db::change('users', array('rights' => $newRights), 'WHERE _id = ?', array($id));
-                LogHandler::logThis('Changed user "' . $id . '" rights from "' . $currentRights . '" to "' . $newRights . '".');
+                LogHandler::logThis('Changed user *' . $id . '* rights from "' . $currentRights . '" to "' . $newRights . '".');
                 return true;
             }
         }
@@ -19,7 +19,7 @@
             } else {
                 $newRights = $currentRights - 1;
                 Db::change('users', array('rights' => $newRights), 'WHERE _id = ?', array($id));
-                LogHandler::logThis('Changed user "' . $id . '" rights from "' . $currentRights . '" to "' . $newRights . '".');
+                LogHandler::logThis('Changed user *' . $id . '* rights from "' . $currentRights . '" to "' . $newRights . '".');
                 return true;
             }
         }

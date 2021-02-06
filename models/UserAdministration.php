@@ -22,7 +22,8 @@
             );
             //print_r($user);
             try {
-                Db::insert('users', $user);
+                $newId = Db::insert('users', $user);
+                LogHandler::logThis("Registered new user *" . $user["username"]);
             } catch (PDOException $error) {
                 throw new UserError('Uživatel s tímto jménem je již registrovaný.');
             }

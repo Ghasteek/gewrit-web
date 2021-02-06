@@ -7,7 +7,7 @@
 
             $url = filter_var($url, FILTER_SANITIZE_URL);
 
-            if (strpos($url, 'https://') == false) {
+            if (strpos($url, 'https://') === false) {
                 $url = 'https://' . $url;
             }
 
@@ -96,7 +96,6 @@
             } else {
                 $type = 'anime';
             }
-            echo $url;
             // scrap Anime Planet
             $dom = new domDocument;
             $ap = file_get_contents($url);
