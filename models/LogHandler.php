@@ -14,7 +14,7 @@
                 mkdir("log", 0755, true);
             }
 
-            file_put_contents('log/log_'.date("W.Y").'.log', $log, FILE_APPEND);
+            file_put_contents('log/log_'.date("Y.W").'.log', $log, FILE_APPEND);
         }
 
         // get list of logs in log folder
