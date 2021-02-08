@@ -15,9 +15,16 @@
             $this->data['seznamType'] = 'my';
 
             if (!$_SESSION['checking']) { 
-                $_SESSION['checking'] = 'anime,manga,serial';
+                $_SESSION['checking'] = array('anime', 'manga', 'serial');
                 $this->data['checked'] = implode(", ", $_SESSION['checking']);
             };
+
+            if ($_SESSION['checking'][0] == 'releaseDay') {
+                $_SESSION['checking'] = array('anime', 'manga', 'serial', 'releaseDay');;
+                $this->data['checked'] = implode(", ", $_SESSION['checking']);
+                $this->redirect("muj-seznam/sleduji");
+            }
+
 
             if ($param[0] && (strpos($validParams, $param[0]) == true)){
                 $urlWithStatus = "muj-seznam/" . $param[0];
@@ -33,6 +40,7 @@
                 // vyber ktere zaznamy zobrazovat
                 if ($_POST['form']){ 
                     if (count($_POST['checking']) == 0) { $_POST['checking'] = array('anime', 'manga', 'serial'); }
+                    if ($_POST['checking'][0] == 'releaseDay') { $_POST['checking'] = ['anime' ,'manga' ,'serial', 'releaseDay'];}
                     $_SESSION['checking'] = $_POST['checking'];
                     $this->data['checked'] = implode(", ", $_POST['checking']);
 
