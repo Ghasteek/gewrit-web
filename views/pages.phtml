@@ -2,6 +2,7 @@
 /* 
 Vypise strankovani, pokud je pocet stran vetsi nez 1
 */
+if ($type == 'serial') { $type = 'serialy'; }
 if ($pages > 1){ ?>
     <div class="pages-section">
         <?php if (!$type) {
