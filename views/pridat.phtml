@@ -67,11 +67,10 @@
                         </div>
 
                         <div class="detail-links">
-                            <?php if ($type == 'serial') : ?>
+                            <?php if ($itemType == 'Seriál') : ?>
                                 <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><div class="button csfd">CSFD</div> </a> 
                                 <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><div class="button imdb">IMDB</div> </a>
-                            <?php endif; ?>
-                            <?php if ($type != 'serial') : ?>
+                            <?php else : ?>
                                 <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><div class="button ap">Anime-planet</div> </a>
                             <?php endif; ?>
                         </div>
