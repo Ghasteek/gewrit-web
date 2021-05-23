@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap");
 
 html {
   overflow-x: hidden;
@@ -9,7 +9,7 @@ body {
   font-family: verdana;
   font-size: 14px;
   margin: 0 auto;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   color: #ffffff;
 }
 
@@ -22,12 +22,11 @@ footer {
   flex-wrap: wrap;
 }
 
-::-moz-selection { 
-  background: #C93737; 
-
+::-moz-selection {
+  background: #c93737;
 }
-::selection { 
-  background:  #C93737; 
+::selection {
+  background: #c93737;
 }
 
 footer p {
@@ -40,7 +39,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #C93737;
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
@@ -61,11 +60,11 @@ article {
   z-index: 99999;
   width: 100%;
   background: #1a1a1a;
-  border-top: solid 1px #C93737;
+  border-top: solid 1px #c93737;
 }
 
 .cookie-info a {
-  color: #C93737;
+  color: #c93737;
   text-shadow: none;
   font-weight: bolder;
 }
@@ -81,17 +80,17 @@ article {
 -------------------------------------*/
 .button {
   color: #ffffff;
-  background: #1A1A1A;
+  background: #1a1a1a;
   width: max-content;
   padding: 3px 10px;
   font-weight: bold;
   border-radius: 5px;
   transition: all 0.1s;
   user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .button:hover {
@@ -111,41 +110,40 @@ article {
 }
 
 .decline {
-  border: solid 1px #C93737;
+  border: solid 1px #c93737;
 }
 
 .decline:hover {
-  color: #C93737;
-  box-shadow: #C93737, #C93737;
+  color: #c93737;
+  box-shadow: #c93737, #c93737;
 }
 
 .csfd {
-  border: solid 1px #C20E0F;
+  border: solid 1px #c20e0f;
 }
 
 .csfd:hover {
   color: #f30c0c;
-  box-shadow: #C20E0F, #C20E0F;
+  box-shadow: #c20e0f, #c20e0f;
 }
 
 .imdb {
-  border: solid 1px #E2B616;
+  border: solid 1px #e2b616;
 }
 
 .imdb:hover {
-  color: #E2B616;
-  box-shadow: #E2B616, #E2B616;
+  color: #e2b616;
+  box-shadow: #e2b616, #e2b616;
 }
 
 .ap {
-  border: solid 1px #C93737;
+  border: solid 1px #c93737;
 }
 
 .ap:hover {
   color: #fc5342;
   box-shadow: #fc5342, #fc5342;
 }
-
 
 /*-------------------------------------
 --------------MESSAGES-----------------
@@ -194,22 +192,22 @@ header {
 }
 
 header::after {
-  content: '';
+  content: "";
   clear: both;
   display: table;
 }
 
 .logo {
-  font-family: 'Caesar Dressing', cursive;
+  font-family: "Caesar Dressing", cursive;
   font-size: 50px;
   float: left;
-  color: #FFFFFF;
+  color: #ffffff;
   position: relative;
   top: 3.5px;
 }
 
 .logo:hover {
-  color: #C93737;
+  color: #c93737;
 }
 
 nav {
@@ -234,7 +232,7 @@ nav li {
 }
 
 nav a {
-  color:#ffffff;
+  color: #ffffff;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 16px;
@@ -242,15 +240,15 @@ nav a {
 }
 
 nav a:hover {
-  color: #C93737;
-  background-color: #1A1A1A;
+  color: #c93737;
+  background-color: #1a1a1a;
 }
 
 nav a::before {
-  content: '';
+  content: "";
   display: block;
   height: 5px;
-  background-color: #C93737;
+  background-color: #c93737;
 
   position: absolute;
   bottom: -30px;
@@ -276,10 +274,10 @@ nav a:hover::before {
 }
 
 .active::before {
-  content: '';
+  content: "";
   display: block;
   height: 5px;
-  background-color: #C93737;
+  background-color: #c93737;
 
   position: absolute;
   bottom: -30px;
@@ -307,11 +305,11 @@ nav a:hover::before {
 .sub-menu li {
   margin: 0;
   padding: 15px 27px 15px 0;
-  border-top: #1A1A1A 2px solid;
+  border-top: #1a1a1a 2px solid;
 }
 
 .sub-menu li:last-child {
-  border-bottom: #1A1A1A 2px solid;
+  border-bottom: #1a1a1a 2px solid;
 }
 
 .sub-menu a {
@@ -319,12 +317,12 @@ nav a:hover::before {
 }
 
 .sub-menu li:hover {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
 }
 
 .sub-menu a:hover {
   padding: 15px 25px;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
 }
 
 /*-------------------------------------
@@ -343,9 +341,9 @@ footer ul {
 .footer-facebook {
   margin-top: 10px;
   font-size: 35px;
-  color: #0063E1;
+  color: #0063e1;
   text-shadow: none;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .footer-facebook:hover {
@@ -403,10 +401,10 @@ footer ul {
 -------------------------------------*/
 
 .index-section {
-  border-top: solid 2px #D0D0D0;
+  border-top: solid 2px #d0d0d0;
   position: relative;
   padding: 15px 10px 10px 10px;
-  margin: 2em 0 0 ;
+  margin: 2em 0 0;
 
   display: flex;
   flex-wrap: wrap;
@@ -422,7 +420,7 @@ footer ul {
 }
 
 .index-section + .index-section {
-  margin: 3em 0 0 ;
+  margin: 3em 0 0;
 }
 
 .index-section-title {
@@ -433,7 +431,7 @@ footer ul {
   background: #292929;
   font-size: 20px;
   font-weight: bold;
-  color: #C93737;
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
@@ -441,7 +439,7 @@ footer ul {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
-  color: #C93737;
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
@@ -453,7 +451,7 @@ footer ul {
 }
 
 .index-item a {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
@@ -461,8 +459,9 @@ footer ul {
   cursor: pointer;
 }
 
-.index-item a:hover, .index-item i{
-  color: #C93737;
+.index-item a:hover,
+.index-item i {
+  color: #c93737;
 }
 
 .index-item-star {
@@ -491,8 +490,8 @@ footer ul {
   width: 160px;
   height: 225px;
   position: absolute;
-  transition: .2s;
-  transition-delay: .03s;
+  transition: 0.2s;
+  transition-delay: 0.03s;
 }
 
 .index-name {
@@ -507,7 +506,7 @@ footer ul {
   position: absolute;
   top: 235px;
 
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .index-item-mask {
@@ -519,14 +518,15 @@ footer ul {
   display: none;
   opacity: 0;
   text-align: center;
-  transition: all .2s;
+  transition: all 0.2s;
   line-height: 200%;
 
   flex-direction: column;
   justify-content: space-between;
 }
 
-.index-item-image:hover ~ .index-item-mask, .index-item-mask:hover {
+.index-item-image:hover ~ .index-item-mask,
+.index-item-mask:hover {
   display: flex;
 }
 
@@ -546,23 +546,23 @@ footer ul {
 }
 
 .index-item-mask-container:hover ~ .index-name {
-  color: #C93737;
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
 .item-tools-bar {
   display: flex;
   justify-content: space-between;
-  color: #C93737;
+  color: #c93737;
   font-size: 18px;
   flex-direction: row;
 }
 
 .item-tools-bar i {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .item-tools-bar i:hover {
-  color: #C93737;
+  color: #c93737;
 }
 
 .hidden {
@@ -570,14 +570,14 @@ footer ul {
 }
 
 .reverse {
-  flex-direction: row-reverse
+  flex-direction: row-reverse;
 }
 
 /*-------------------------------------
 ---------------SEZNAM------------------
 -------------------------------------*/
 .search-section {
-  width:100%;
+  width: 100%;
   display: flex;
   flex-flow: row;
   justify-content: start;
@@ -585,7 +585,7 @@ footer ul {
 }
 
 .pages-section {
-  width:100%;
+  width: 100%;
   display: flex;
   flex-flow: row;
   justify-content: center;
@@ -593,11 +593,11 @@ footer ul {
 }
 
 .pages-section a {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .pages-section a:hover {
-  color: #C93737;
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
@@ -612,8 +612,8 @@ footer ul {
 }
 
 .active-page {
-  background: #1A1A1A;
-  color: #C93737;
+  background: #1a1a1a;
+  color: #c93737;
 }
 
 .unactive-page {
@@ -690,7 +690,7 @@ footer ul {
 }
 
 .detail-rating {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   position: absolute;
   display: block;
   line-height: 200%;
@@ -698,19 +698,19 @@ footer ul {
   transform: scale(0);
   opacity: 0;
   overflow: hidden;
-  transition: all .2s;
+  transition: all 0.2s;
   width: 210px;
   text-align: center;
 }
 
 .star-big {
   font-size: 30px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .star-big:hover {
   font-size: 30px;
-  color: #C93737;
+  color: #c93737;
   transform: scale(1.4);
 }
 
@@ -720,7 +720,7 @@ footer ul {
 
 .detail-rating label:hover {
   cursor: pointer;
-  color: #C93737;
+  color: #c93737;
 }
 
 .detail-rating form {
@@ -728,7 +728,7 @@ footer ul {
 }
 
 .active-star {
-  color: #C93737;
+  color: #c93737;
 }
 
 .show-rating {
@@ -743,7 +743,7 @@ footer ul {
 
 .detail-tools {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: space-evenly;
   margin: 5px 0;
 }
@@ -751,17 +751,17 @@ footer ul {
 .detail-tools a {
   color: #ffffff;
   text-decoration: none;
-  transition: all .2s;
+  transition: all 0.2s;
   font-size: 15px;
 }
 
 .detail-tools a:hover {
-  color: #C93737;
+  color: #c93737;
   transform: scale(1.1);
 }
 .detail-tools i {
   margin-right: 5px;
-  color: #C93737;
+  color: #c93737;
 }
 
 /*-------------------------------------
@@ -770,7 +770,7 @@ footer ul {
 
 .day-checkbox {
   display: none;
-} 
+}
 
 .day-checkbox-label {
   width: 40px;
@@ -779,18 +779,19 @@ footer ul {
   justify-content: center;
   align-items: center;
   border: solid 2px #292929;
-  background: #1A1A1A;
+  background: #1a1a1a;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
   user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
-.day-checkbox:checked ~ label .day-checkbox-label, .day-checkbox-label:hover {
-  background-color: #C93737;
+.day-checkbox:checked ~ label .day-checkbox-label,
+.day-checkbox-label:hover {
+  background-color: #c93737;
   font-weight: bold;
   transform: scale(1.1);
 }
@@ -817,8 +818,8 @@ footer ul {
   font-weight: bold;
 }
 
-
-.input-plus, .input-minus {
+.input-plus,
+.input-minus {
   width: 30px;
   height: 30px;
   display: flex;
@@ -826,18 +827,20 @@ footer ul {
   align-items: center;
   background-color: #1a1a1a;
   font-weight: 900;
-  transition: all .2s;
+  transition: all 0.2s;
   user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
-.input-plus:hover, .input-minus:hover, .input-plus:focus, .input-minus:focus  {
+.input-plus:hover,
+.input-minus:hover,
+.input-plus:focus,
+.input-minus:focus {
   cursor: pointer;
-  background-color: #C93737;
-
+  background-color: #c93737;
 }
 
 /* Chrome, Safari, Edge, Opera - schovani defaultnich + a - tlacitek u input number*/
@@ -848,7 +851,7 @@ footer ul {
 }
 
 /* Firefox */
-.form-container input[type=number] {
+.form-container input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -861,7 +864,7 @@ footer ul {
 }
 
 .form-section {
-  margin: 25px 0 0 0 ;
+  margin: 25px 0 0 0;
 }
 
 /*  animate input  */
@@ -876,7 +879,7 @@ footer ul {
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #FFFFFF;
+  border-bottom: 2px solid #ffffff;
   outline: 0;
   font-size: 1.2rem;
   color: #ffffff;
@@ -901,14 +904,14 @@ footer ul {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 1px;
-  border-image: linear-gradient(to right, #C93737, #C93737);
+  border-image: linear-gradient(to right, #c93737, #c93737);
   border-image-slice: 1;
 }
 .form__field:focus ~ .form__label {
@@ -917,22 +920,24 @@ footer ul {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #C93737;
+  color: #c93737;
   font-weight: 700;
 }
 
 /* reset input */
-.form__field:required, .form__field:invalid {
+.form__field:required,
+.form__field:invalid {
   box-shadow: none;
 }
 
-.input-select, .input-select option {
+.input-select,
+.input-select option {
   padding: 8px 10px;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
+  background-color: #1a1a1a;
+  color: #ffffff;
   border: none;
   font-weight: bold;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 /*-------------------------------------
@@ -940,7 +945,7 @@ footer ul {
 -------------------------------------*/
 
 .my-list-submenu {
-  background-color: #333333 ;
+  background-color: #333333;
   width: 100%;
   display: flex;
   justify-content: start;
@@ -954,7 +959,7 @@ footer ul {
 }
 
 .my-list-submenu a {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -978,7 +983,7 @@ footer ul {
   flex-wrap: wrap;
 }
 
-.my-list-submenu > div:first-child{
+.my-list-submenu > div:first-child {
   margin: auto 3px;
   width: 130px;
   flex-shrink: 0;
@@ -988,7 +993,7 @@ footer ul {
 
 .filter-checkbox {
   display: none;
-} 
+}
 
 .filter-checkbox-label {
   padding: 15px 25px;
@@ -996,12 +1001,12 @@ footer ul {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
   user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .filter-checkbox-label::after {
@@ -1010,8 +1015,9 @@ footer ul {
   margin-left: 10px;
 }
 
-.filter-checkbox:checked ~ label .filter-checkbox-label , .my-list-submenu-active{
-  color: #C93737;
+.filter-checkbox:checked ~ label .filter-checkbox-label,
+.my-list-submenu-active {
+  color: #c93737;
   text-shadow: 2px 2px 8px black;
 }
 
@@ -1062,7 +1068,7 @@ footer ul {
   align-items: center;
   cursor: pointer;
 
-  transition: all .1s;
+  transition: all 0.1s;
 }
 
 .my-list-item-default-container {
@@ -1075,12 +1081,14 @@ footer ul {
   content: "\f077";
 }
 
-.my-list-item-default:hover, .my-list-item-default-active {
-  background: #1A1A1A;
+.my-list-item-default:hover,
+.my-list-item-default-active {
+  background: #1a1a1a;
 }
 
-.my-list-item-default:hover::after, .my-list-item-default-active::after {
-  color: #C93737;
+.my-list-item-default:hover::after,
+.my-list-item-default-active::after {
+  color: #c93737;
 }
 
 .my-list-item-middle-container {
@@ -1091,7 +1099,7 @@ footer ul {
 }
 
 .my-list-item-name {
-  color: #C93737;
+  color: #c93737;
   font-weight: bold;
   text-shadow: 2px 2px 8px black;
 }
@@ -1106,13 +1114,13 @@ footer ul {
 
 .my-list-item-tools-container a {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   margin-left: 10px;
 }
 
 .my-list-item-tools-container a:hover {
-  color: #C93737;
+  color: #c93737;
 }
 
 .my-list-item-details {
@@ -1121,7 +1129,7 @@ footer ul {
   max-height: 0;
   overflow: hidden;
 
-  transition: max-height ease-in-out .25s;
+  transition: max-height ease-in-out 0.25s;
 }
 
 .my-list-item-details-show {
@@ -1189,7 +1197,10 @@ footer ul {
 ---------------REPORTY-----------------
 -------------------------------------*/
 
-.reports, .reports tr, .reports th, .reports td {
+.reports,
+.reports tr,
+.reports th,
+.reports td {
   border: solid 1px #666666;
   padding: 5px;
   margin: auto;
@@ -1218,8 +1229,8 @@ footer ul {
 .report-form textarea {
   width: 30rem;
   height: 10rem;
-  background: #1A1A1A;
-  color: #FFFFFF;
+  background: #1a1a1a;
+  color: #ffffff;
   border: none;
   resize: none;
 }
@@ -1232,7 +1243,6 @@ footer ul {
 .report-container .button {
   margin: 10px 0;
 }
-
 
 /*-------------------------------------
 -------------OBNOVA HESLA--------------
@@ -1277,8 +1287,8 @@ footer ul {
 .kontakt-section textarea {
   width: 80%;
   height: 15rem;
-  background: #1A1A1A;
-  color: #FFFFFF;
+  background: #1a1a1a;
+  color: #ffffff;
   border: none;
   resize: none;
   margin-top: 10px;
@@ -1298,7 +1308,7 @@ footer ul {
   font-size: 1.2rem;
 }
 
-.kontakt-section .button{
+.kontakt-section .button {
   margin-top: 15px;
 }
 
@@ -1315,12 +1325,10 @@ footer ul {
   justify-content: space-around;
 }
 
-
 /*------------------------------------------------------------------------------------------------
 -------------------------------------------SMALL SCREEN-------------------------------------------
 ------------------------------------------------------------------------------------------------*/
-@media screen and (max-width: 1245px){
-
+@media screen and (max-width: 1245px) {
   article {
     width: 100%;
   }
@@ -1341,8 +1349,9 @@ footer ul {
     transition: clip-path ease-in-out 500ms;
   }
 
-  .menu-main, .menu-profile {
-    background: #1A1A1A;
+  .menu-main,
+  .menu-profile {
+    background: #1a1a1a;
     border-bottom: 1px solid #333333;
   }
 
@@ -1355,7 +1364,7 @@ footer ul {
   }
 
   nav a:hover {
-    color: #C93737;
+    color: #c93737;
     padding: 15px 10px;
     background-color: #333333;
   }
@@ -1380,16 +1389,17 @@ footer ul {
     width: 0%;
   }
 
-  .active, .active li {
-    color: #C93737;
+  .active,
+  .active li {
+    color: #c93737;
   }
 
   .active::before {
-    content: '';
+    content: "";
     display: block;
     height: 5px;
-    background-color: #C93737;
-  
+    background-color: #c93737;
+
     position: absolute;
     bottom: -25px;
     width: 0%;
@@ -1406,7 +1416,7 @@ footer ul {
 
   .sub-menu {
     clip-path: circle(250% at top);
-    background: #1A1A1A;
+    background: #1a1a1a;
     top: 50px;
   }
 
@@ -1414,16 +1424,17 @@ footer ul {
     right: 0px;
   }
 
-  .sub-menu li:hover, .sub-menu a:hover {
+  .sub-menu li:hover,
+  .sub-menu a:hover {
     background: #333333;
   }
 
   .hamburger,
   .hamburger::before,
   .hamburger::after {
-    content: '';
+    content: "";
     display: block;
-    background: #EBEBD3;
+    background: #ebebd3;
     height: 3px;
     width: 1.75em;
     border-radius: 3px;
@@ -1478,14 +1489,14 @@ footer ul {
     z-index: 2;
     top: 50px;
     left: 3px;
-    background-color: #1A1A1A;
+    background-color: #1a1a1a;
 
     transform: scale(0);
-    transition: all ease-in-out .05s;
+    transition: all ease-in-out 0.05s;
   }
 
   .filter-open {
-    transform: scale(1)!important;
+    transform: scale(1) !important;
   }
 
   .my-list-submenu li {
@@ -1519,19 +1530,19 @@ footer ul {
   }
 
   .my-list-submenu > div:first-child:hover {
-    background-color: #1A1A1A;
-    color: #C93737;
+    background-color: #1a1a1a;
+    color: #c93737;
     cursor: pointer;
   }
 
   .my-list-submenu:hover::after {
-    color: #C93737;
+    color: #c93737;
   }
 
   .filter-click {
     display: block;
   }
-  
+
   .my-list-submenu-container {
     width: inherit;
     display: flex;
@@ -1542,23 +1553,20 @@ footer ul {
   .my-list-item {
     width: 95%;
   }
-
-
 }
 
 /*------------------------------------------------------------------------------------------------
 -------------------------------------EXTRA SMALL SCREEN-------------------------------------------
 ------------------------------------------------------------------------------------------------*/
 
-@media screen and (max-width: 384px){
-
+@media screen and (max-width: 384px) {
   /*-------------------------------------
   --------------SEKCE INDEX--------------
   -------------------------------------*/
 
   .index-summary-container-row {
     flex-flow: column;
-}
+  }
   /*-------------------------------------
   --------------SEKCE UVOD---------------
   -------------------------------------*/
@@ -1570,7 +1578,6 @@ footer ul {
   .index-item:nth-child(2) {
     margin-top: 35px;
   }
-
 
   /*-------------------------------------
   -------------SEKCE SEZNAM--------------
@@ -1591,12 +1598,10 @@ footer ul {
     flex-flow: column;
   }
 
-
-
   .detail-links {
     flex-flow: column;
   }
-  
+
   .detail-links a + a {
     margin-left: 0;
     margin-top: 20px;
@@ -1610,12 +1615,11 @@ footer ul {
     display: flex;
     flex-flow: column;
   }
-  
+
   .detail-rating-oneRow div {
     margin-left: 0px;
     margin-top: 20px;
   }
-
 
   /*-------------------------------------
   ----------PRIDAT DO SEZNAMU------------
@@ -1629,7 +1633,8 @@ footer ul {
     margin-top: 20px;
   }
 
-  .input-plus, .input-minus {
+  .input-plus,
+  .input-minus {
     width: 60px;
     margin-left: 1px;
   }
@@ -1644,7 +1649,7 @@ footer ul {
   } */
 
   .day-checkbox-label {
-    background-color: #1A1A1A;
+    background-color: #1a1a1a;
   }
 
   .form__field:placeholder-shown ~ .form__label {
@@ -1666,5 +1671,4 @@ footer ul {
   .my-list-item {
     width: 98%;
   }
-
 }

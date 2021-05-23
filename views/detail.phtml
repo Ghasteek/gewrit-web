@@ -50,8 +50,8 @@
         <?php if (is_integer($userRights)):?>
             <div class="detail-tools">
                 <?php if ($userRights >= 0):?>
-                    <a href="pridat-do-seznamu/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-plus"></i>Přidat</a>
-                    <a href="nahlasit/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-bug"></i>Nahlásit</a>
+                    <a href="pridat-do-seznamu/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-plus"></i>Přidat</a> <br>
+                    <a href="nahlasit/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-bug"></i>Nahlásit</a> <br>
                 <?php endif; 
                 if ($userRights >= 1):?>
                     <a href="editor/<?= $type ?>/<?= $data['_id'] ?>"><i class="fas fa-edit"></i>Upravit</a>
@@ -110,7 +110,9 @@
         <div class="detail-links">
             <?php if ($type == 'serial') : ?>
                 <a href="<?= $data['linkCsfd'] ?>" title="odkaz na CSFD" target="_blank"><div class="button csfd">CSFD</div> </a> 
-                <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><div class="button imdb">IMDB</div> </a>
+                <?php if ($data['linkImdb'] != '') { ?>
+                    <a href="<?= $data['linkImdb'] ?>" title="odkaz na IMDB" target="_blank"><div class="button imdb">IMDB</div> </a>
+                <?php }; ?>
             <?php endif; ?>
             <?php if ($type != 'serial') : ?>
                 <a href="<?= $data['linkAp'] ?>" title="odkaz na Anime-planet" target="_blank"><div class="button ap">Anime-planet</div> </a>

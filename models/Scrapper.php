@@ -27,7 +27,7 @@
             // scrap CSFD
             $id = (int) filter_var($url, FILTER_SANITIZE_NUMBER_INT);
             $dom = new domDocument;
-            $csfdUrl = "http://www.csfd.cz/film/$id";
+            $csfdUrl = "http://www.csfd.cz/film/$id/galerie/plakaty";
             $csfd = file_get_contents($csfdUrl);
             $html = (ord($csfd[0]) == 31) ? gzdecode($csfd) : $csfd;
             @$dom->loadHTML($html);
@@ -39,10 +39,12 @@
             $names_other = "";
             $nodes = $xpath->query("//h1[@itemprop='name']");
             $names_cs = $nodes->item(0)->nodeValue;
-            if (!strpos($names_cs, "(TV seriál)")) {
+
+            $nodes = $xpath->query("//span[@class='type']");
+            $type = $nodes->item(0)->nodeValue;
+            if (strpos($type, "(TV seriál)")) {
                 throw new UserError('Nejedná se o odkaz na seriál. Pokud se jedná o seriál, prosím, kontaktujte nás.');
             }
-            $names_cs = str_replace("(TV seriál)", "", $names_cs);
 
             foreach($xpath->query("//ul[@class='names']/li/h3") as $li) {
                 $nazvy[] = $li->nodeValue;
@@ -57,22 +59,27 @@
                     $names_other .= $nazvy[$i]." - ".$zeme[$i].";<br>";
             }
 
-            $nodes = $xpath->query("//p[@class='genre']");
+            $nodes = $xpath->query("//div[@class='genres']");
             $genre = str_replace(' / ', ', ', $nodes->item(0)->nodeValue);
 
             $nodes = $xpath->query("//span[@itemprop='dateCreated']");
             $rok = $nodes->item(0)->nodeValue;
 
-            $nodes = $xpath->query("//div[@data-truncate='570']");
+            $nodes = $xpath->query("//div[@class='plot-full hidden']");
             $popis = $nodes->item(0)->nodeValue;
+            if (strlen($popis) == 0) {
+                $nodes = $xpath->query("//div[@class='plot-full']");
+                $popis = $nodes->item(0)->nodeValue;
+            }
 
-            $nodes = $xpath->query("//img[@class='film-poster']");
-            $poster_url = "http:".$nodes->item(0)->getAttribute('src');
-            $poster_url = substr($poster_url, 0, -3);
-            $poster_url = $poster_url . "480";
+            /*$nodes = $xpath-> query("//source[@media='(max-width: 400px)']");
+            $poster_url = $nodes->item(0)->getAttribute('srcset');
+            $poster_url = "http:" . explode(' ', $poster_url)[0];*/
 
-            $nodes = $xpath->query("//a[@title='profil na IMDb.com']");
-            $imdb = $nodes->item(0)->getAttribute('href');
+            $nodes = $xpath-> query("//img[@itemprop='image']");
+            $poster_url = $nodes->item(0)->getAttribute('src');
+            $poster_url = "http:" . explode(' ', $poster_url)[0];
+
 
             $serial = array(
                 'name' => trim($names_cs),
@@ -80,7 +87,6 @@
                 'year' => trim($rok),
                 'genre' => trim($genre),
                 'linkCsfd' => trim($url),
-                'linkImdb' => trim($imdb),
                 'description' => trim($popis),
                 'type' => 'serial'
             );
